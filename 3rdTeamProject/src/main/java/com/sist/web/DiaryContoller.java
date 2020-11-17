@@ -8,6 +8,6 @@ public class DiaryContoller {
 	
 	@RequestMapping("diary/list.do")
 	public String diary_list(){
-		return "list";
+		return "diary/list";
 	}
 }

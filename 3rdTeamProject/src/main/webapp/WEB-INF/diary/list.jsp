@@ -32,7 +32,7 @@
   <body>
     
     
-    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_4.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_4.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -50,7 +50,7 @@
         <div class="row d-flex">
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_1.jpg');">
               </a>
               <div class="text p-4 d-block">
               	<span class="tag">Tips, Travel</span>
@@ -65,7 +65,7 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_2.jpg');">
               </a>
               <div class="text p-4">
               	<span class="tag">Culture</span>
@@ -80,7 +80,7 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_3.jpg');">
               </a>
               <div class="text p-4">
               	<span class="tag">Tips, Travel</span>
@@ -95,7 +95,7 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_4.jpg');">
               </a>
               <div class="text p-4">
               	<span class="tag">Tips, Travel</span>
@@ -110,7 +110,7 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_5.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_5.jpg');">
               </a>
               <div class="text p-4 d-block">
               	<span class="tag">Tips, Travel</span>
@@ -125,7 +125,7 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_6.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_6.jpg');">
               </a>
               <div class="text p-4">
               	<span class="tag">Culture</span>
@@ -140,7 +140,7 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_7.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_7.jpg');">
               </a>
               <div class="text p-4">
               	<span class="tag">Tips, Travel</span>
@@ -155,7 +155,7 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_8.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_8.jpg');">
               </a>
               <div class="text p-4">
               	<span class="tag">Tips, Travel</span>
