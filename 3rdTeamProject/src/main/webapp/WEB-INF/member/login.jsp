@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/member/member.css">
+<link rel="stylesheet" type="text/css" href="../css/member/member.css?after">
 </head>
 <body>
 
@@ -24,10 +25,33 @@
 	<section class="ftco-section bg-light">
       <div class="container">
         <div class="row d-flex">
-          	
           	<div class="login_box">
           		<div class="box_in_login_box">
+          			<div style="text-align: center; height:40px; line-height: 40px; margin-top: 50px;margin-bottom: 100px;">
+          			<img src="../images/today.png" style="width:40px; height:40px; line-height: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;
+          			<h2 style="display: inline; line-height: 40px;">오늘 뭐하니?</h2>
+          			</div>
+          			<div style="width: 100%; padding: 0px 10%;">
+          				<input type="text" placeholder="아이디" name="id" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px;">
+          				<input type="password" placeholder="비밀번호" name="pwd" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px; margin-top: 50px;">
+          			</div>
+          			<div style="margin-top: 80px; text-align: center;">
+          				<a href="../member/login_ok.do">로그인</a>          				
+          				
+          				<c:if test="${userId == null }">
+	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8064/web/member/kakao_login.do&response_type=code">
+	          					<img src="../images/kakao_login_medium_narrow.png">
+	          				</a>
+          			</c:if>
+          			</div>
+          			<div style="margin-top:60px; border-top: 1px solid #E5E5E5; text-align: right; padding-top: 5px;">
+          				<p>아직 계정이 없으신가요?&nbsp;&nbsp;<a class="all_a_tag" href="../member/join.do">회원가입</a></p>
+          			</div>
           			
+          			<%-- <c:if test="${userId != null }">
+          				<h5>로그인 완료</h5>
+          				<input type="button" value="로그아웃" onclick="location.href='kakao_logout.do'">
+          			</c:if> --%>
           		</div>
           	</div>
           	

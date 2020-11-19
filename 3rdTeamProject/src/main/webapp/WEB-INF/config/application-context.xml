@@ -20,7 +20,7 @@
 	<context:component-scan base-package="com.sist.*"/>
 	
 	<!-- 디비 ================================================================================================== -->
-	<!-- <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
 		p:username="hr"
 		p:password="happy"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
@@ -31,11 +31,9 @@
 		p:dataSource-ref="ds"
 	/>
 	
-	<bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
-		p:sqlSessionFactory-ref="ssf"
-		p:mapperInterface="com.sist.mapper.MovieMapper"
-	/> -->
-	
+	<mybatis-spring:scan base-package="com.sist.mapper"
+		factory-ref="ssf"
+	/>
 	
 	
 	
