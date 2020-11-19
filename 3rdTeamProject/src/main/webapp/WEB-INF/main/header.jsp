@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="../tour/list.do" class="nav-link">투어</a></li>
           <li class="nav-item"><a href="tour.html" class="nav-link">Tour</a></li>
           <li class="nav-item"><a href="../psyTest/main.do" class="nav-link">성향테스트</a></li>
           <li class="nav-item"><a href="../diary/list.do" class="nav-link">여행기</a></li>
