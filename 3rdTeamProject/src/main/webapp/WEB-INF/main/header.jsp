@@ -22,7 +22,7 @@
           <li class="nav-item"><a href="../psyTest/main.do" class="nav-link">성향테스트</a></li>
           <li class="nav-item"><a href="../diary/list.do" class="nav-link">여행기</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-          <li class="nav-item cta"><a href="contact.html" class="nav-link"><span>Add listing</span></a></li>
+          <li class="nav-item cta"><a href="../member/login.do" class="nav-link"><span>로그인</span></a></li>
         </ul>
       </div>
     </div>
