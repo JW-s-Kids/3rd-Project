@@ -39,7 +39,7 @@
           				<a href="../member/login_ok.do">로그인</a>          				
           				
           				<c:if test="${userId == null }">
-	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8064/web/member/kakao_login.do&response_type=code">
+	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8067/web/member/kakao_login.do&response_type=code">
 	          					<img src="../images/kakao_login_medium_narrow.png">
 	          				</a>
           			</c:if>

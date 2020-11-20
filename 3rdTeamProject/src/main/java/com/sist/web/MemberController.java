@@ -46,6 +46,8 @@ public class MemberController {
 	    kakao.kakaoLogout((String)session.getAttribute("access_Token"));
 	    session.removeAttribute("access_Token");
 	    session.removeAttribute("userId");
+	    session.invalidate();
+//	    kakao.kakaoLogout_entire();
 	    return "main";
 	}
 
