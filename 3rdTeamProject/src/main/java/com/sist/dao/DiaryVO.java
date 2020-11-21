@@ -30,6 +30,12 @@ public class DiaryVO {
 	private Date visitdate;		// 여행지에 방문한 일자
 	
 	
+	public Date getVisitdate() {
+		return visitdate;
+	}
+	public void setVisitdate(Date visitdate) {
+		this.visitdate = visitdate;
+	}
 	public int getNo() {
 		return no;
 	}

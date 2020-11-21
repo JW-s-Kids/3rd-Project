@@ -23,4 +23,36 @@ public class DiaryDAO {
 	public int diaryTotalPage(){
 		return mapper.diaryTotalPage();
 	}
+	
+	
+	// 상세보기 ==============================================================================================================================================
+	public DiaryVO diaryDetail(int no){
+		return mapper.diaryDetail(no);
+	}
+	public void diartyHit(int no){
+		mapper.diartyHit(no);
+	}
+	
+	
+	// 여행기 작성 ===============================================================================================================================================
+	public void diaryInsert(DiaryVO vo){
+		try {
+			mapper.diaryInsert(vo);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	
+	
+	
+	// 여행기 삭제 ========================================================================================================================================
+	public void diaryDelete(int no){
+		try {
+			mapper.diaryDelete(no);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

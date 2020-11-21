@@ -26,25 +26,22 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 ftco-animate">
-          <h2 class="mb-3">${diary_vo.subject }</h2>
-          <div style="height:80px; margin-top: 30px; border-top:1px solid #f2f2f2; padding-top: 10px;">
-          	<p>방문일 <fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/></p>
-          </div>
-            <p>
-              <img src="../images/image_7.jpg" alt="" class="img-fluid">
-            </p>
-              <img src="../images/image_8.jpg" alt="" class="img-fluid">
-     		<p>${diary_vo.content }</p>
-            <div class="tag-widget post-tag-container mb-5 mt-5">
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">좋아요</a>
-                <a href="#" class="tag-cloud-link">스크랩</a>
-                <a href="#" class="tag-cloud-link">조회 ${diary_vo.hit }</a>
-                <c:if test="${sessionScope.id == diary_vo.id }">
-                	<a href="../diary/delete.do?no=${diary_vo.no }" class="tag-cloud-link">삭제하기</a>
-                </c:if>
-              </div>
-            </div>
+          
+          		<form action="insert_ok.do" method="post">
+			          <h2 class="mb-3">
+							<input type=text name="subject" placeholder="제목을 입력하세요" style="background-color:  white; width: 600px;">
+						</h2>
+			          <div style="height:80px; margin-top: 30px; border-top:1px solid #f2f2f2; padding-top: 10px;">
+			          	<p>방문일 <fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/></p>
+			          </div>
+			            
+			     		<textarea rows="35" cols="100" name="content" style="resize: none;" placeholder="내용을 입력하세요"></textarea>
+			            <div class="tag-widget post-tag-container mb-5 mt-5">
+			              <div class="tagcloud">
+			                <button class="tag-cloud-link">작성완료</button>
+			              </div>
+			            </div>
+		        </form>
             
             <div class="about-author d-flex p-5 bg-light">
               <div class="bio align-self-md-center mr-5">
@@ -55,42 +52,6 @@
                 <p>사용자 소개</p>
               </div>
             </div>
-
-
-            <div class="pt-5 mt-5">
-              <h3 class="mb-5">댓글 ${diary_vo.reply }</h3>
-              <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="../images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
-              </ul>
-              <!-- END comment-list -->
-              
-              
-              
-              <div class="comment-form-wrap pt-5">
-                <form action="#" class="p-5 bg-light">
-                  <div class="form-group">
-                    <textarea name="" id="message" cols="30" rows="5" class="form-control" placeholder="댓글을 달아주세요"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" value="댓글 입력" class="btn py-3 px-4 btn-primary">
-                  </div>
-
-                </form>
-              </div>
-            </div>
-
-
-
 
 
           </div> <!-- .col-md-8 -->

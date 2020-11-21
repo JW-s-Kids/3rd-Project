@@ -6,7 +6,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/member/member.css?after">
+<link rel="stylesheet" type="text/css" href="../css/project_css/member.css?after">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#logBtn').click(function(){
+		let id=$('#log_id').val();
+		if(id.trim()=="")
+		{
+			alert('아이디를 입력하세요');
+			$('#log_id').focus();
+			return;
+		}
+		
+		let pwd=$('#log_pwd').val();
+		if(pwd.trim()=="")
+		{
+			alert('비밀번호를 입력하세요');
+			$('#log_pwd').focus();
+			return;
+		}
+		$('#logFrm').submit(); 
+	});
+});
+</script>
 </head>
 <body>
 
@@ -31,15 +54,17 @@
           			<img src="../images/today.png" style="width:40px; height:40px; line-height: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;
           			<h2 style="display: inline; line-height: 40px;">오늘 뭐하니?</h2>
           			</div>
-          			<div style="width: 100%; padding: 0px 10%;">
-          				<input type="text" placeholder="아이디" name="id" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px;">
-          				<input type="password" placeholder="비밀번호" name="pwd" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px; margin-top: 50px;">
-          			</div>
+          			<form action="../member/login_ok.do" method="post" id="logFrm">
+	          			<div style="width: 100%; padding: 0px 10%;">
+	          				<input type="text" placeholder="아이디" name="id" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px;" id="log_id">
+	          				<input type="password" placeholder="비밀번호" name="pwd" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px; margin-top: 50px;" id="log_pwd">
+	          			</div>
+	          			<input type="button" value="로그인" id="logBtn"></input>
+          			</form>
           			<div style="margin-top: 80px; text-align: center;">
-          				<a href="../member/login_ok.do">로그인</a>          				
-          				
-          				<c:if test="${userId == null }">
-	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8067/web/member/kakao_login.do&response_type=code">
+          				         				
+          				<c:if test="${userEmail == null }">
+	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8064/web/member/kakao_login.do&response_type=code">
 	          					<img src="../images/kakao_login_medium_narrow.png">
 	          				</a>
           			</c:if>

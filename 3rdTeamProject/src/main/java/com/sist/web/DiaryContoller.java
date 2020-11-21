@@ -1,6 +1,7 @@
 package com.sist.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,8 +87,97 @@ public class DiaryContoller {
 	}
 	
 	
+	
+	
+	
+	
+	
+	// 상세보기 ====================================================================================================================================================
 	@RequestMapping("diary/detail.do")
-	public String diary_detail(){
+	public String diary_detail(Model model, String no){
+		
+		try {
+//			request.setCharacterEncoding("utf-8");
+//			System.out.println("게시글 상세페이지");
+			
+			DiaryVO diary_vo = dao.diaryDetail(Integer.parseInt(no));				// DAO의 상세보기 메소드 리턴값을 vo에 담기 
+			
+			dao.diartyHit(Integer.parseInt(no));
+			
+//			List<JobKnowledgeVO> list = JobKnowledgeDAO.jobknowledgeDetailReply(Integer.parseInt(no));	// list에 답변글들을 담기
+			
+			
+			
+			
+			// 스크랩 버튼 활성화 여부 -------------------------------------
+//			HttpSession session=request.getSession();
+//			String id=(String)session.getAttribute("id");
+//			JobKnowledgeScrapVO svo=new JobKnowledgeScrapVO();
+//			svo.setId(id);
+//			svo.setMno(Integer.parseInt(no));
+//			int count=JobKnowledgeDAO.scrapCount(svo);
+//			
+//			request.setAttribute("count", count);
+			
+			model.addAttribute("diary_vo", diary_vo);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return "diary/detail";
+	}
+	
+	
+	
+	
+	
+	
+	
+	// 여행기 작성 페이지만 출력 ===========================================================================================================================================================
+	@RequestMapping("diary/insert.do")
+	public String diary_insert(){
+		return "diary/insert";
+	}
+	
+	// 여행기 작성 수행 ===========================================================================================================================================================
+	@RequestMapping("diary/insert_ok.do")
+	public String diary_insert_ok(String subject, String content, HttpSession session){
+		
+		try {
+			System.out.println("여행기 작성 수행 컨트롤러");
+			System.out.println("content : " + content);
+			System.out.println("subject : " + subject);
+			
+			
+			String id = (String)session.getAttribute("id");
+			System.out.println("id : " + id);
+			
+			DiaryVO vo = new DiaryVO();
+			vo.setContent(content);
+			vo.setSubject(subject);
+			vo.setId(id);
+			dao.diaryInsert(vo);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		
+		return "redirect:../diary/list.do";
+	}
+	
+	
+	
+	
+	
+	// 여행기 삭제 ===========================================================================================================================================================
+	@RequestMapping("diary/delete.do")
+	public String diaryDelete(String no){
+		
+		dao.diaryDelete(Integer.parseInt(no));
+		
+		return "redirect:../diary/list.do";
 	}
 }

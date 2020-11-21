@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -48,39 +49,64 @@
 
     <section class="ftco-section bg-light">
       <div class="container">
+      	
+      	<div style="height: 100px; margin: 0px auto; text-align: center;">
+      		<input type="button" value="카테고리">
+      		<input type="button" value="카테고리">
+      		<input type="button" value="카테고리">
+      	</div>
+      	
+      	<div style="height: 60px; margin: 0px auto; text-align: right;">
+      		<c:if test="${sessionScope.id != null }">
+      			<input type="button" value="여행기 작성" onclick="location.href='../diary/insert.do'">
+      		</c:if>
+      	</div>
+      
         <div class="row d-flex">
         
         	<c:forEach var="diary_vo" items="${list }">
 		          <div class="col-md-3 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch">
-		              <a href="detail.do" class="block-20" style="background-image: url('../images/image_1.jpg');">
+		              <a href="../diary/detail.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/image_1.jpg');">
 		              </a>
 		              <div class="text p-4 d-block">
 		              	<span class="tag">${diary_vo.tag }</span>
-		                <h3 class="heading mt-3"><a href="#">${diary_vo.subject }</a></h3>
+		                <h3 class="heading mt-3" style="width: 205px;"><a href="../diary/detail.do?no=${diary_vo.no }">${diary_vo.subject }</a></h3>
 		                <div class="meta mb-3">
-		                  <div><a href="#">${diary_vo.visitdate }</a></div>
+		                  <div><a href="../diary/detail.do?no=${diary_vo.no }">
+		                  	<fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/>
+		                  </a></div>
 		                  <div><a href="#">${diary_vo.id }</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> ${vo.reply }</a></div>
+		                  <div><a href="../diary/detail.do?no=${diary_vo.no }" class="meta-chat"><span class="icon-chat"></span>${diary_vo.reply }</a></div>
 		                </div>
 		              </div>
 		            </div>
 		          </div>
-          	</c:forEach>
-          	
-          	
+		    </c:forEach>
+          
+          
+          
+          
+          
         </div>
         <div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
               <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
+               		<c:if test="${currpage>block }">
+							<li><a href="../diary/list.do?page=${startpage-1 }">&lt;</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${startpage }" end="${endpage }">
+							<c:if test="${i==currpage }">
+							<li class="active"><a href="../diary/list.do?page=${i }">${i }</a></li>
+							</c:if>
+							<c:if test="${i!=currpage }">
+							<li><a href="../diary/list.do?page=${i }">${i }</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${endpage<totalpage }">
+							<li><a href="../diary/list.do?page=${endpage+1 }">&gt;</a></li>
+					</c:if>
               </ul>
             </div>
           </div>
