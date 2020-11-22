@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.dao.DiaryDAO;
 import com.sist.dao.DiaryVO;
+import com.sist.dao.Diary_replyVO;
 
 import java.util.*;
 
@@ -104,10 +105,9 @@ public class DiaryContoller {
 			
 			dao.diartyHit(Integer.parseInt(no));
 			
+			List<Diary_replyVO> reply_list = dao.diary_listReply(Integer.parseInt(no));
+			
 //			List<JobKnowledgeVO> list = JobKnowledgeDAO.jobknowledgeDetailReply(Integer.parseInt(no));	// list에 답변글들을 담기
-			
-			
-			
 			
 			// 스크랩 버튼 활성화 여부 -------------------------------------
 //			HttpSession session=request.getSession();
@@ -120,6 +120,7 @@ public class DiaryContoller {
 //			request.setAttribute("count", count);
 			
 			model.addAttribute("diary_vo", diary_vo);
+			model.addAttribute("reply_list", reply_list);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -180,4 +181,123 @@ public class DiaryContoller {
 		
 		return "redirect:../diary/list.do";
 	}
+	
+	
+	
+	
+	
+	// 여행기 수정 전 내용 가져오기 ==============================================================================================================================================
+	@RequestMapping("diary/update.do")
+	public String diaryUpdate(String no, Model model){
+		
+		DiaryVO diary_vo = dao.diaryDetail(Integer.parseInt(no));
+		
+		model.addAttribute("diary_vo", diary_vo);
+		
+		return "diary/update";
+	}
+	
+	// 여행기 수정 수행 =====================================================================================================================================================
+	@RequestMapping("diary/update_ok.do")
+	public String diaryUpdate_ok(String no, String content, String subject){
+		
+		Map map = new HashMap();
+		map.put("no", no);
+		map.put("content", content);
+		map.put("subject", subject);
+		
+		dao.diaryUpdate(map);
+		
+		System.out.println("여행기 수정 OK");
+		
+		return "redirect:../diary/detail.do?no=" + no;
+	}
+	
+	
+	
+	
+	
+	// 댓글 달기 =====================================================================================================================================================
+	@RequestMapping("diary/insert_reply.do")
+	public String diary_insertReply(String diary_no, String content, HttpSession session){
+		
+		try {
+			Diary_replyVO vo = new Diary_replyVO();
+			String id = (String)session.getAttribute("id");
+			vo.setId(id);
+			vo.setDiary_no(Integer.parseInt(diary_no));
+			vo.setContent(content);
+			
+			System.out.println("id : " + id);
+			System.out.println("diaty_no : " + diary_no);
+			System.out.println("content : " + content);
+			
+			dao.diary_insertReply(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "redirect:../diary/detail.do?no=" + diary_no;
+	}
+	
+	
+	// 대댓글 달기 =====================================================================================================================================================
+	@RequestMapping("diary/insert_replyReply.do")
+	public String diary_insertReplyReply(String parent_no, String diary_no, String content, HttpSession session){
+		
+		try {
+			// 부모댓글번호 받기
+			// 게시글번호 받기
+			// 댓글내용 받기
+			String id = (String)session.getAttribute("id");
+			
+			Diary_replyVO vo = new Diary_replyVO();
+			vo.setDiary_no(Integer.parseInt(diary_no));
+			vo.setContent(content);
+			vo.setId(id);
+			
+			dao.diary_replyReplyInsert(Integer.parseInt(parent_no), vo);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return "redirect:../diary/detail.do?no=" + diary_no;
+	}
+	
+	
+	
+	
+	// 댓글 수정 =====================================================================================================================================================
+	@RequestMapping("diary/updateReply.do")
+	public String diary_updateReply(String diary_no, String no, String content){
+		try {
+			Diary_replyVO vo = new Diary_replyVO();
+			vo.setContent(content);
+			vo.setNo(Integer.parseInt(no));
+			dao.diary_updateReply(vo);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return "redirect:../diary/detail.do?no=" + diary_no;
+	}
+	
+	
+	
+	// 댓글 삭제 =====================================================================================================================================================
+	@RequestMapping("diary/deleteReply.do")
+	public String diary_deleteReply(String no, String diary_no){
+		try {
+			System.out.println("no : " + no);
+			System.out.println("diary_no : " + diary_no);
+			dao.diary_deleteReply(Integer.parseInt(no));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return "redirect:../diary/detail.do?no=" + diary_no;
+	}
+	
+	
 }

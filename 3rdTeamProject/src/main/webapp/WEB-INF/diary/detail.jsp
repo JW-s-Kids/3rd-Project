@@ -7,6 +7,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 대댓글 작성 공간 
+	$('.comment_Insert_area').hide();
+	
+	$('.bring_comment_tab').click(function(){				// bring_comment_tab 클릭시
+		let no = $(this).attr('id')						// 변수 no는 클릭한 bring_comment_tab의 value값
+		$('#comment_Insert_area' + no).toggle(); 			// #comment_Insert_area + no를 토글
+	});
+	
+	// 댓글 수정 공간
+	$('.comment_Update_area').hide();
+	
+	$('.bring_comment_update_tab').click(function(){				// bring_comment_tab 클릭시
+		let no = $(this).attr('id')						// 변수 no는 클릭한 bring_comment_tab의 value값
+		$('#comment_Update_area' + no).toggle(); 			// #comment_Insert_area + no를 토글
+	});
+	
+	
+	// 댓글 삭제 공간
+	$('.inputPwdComment').hide();
+	
+	$('.deleteCommentButton').click(function(){				// bring_comment_tab 클릭시
+		let comment_no = $(this).attr('id')								// 변수 no는 클릭한 bring_comment_tab의 value값
+		$('#inputPwdComment' + comment_no).toggle(); 			// #comment_Insert_area + no를 토글
+	});
+})
+</script>
 </head>
 <body>
 	<div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_4.jpg');">
@@ -41,7 +70,8 @@
                 <a href="#" class="tag-cloud-link">스크랩</a>
                 <a href="#" class="tag-cloud-link">조회 ${diary_vo.hit }</a>
                 <c:if test="${sessionScope.id == diary_vo.id }">
-                	<a href="../diary/delete.do?no=${diary_vo.no }" class="tag-cloud-link">삭제하기</a>
+                	<a href="../diary/delete.do?no=${diary_vo.no }" class="tag-cloud-link">삭제</a>
+                	<a href="../diary/update.do?no=${diary_vo.no }" class="tag-cloud-link">수정</a>
                 </c:if>
               </div>
             </div>
@@ -59,27 +89,95 @@
 
             <div class="pt-5 mt-5">
               <h3 class="mb-5">댓글 ${diary_vo.reply }</h3>
+              
+              <!-- 댓글목록 출력 ------------------------------------------------------------------------------------------------------------------------------------------ 댓글 목록 출력 -->
+              <c:forEach var="reply_vo" items="${reply_list}">
+             	<c:if test="${reply_vo.getGt() > 0 }">
+              		
+              		<img src="../images/reply_icon.png" style="width:30px; height: 30px;">
+              		<c:forEach var="i" begin="1" end="${reply_vo.getGt() }">
+              		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              		</c:forEach>
+              	</c:if>
               <ul class="comment-list">
+              	
+              	 
                 <li class="comment">
+                
                   <div class="vcard bio">
                     <img src="../images/person_1.jpg" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
+                    <h3>${reply_vo.id }</h3>
+                    <div class="meta">
+						<fmt:formatDate value="${reply_vo.regdate }" pattern="yyyy-MM-dd"/>
+					</div>
+                    <p>${reply_vo.content }</p>
+                    <%-- <p><a href="#" class="reply bring_comment_tab" id=${reply_vo.no }>댓글</a></p> --%>
+                    <div>
+	                    <input type=button class="reply bring_comment_tab" id=${reply_vo.no } value="댓글">
+	                    <c:if test="${sessionScope.id == reply_vo.id }">
+	                    	<input type=button class="reply bring_comment_update_tab" id=${reply_vo.no } value="수정">
+	                    	<input type=button class="reply deleteCommentButton" value="삭제${reply_vo.no }"  id=${reply_vo.no }>
+	                    </c:if>
+                    </div>
                   </div>
                 </li>
+                
+                <!-- 대댓글 입력 공간 ----------------------------------------------------------------------------------------------------------------------------- 대댓글 입력 공간 -->
+                <div class="comment-form-wrap pt-5 comment_Insert_area" id="comment_Insert_area${reply_vo.no }">
+	                <form action="insert_replyReply.do" class="p-5 bg-light" method="post">
+		                  <div class="form-group">
+		                    <textarea id="message" cols="30" rows="5" class="form-control" placeholder="댓글을 달아주세요" name=content></textarea>
+		                    <input type=hidden name=diary_no value=${diary_vo.no }>
+		                    <input type=hidden name=parent_no value=${reply_vo.no }>
+		                  </div>
+		                  <div class="form-group">
+		                    <input type="submit" value="댓글 입력" class="btn py-3 px-4 btn-primary">
+		                  </div>
+	                </form>
+	              </div>
+	              
+	          <!-- 댓글 수정 공간 --------------------------------------------------------------------------------------------------------------------------------- 댓글 수정 공간 -->
+	          
+		          <div class="comment-form-wrap pt-5 comment_Update_area" id="comment_Update_area${reply_vo.no }">
+		                <form action="updateReply.do" class="p-5 bg-light" method="post">
+			                  <div class="form-group">
+			                    <textarea id="message" cols="30" rows="5" class="form-control" name=content>${reply_vo.content }</textarea>
+			                    <input type=hidden name=diary_no value=${diary_vo.no }>
+			                    <input type=hidden name=no value=${reply_vo.no }>
+			                  </div>
+			                  <div class="form-group">
+			                    <input type="submit" value="수정" class="btn py-3 px-4 btn-primary">
+			                  </div>
+		                </form>
+	              </div>
+	              
+	          <!-- 댓글 삭제 공간 --------------------------------------------------------------------------------------------------------------------------------- 댓글 삭제 공간 -->
+					<div class="inputPwdComment" id="inputPwdComment${reply_vo.no }" style="text-align: right;">
+						<p style="display: inline; color: red; font-weight: bold;">* 삭제한 댓글은 복구할 수 없습니다. 삭제하시겠습니까?</p>
+						<form action="deleteReply.do" method="post" style="display: inline;">
+							<!-- <input type="password" size=10 placeholder="비밀번호 입력" name="pwd"> -->
+							<input type="submit" value="삭제" class="littleButton deleteReplyButton">
+							<input type=hidden value=${reply_vo.no } name="no">
+							<input type=hidden name=diary_no value=${diary_vo.no }>
+						</form>
+					</div>
+              
+              
               </ul>
+              </c:forEach>
+              
               <!-- END comment-list -->
               
               
               
+              <!-- 댓글 입력 공간 --------------------------------------------------------------------------------------------------------------------------------- 댓글 입력 공간 -->
               <div class="comment-form-wrap pt-5">
-                <form action="#" class="p-5 bg-light">
+                <form action="insert_reply.do" class="p-5 bg-light" method="post">
                   <div class="form-group">
-                    <textarea name="" id="message" cols="30" rows="5" class="form-control" placeholder="댓글을 달아주세요"></textarea>
+                    <textarea id="message" cols="30" rows="5" class="form-control" placeholder="댓글을 달아주세요" name=content></textarea>
+                    <input type=hidden name=diary_no value=${diary_vo.no }>
                   </div>
                   <div class="form-group">
                     <input type="submit" value="댓글 입력" class="btn py-3 px-4 btn-primary">

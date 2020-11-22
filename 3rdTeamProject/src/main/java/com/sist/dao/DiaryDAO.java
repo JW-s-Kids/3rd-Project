@@ -55,4 +55,80 @@ public class DiaryDAO {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	
+	
+	
+	
+	// 여행기 수정 ======================================================================================================================================
+	public void diaryUpdate(Map map){
+		try {
+			mapper.diaryUpdate(map);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	
+	
+	
+	
+	// 댓글 쓰기 =====================================================================================================================================
+	public void diary_insertReply(Diary_replyVO vo){
+		try {
+			mapper.diary_insertReply(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	// 댓글 가져오기 =================================================================================================================================
+	public List<Diary_replyVO> diary_listReply(int diary_no){
+		
+		return mapper.diary_listReply(diary_no);
+	}
+	
+	
+	// 대댓글 작성 =======================================================================================================================================
+	public void diary_replyReplyInsert(int root, Diary_replyVO vo){
+		Diary_replyVO parent_vo = mapper.diary_replyParentData(root);
+		mapper.diary_replyStepIncrement(parent_vo);
+		
+		vo.setGi(parent_vo.getGi());
+		vo.setGs(parent_vo.getGs() + 1);
+		vo.setGt(parent_vo.getGt() + 1);
+		vo.setRoot(root);
+		
+		mapper.diary_replyReplyInsert(vo);
+		mapper.diary_replyDepthIncrement(root);
+	}
+	
+	
+	// 댓글 수정 =======================================================================================================================================
+	public void diary_updateReply(Diary_replyVO vo){
+		mapper.diary_updateReply(vo);
+	}
+	
+	
+	// 댓글 삭제 ========================================================================================================================================
+	public void diary_deleteReply(int no){
+		
+		try {
+			Diary_replyVO vo = mapper.diary_InfoData(no);
+			if(vo.getDepth()==0)
+			   {
+				   mapper.diary_deleteReply(no);
+			   }
+			   else
+			   {
+				   mapper.diary_adminMessage(no);
+			   }
+			mapper.diary_depthDecrement(vo.getRoot());
+		} catch (Exception e) {
+			
+		}
+		
+	}
 }
