@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
   <head>
     <title>DirEngine - Free Bootstrap 4 Template by Colorlib</title>
+    <style type="text/css">
+    .text {
+    margin: 0 auto;
+    height: 250px;
+    }
+    .d-flex {
+    height: 75px;
+    }
+    .one0 {
+    width: 220px;
+    }
+    .bottom-area {
+    margin: 0 auto;
+    }
+    </style>
     <meta charset="utf-8">
    <!--  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -50,7 +67,7 @@
         <div class="row">
         	<div class="col-lg-3 sidebar ftco-animate">
         		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">Find City</h3>
+        			<h3 class="heading mb-4">여행지 검색</h3>
         			<form action="#">
         				<div class="fields">
 		              <div class="form-group">
@@ -92,263 +109,115 @@
 	            </form>
         		</div>
         		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">Star Rating</h3>
+        			<h3 class="heading mb-4">여행자 평점</h3>
         			<form method="post" class="star-rating">
 							  <div class="form-check">
 									<input type="checkbox" class="form-check-input" id="exampleCheck1">
 									<label class="form-check-label" for="exampleCheck1">
-										<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
+										<p class="rate">
+										<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/5.0-20215-5.svg" alt="평점:5.0">
+										</p>
 									</label>
 							  </div>
 							  <div class="form-check">
 						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
 						      <label class="form-check-label" for="exampleCheck1">
-						    	   <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
+						    	   <p class="rate">
+						    	   <img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/4.0-20215-5.svg" alt="평점:4.0">
+						    	   </p>
 						      </label>
 							  </div>
 							  <div class="form-check">
 						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
 						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+						      	<p class="rate">
+						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/3.0-20215-5.svg" alt="평점:3.0">
+						      	</p>
 						     </label>
 							  </div>
 							  <div class="form-check">
 							    <input type="checkbox" class="form-check-input" id="exampleCheck1">
 						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+						      	<p class="rate">
+						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/2.0-20215-5.svg" alt="평점:2.0">
+						      	</p>
 						      </label>
 							  </div>
 							  <div class="form-check">
 						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
 						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
+						      	<p class="rate">
+						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/1.0-20215-5.svg" alt="평점:1.0">
+						      	</p>
 							    </label>
 							  </div>
 							</form>
         		</div>
           </div>
+          
+<%-- /////////////// 리스트 페이지 출력 섹션 /////////////// --%>
+          
           <div class="col-lg-9">
-          	<div class="row">
+          	<div class="row"><%-- 게시물 6개씩 출력 --%>
+          	 <c:forEach var="tour_vo" items="${list }">
           		<div class="col-md-4 ftco-animate">
 		    				<div class="destination">
-		    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/destination-1.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
+		    					<a href="../tour/detail.do?no=${tour_vo.tno }" class="img img-2 d-flex justify-content-center align-items-center">
+		    						 <img src="${tour_vo.photo}" alt="여행지사진" width=100% height=100%>
 		    					</a>
 		    					<div class="text p-3">
 		    						<div class="d-flex">
-		    							<div class="one">
-				    						<h3><a href="#">Paris, Italy</a></h3>
+		    							<div class="one0">
+				    						<h3>${tour_vo.title }</h3>
+				    					</div>
+				    					
+				    					<div class="one">
 				    						<p class="rate">
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star-o"></i>
-				    							<span>8 Rating</span>
+				    							 <img src="${tour_vo.site}" alt="평점" style="width:100%">
 				    						</p>
 			    						</div>
-			    						<div class="two">
-			    							<span class="price">$200</span>
-		    							</div>
 		    						</div>
-		    						<p>Far far away, behind the word mountains, far from the countries</p>
-		    						<p class="days"><span>2 days 3 nights</span></p>
+		    						
+		    						<c:choose>
+									   <c:when test="${fn:length(tour_vo.content) gt 51}">
+									   <c:out value="${fn:substring(tour_vo.content, 0, 50)}"/>...
+									   </c:when>
+									   <c:otherwise>
+									   <c:out value="${tour_vo.content}"/>
+									   </c:otherwise>
+									</c:choose>
 		    						<hr>
 		    						<p class="bottom-area d-flex">
-		    							<span><i class="icon-map-o"></i> San Franciso, CA</span> 
+		    							<span><i class="icon-map-o"></i> 지도보기 </span> 
 		    							<span class="ml-auto"><a href="#">Discover</a></span>
 		    						</p>
 		    					</div>
 		    				</div>
 		    			</div>
-		    			<div class="col-md-4 ftco-animate">
-		    				<div class="destination">
-		    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/destination-2.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<div class="d-flex">
-		    							<div class="one">
-				    						<h3><a href="#">Paris, Italy</a></h3>
-				    						<p class="rate">
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star-o"></i>
-				    							<span>8 Rating</span>
-				    						</p>
-			    						</div>
-			    						<div class="two">
-			    							<span class="price">$200</span>
-		    							</div>
-		    						</div>
-		    						<p>Far far away, behind the word mountains, far from the countries</p>
-		    						<p class="days"><span>2 days 3 nights</span></p>
-		    						<hr>
-		    						<p class="bottom-area d-flex">
-		    							<span><i class="icon-map-o"></i> San Franciso, CA</span> 
-		    							<span class="ml-auto"><a href="#">Discover</a></span>
-		    						</p>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 ftco-animate">
-		    				<div class="destination">
-		    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/destination-3.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<div class="d-flex">
-		    							<div class="one">
-				    						<h3><a href="#">Paris, Italy</a></h3>
-				    						<p class="rate">
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star-o"></i>
-				    							<span>8 Rating</span>
-				    						</p>
-			    						</div>
-			    						<div class="two">
-			    							<span class="price">$200</span>
-		    							</div>
-		    						</div>
-		    						<p>Far far away, behind the word mountains, far from the countries</p>
-		    						<p class="days"><span>2 days 3 nights</span></p>
-		    						<hr>
-		    						<p class="bottom-area d-flex">
-		    							<span><i class="icon-map-o"></i> San Franciso, CA</span> 
-		    							<span class="ml-auto"><a href="#">Discover</a></span>
-		    						</p>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 ftco-animate">
-		    				<div class="destination">
-		    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/destination-4.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<div class="d-flex">
-		    							<div class="one">
-				    						<h3><a href="#">Paris, Italy</a></h3>
-				    						<p class="rate">
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star-o"></i>
-				    							<span>8 Rating</span>
-				    						</p>
-			    						</div>
-			    						<div class="two">
-			    							<span class="price">$200</span>
-		    							</div>
-		    						</div>
-		    						<p>Far far away, behind the word mountains, far from the countries</p>
-		    						<p class="days"><span>2 days 3 nights</span></p>
-		    						<hr>
-		    						<p class="bottom-area d-flex">
-		    							<span><i class="icon-map-o"></i> San Franciso, CA</span> 
-		    							<span class="ml-auto"><a href="#">Discover</a></span>
-		    						</p>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 ftco-animate">
-		    				<div class="destination">
-		    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/destination-5.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<div class="d-flex">
-		    							<div class="one">
-				    						<h3><a href="#">Paris, Italy</a></h3>
-				    						<p class="rate">
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star-o"></i>
-				    							<span>8 Rating</span>
-				    						</p>
-			    						</div>
-			    						<div class="two">
-			    							<span class="price">$200</span>
-		    							</div>
-		    						</div>
-		    						<p>Far far away, behind the word mountains, far from the countries</p>
-		    						<p class="days"><span>2 days 3 nights</span></p>
-		    						<hr>
-		    						<p class="bottom-area d-flex">
-		    							<span><i class="icon-map-o"></i> San Franciso, CA</span> 
-		    							<span class="ml-auto"><a href="#">Discover</a></span>
-		    						</p>
-		    					</div>
-		    				</div>
-		    			</div>
-		    			<div class="col-md-4 ftco-animate">
-		    				<div class="destination">
-		    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/destination-6.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<div class="d-flex">
-		    							<div class="one">
-				    						<h3><a href="#">Paris, Italy</a></h3>
-				    						<p class="rate">
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star"></i>
-				    							<i class="icon-star-o"></i>
-				    							<span>8 Rating</span>
-				    						</p>
-			    						</div>
-			    						<div class="two">
-			    							<span class="price">$200</span>
-		    							</div>
-		    						</div>
-		    						<p>Far far away, behind the word mountains, far from the countries</p>
-		    						<p class="days"><span>2 days 3 nights</span></p>
-		    						<hr>
-		    						<p class="bottom-area d-flex">
-		    							<span><i class="icon-map-o"></i> San Franciso, CA</span> 
-		    							<span class="ml-auto"><a href="#">Discover</a></span>
-		    						</p>
-		    					</div>
-		    				</div>
-		    			</div>
+		    		</c:forEach>
           	</div>
           	<div class="row mt-5">
-		          <div class="col text-center">
-		            <div class="block-27">
-		              <ul>
-		                <li><a href="#">&lt;</a></li>
-		                <li class="active"><span>1</span></li>
-		                <li><a href="#">2</a></li>
-		                <li><a href="#">3</a></li>
-		                <li><a href="#">4</a></li>
-		                <li><a href="#">5</a></li>
-		                <li><a href="#">&gt;</a></li>
-		              </ul>
-		            </div>
-		          </div>
-		        </div>
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+               		<c:if test="${currpage>block }">
+							<li><a href="../tour/list.do?page=${startpage-1 }">&lt;</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${startpage }" end="${endpage }">
+							<c:if test="${i==currpage }">
+							<li class="active"><a href="../tour/list.do?page=${i }">${i }</a></li>
+							</c:if>
+							<c:if test="${i!=currpage }">
+							<li><a href="../tour/list.do?page=${i }">${i }</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${endpage<totalpage }">
+							<li><a href="../tour/list.do?page=${endpage+1 }">&gt;</a></li>
+					</c:if>
+              </ul>
+            </div>
+          </div>
+        </div>
           </div> <!-- .col-md-8 -->
         </div>
       </div>
