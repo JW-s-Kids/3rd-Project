@@ -21,6 +21,7 @@
           <li class="nav-item"><a href="tour.html" class="nav-link">Tour</a></li>
           <li class="nav-item"><a href="../psyTest/main.do" class="nav-link">성향테스트</a></li>
           <li class="nav-item"><a href="../diary/list.do" class="nav-link">여행기</a></li>
+          <li class="nav-item"><a href="../meeting/list.do" class="nav-link"><span>자만추</span></a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
           <li class="nav-item cta"><a href="contact.html" class="nav-link"><span>Add listing</span></a></li>
         </ul>
