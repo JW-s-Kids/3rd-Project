@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -193,11 +194,12 @@ $(function(){
 
           </div> <!-- .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
+          	
             <div class="sidebar-box">
-              <form action="#" class="search-form">
+              <form action="../diary/search.do" class="search-form">
                 <div class="form-group">
                   <span class="icon fa fa-search"></span>
-                  <input type="text" class="form-control" placeholder="검색">
+                  <input type="text" name="voca" class="form-control" placeholder="여행기 검색"><input type=submit ></input>
                 </div>
               </form>
             </div>
