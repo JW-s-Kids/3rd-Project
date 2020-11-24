@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -67,17 +68,17 @@
         	<c:forEach var="diary_vo" items="${list }">
 		          <div class="col-md-3 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch">
-		              <a href="../diary/detail.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/image_1.jpg');">
+		              <a href="../diary/detail_before.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/image_1.jpg');">
 		              </a>
 		              <div class="text p-4 d-block">
 		              	<span class="tag">${diary_vo.tag }</span>
-		                <h3 class="heading mt-3" style="width: 205px;"><a href="../diary/detail.do?no=${diary_vo.no }">${diary_vo.subject }</a></h3>
+		                <h3 class="heading mt-3" style="width: 205px;"><a href="../diary/detail_before.do?no=${diary_vo.no }">${diary_vo.subject }</a></h3>
 		                <div class="meta mb-3">
-		                  <div><a href="../diary/detail.do?no=${diary_vo.no }">
+		                  <div><a href="../diary/detail_before.do?no=${diary_vo.no }">
 		                  	<fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/>
 		                  </a></div>
 		                  <div><a href="#">${diary_vo.id }</a></div>
-		                  <div><a href="../diary/detail.do?no=${diary_vo.no }" class="meta-chat"><span class="icon-chat"></span>${diary_vo.reply }</a></div>
+		                  <div><a href="../diary/detail_before.do?no=${diary_vo.no }" class="meta-chat"><span class="icon-chat"></span>${diary_vo.reply }</a></div>
 		                </div>
 		              </div>
 		            </div>

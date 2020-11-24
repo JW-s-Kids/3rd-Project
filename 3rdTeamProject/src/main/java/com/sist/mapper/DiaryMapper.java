@@ -68,6 +68,10 @@ public interface DiaryMapper {
 	@Insert("INSERT INTO diary_reply(no, diary_no, id, content, gi) VALUES(#{no}, #{diary_no}, #{id}, #{content}, (SELECT NVL(MAX(gi)+1,1) FROM diary_reply))")
 	public void diary_insertReply(Diary_replyVO vo);
 	
+	// 댓글쓰면 게시글 댓글수 증가
+	@Update("UPDATE diary SET reply = reply + 1 WHERE no = #{no}")
+	public void diary_replyIncrement(int no);
+	
 	
 	// 댓글목록 출력 ============================================================================================================================================
 	@Select("SELECT no, diary_no, id, content, regdate, gt FROM diary_reply WHERE diary_no=#{diary_no} ORDER BY gi DESC , gs ASC")

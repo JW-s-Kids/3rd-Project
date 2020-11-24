@@ -217,39 +217,25 @@ $(function(){
 
             <div class="sidebar-box ftco-animate">
               <h3>최근 본 여행기</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
+              
+              <c:forEach var="cookie_vo" items="${cookie_list }" varStatus="s">
+              		<c:if test="${s.index < 6 }">
+			              <div class="block-21 mb-4 d-flex">
+			                <a class="blog-img mr-4" style="background-image: url(../images/image_1.jpg);"></a>
+			                <div class="text">
+			                  <h3 class="heading"><a href="../diary/detail_before.do?no=${cookie_vo.no }">${cookie_vo.subject }</a></h3>
+			                  <div class="meta">
+			                    <div><a href="#"><span class="icon-calendar"></span>
+			                   		<fmt:formatDate value="${cookie_vo.visitdate }" pattern="yyyy-MM-dd"/>
+			                    </a></div>
+			                    <div><a href="#"><span class="icon-person"></span>${cookie_vo.id }</a></div>
+			                    <div><a href="#"><span class="icon-chat"></span>${cookie_vo.reply }</a></div>
+			                  </div>
+			                </div>
+			              </div>
+	              	</c:if>
+              </c:forEach>
+              
             </div>
 
             <div class="sidebar-box ftco-animate">
@@ -267,8 +253,8 @@ $(function(){
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3>Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+              <h3>관심사</h3>
+              <img src="../naverDiary${diary_vo.no }.png" width=300 height=300>
             </div>
           </div>
 
