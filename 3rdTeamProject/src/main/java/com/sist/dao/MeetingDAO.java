@@ -17,9 +17,22 @@ public class MeetingDAO {
 	public List<MeetingVO> meetingListData(Map map){
 		return mapper.meetingListData(map);
 	}
+	
 	//모임총페이지
 	public int meetingTotalPage() {
 		return mapper.meetingTotalPage();
+	}
+	
+	//상세보기
+	public MeetingVO meetingDetailData(int mno) {
+		mapper.meetingHitIncrement(mno);
+		return mapper.meetingDetailData(mno);
+		
+	}
+	
+	//모임추가
+	public void meetingInsert(MeetingVO vo) {
+		mapper.meetingInsert(vo);
 	}
 	
 }

@@ -47,6 +47,28 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     
 });
 </script>
+
+<!-- 팝업띄우기 관련========================================================= -->
+<!--
+<script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $('.ml-auto').click(function(){
+    	let title=$(this).attr("value");
+    	$('#detail').attr()
+    	$('#dialog').dialog({
+    		autoOpen:true,
+    		width:430,
+    		height:350,
+    		modal:true,
+    		title:title
+    	});
+    });
+  });
+  </script>
+  -->
+<!-- 팝업띄우기 관련 끝========================================================= -->
 </head>
 <body>
     
@@ -85,8 +107,14 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 		            </div>
 	            </form>
         		</div>
+        		<div class=button>
+					<a href="../meeting/insert.do" class="btn btn-lg btn-danger">모임 만들기</a>
+				</div>
+        		
+        		
+        		
         		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">Star Rating</h3>
+        			<h3 class="heading mb-4">최근 본 모임</h3>
         			<form method="post" class="star-rating">
 					  <div class="form-check">
 							<input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -104,7 +132,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 				      <input type="checkbox" class="form-check-input" id="exampleCheck1">
 				      <label class="form-check-label" for="exampleCheck1">
 				      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-				     </label>
+				      </label>
 					  </div>
 					  <div class="form-check">
 					    <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -116,7 +144,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 				      <input type="checkbox" class="form-check-input" id="exampleCheck1">
 				      <label class="form-check-label" for="exampleCheck1">
 				      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-					    </label>
+					  </label>
 					  </div>
 					</form>
         		</div>
@@ -129,16 +157,13 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
           		<c:forEach var="vo" items="${list }">
           		<div class="col-md-4 ftco-animate">
     				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center">
-    					<img src="${vo.mimg }">
-    						<div class="icon d-flex justify-content-center align-items-center">
-  							<span class="icon-search2"></span>
-  						</div>
+    					<a href="../meeting/detail.do?mno=${vo.mno }" class="img img-2 d-flex justify-content-center align-items-center">
+    					<img src="${vo.mimg }" width="250" height="200">
     					</a>
     					<div class="text p-3">
     						<div class="d-flex">
     							<div class="one">
-		    						<h3><a href="hotel-single.html">${vo.mname }</a></h3>
+		    						<h3><a href="../meeting/detail.do?mno=${vo.mno }">${vo.mname }</a></h3>
 	    						</div>
 	    						<div class="two">
 	    							<span class="price per-price">${vo.hit }<br><small>${vo.mjoin} / ${vo.minwon }</small></span>
@@ -148,8 +173,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     						<hr>
     						<p class="bottom-area d-flex">
     							<span><i class="icon-map-o"></i> ${vo.maddr }</span> 
-    							<span class="btn btn-xs btn-success btns" value="참여하기">참여하기</span>
-    							<!-- <span class="ml-auto"><a href="#">참여하기</a></span> -->
+    							<%-- <span class="btn btn-xs btn-success btns" value="${vo.mno }">참여하기</span> --%>
+    							<span class="ml-auto"><a href="#">참여하기</a></span>
     						</p>
     					</div>
     				</div>
@@ -173,6 +198,22 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 	            </div>
 	          </div>
 	        </div>
+	        
+	        <!-- 팝업처럼 상세보기-->
+	        <!-- <div id="dialog" title="" style="display: none">
+	        	<table id="detail" width="400" height="300">
+	        		<tr>
+	        			<span>상세보기</span>
+	        			<td>${vo.mname }</td>
+	        			<td>${vo.mmsg }</td>
+	        			<td>${vo.mimg }</td>
+	        			<td>${vo.maddr} ${vo.maddr3 } ${vo.addr4 }</td>
+	        			<td></td>
+	        		</tr>
+	        	</table>
+	        </div>-->
+	        <!-- 팝업처럼 상세보기-->
+	        
 	        <!-- 페이징 영역 끝============================================= -->
           </div> <!-- .col-md-8 -->
           
@@ -182,10 +223,10 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
           <div id="map" style="width:100%;height:350px;">지도</div>
         
           
-          <!-- 본문영역=================================================================================================== -->
+          <!-- 본문영역 끝=================================================================================================== -->
           
         </div>
       </div>
-    </section> <!-- .section -->
+    </section>
 </body>
 </html>

@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.sist.dao.MeetingVO;
 import com.sist.dao.*;
 @Controller
+@RequestMapping("meeting/")
 public class MeetingController {
 	@Autowired
 	private MeetingDAO dao;
-	@RequestMapping("meeting/list.do")
+	//모임 리스트
+	@RequestMapping("list.do")
 	public String meeting_list(String page,Model model){
 		if(page==null)
 			page="1";
@@ -36,4 +38,32 @@ public class MeetingController {
 		model.addAttribute("list", list);
 		return "meeting/list";
 	}
+	
+	//모임 상세보기
+	@RequestMapping("detail.do")
+	public String meeting_detail(int mno,Model model) {
+		MeetingVO vo=dao.meetingDetailData(mno);
+		model.addAttribute("vo", vo);
+		return "meeting/detail";
+	}
+	
+	//모임추가
+	@RequestMapping("insert.do")
+	public String meeting_insert() {
+		return "meeting/insert";
+	}
+	@RequestMapping("insert_ok.do")
+	public String meeting_insert_ok(MeetingVO vo) {
+		dao.meetingInsert(vo);
+		return "redirect:../meeting/list.do";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
