@@ -35,4 +35,16 @@ public class MeetingDAO {
 		mapper.meetingInsert(vo);
 	}
 	
+	//모임수정
+	
+	
+	
+	
+	
+	
+	//참여인원증가
+	public int meetingJoinHitIncrement(int mno){
+		return mapper.meetingJoinHitIncrement();
+	}
+	
 }

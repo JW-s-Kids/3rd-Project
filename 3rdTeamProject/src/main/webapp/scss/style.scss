@@ -1299,70 +1299,7 @@ textarea.form-control {
 
 // Map
 
-#map {
-	height: 400px;
-	width: 100%;
-	@include media-breakpoint-down(md) {
-		height: 300px;
-	}
-}
 
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba($primary, 0.4);
-  }
-  70% {
-      -webkit-box-shadow: 0 0 0 30px rgba($primary, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba($primary, 0);
-  }
-}
-@keyframes pulse {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba($primary, 0.4);
-    box-shadow: 0 0 0 0 rgba($primary, 0.4);
-  }
-  70% {
-      -moz-box-shadow: 0 0 0 30px rgba($primary, 0);
-      box-shadow: 0 0 0 30px rgba($primary, 0);
-  }
-  100% {
-      -moz-box-shadow: 0 0 0 0 rgba($primary, 0);
-      box-shadow: 0 0 0 0 rgba($primary, 0);
-  }
-}
-
-.heading-section{
-	.subheading{
-		font-size: 14px;
-		display: block;
-		margin-bottom: 10px;
-	}
-	h2{
-		font-size: 30px;
-		font-weight: 300;
-		strong{
-			font-weight: 700;
-		}
-		@include media-breakpoint-down(sm){
-			font-size: 28px;
-		}
-	}
-	&.heading-section-white{
-		.subheading{
-			color: rgba(255,255,255,.9);
-		}
-		h2{
-			font-size: 40px;
-			color: $white;
-		}
-		p{
-			color: rgba(255,255,255,.9);
-		}
-	}
-}
 
 //COVER BG
 .hotel-img,

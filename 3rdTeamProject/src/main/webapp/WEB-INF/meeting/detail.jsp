@@ -23,7 +23,7 @@
     	<div class="container">
     		<div class="row d-md-flex">
 	    		<div class="col-md-6 ftco-animate img about-image">
-	    			<img alt="meeting_image" src="${vo.mimg }" width="550" height="600">
+	    			<img alt="meeting_image" src="${vo.mimg }" width="550" height="500">
 	    		</div>
 	    		<div class="col-md-6 ftco-animate p-md-5">
 		    	<div class="row">
@@ -39,7 +39,7 @@
 		          <div class="col-md-12 d-flex align-items-center">
 		            
 		            <div class="tab-content ftco-animate" id="v-pills-tabContent">
-
+						<!-- 첫번째 탭===================================================== -->
 		              <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel" aria-labelledby="v-pills-whatwedo-tab">
 		              	<div>
 			                <h2 class="mb-4">${vo.mname }</h2>
@@ -52,12 +52,50 @@
 			                
 				        </div>
 		              </div>
-
+						<!-- 두번째 탭===================================================== -->
 		              <div class="tab-pane fade" id="v-pills-mission" role="tabpanel" aria-labelledby="v-pills-mission-tab">
 		                <div>
-			                <h2 class="mb-4">지도 넣기</h2>
-			              	<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-			                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
+			              	<div id="map" style="width:500px;height:350px;"></div>
+
+							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a82c9e85e71906b68998f594eac76e8c&libraries=services"></script>
+							<script>
+							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+							    mapOption = {
+							        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+							        level: 3 // 지도의 확대 레벨
+							    };  
+							
+							// 지도를 생성합니다    
+							var map = new kakao.maps.Map(mapContainer, mapOption); 
+							
+							// 주소-좌표 변환 객체를 생성합니다
+							var geocoder = new kakao.maps.services.Geocoder();
+							
+							// 주소로 좌표를 검색합니다
+							geocoder.addressSearch('서울특별시 마포구 와우산로 65 6층', function(result, status) {
+							
+							    // 정상적으로 검색이 완료됐으면 
+							     if (status === kakao.maps.services.Status.OK) {
+							
+							        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+							
+							        // 결과값으로 받은 위치를 마커로 표시합니다
+							        var marker = new kakao.maps.Marker({
+							            map: map,
+							            position: coords
+							        });
+							
+							        // 인포윈도우로 장소에 대한 설명을 표시합니다
+							        var infowindow = new kakao.maps.InfoWindow({
+							            content: '<div style="width:150px;text-align:center;padding:6px 0;">모임 장소</div>'
+							        });
+							        infowindow.open(map, marker);
+							
+							        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							        map.setCenter(coords);
+							    } 
+							});    
+							</script>
 				        </div>
 		              </div>
 		            </div>

@@ -44,6 +44,10 @@ public interface MeetingMapper {
 			+"VALUES(#{mno},#{mname},#{mmsg},#{mimg},#{maddr},#{maddr2},#{maddr3},#{maddr4},#{minwon})")
 	public void meetingInsert(MeetingVO vo);
 	
+	//모임수정
+	
+	
+	
 	
 	
 	
