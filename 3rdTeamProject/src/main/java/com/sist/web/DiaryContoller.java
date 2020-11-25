@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.sist.dao.DiaryDAO;
 import com.sist.dao.DiaryVO;
 import com.sist.dao.Diary_replyVO;
+import com.sist.dao.Diary_scrapVO;
 import com.sist.service.NaverManager;
 
 import java.util.*;
@@ -153,19 +154,19 @@ public class DiaryContoller {
 //			List<JobKnowledgeVO> list = JobKnowledgeDAO.jobknowledgeDetailReply(Integer.parseInt(no));	// list에 답변글들을 담기
 			
 			// 스크랩 버튼 활성화 여부 -------------------------------------
-//			HttpSession session=request.getSession();
-//			String id=(String)session.getAttribute("id");
-//			JobKnowledgeScrapVO svo=new JobKnowledgeScrapVO();
-//			svo.setId(id);
-//			svo.setMno(Integer.parseInt(no));
-//			int count=JobKnowledgeDAO.scrapCount(svo);
-//			
-//			request.setAttribute("count", count);
+			session=request.getSession();
+			String id=(String)session.getAttribute("id");
+			Diary_scrapVO svo=new Diary_scrapVO();
+			svo.setId(id);
+			svo.setMno(Integer.parseInt(no));
+			int count=dao.scrapCount(svo);
+			
+			model.addAttribute("count", count);
 			
 			
 			// 쿠키 ---------------------------------------------------------------------------------------------------
 			session=request.getSession();
-			String id=(String)session.getAttribute("id");
+//			String id=(String)session.getAttribute("id");
 			// 쿠키 읽기
 			Cookie[] cookies=request.getCookies();							// 쿠키 배열 생성
 			List<DiaryVO> cookie_list=new ArrayList<DiaryVO>();					// 쿠키를 담을 리스트 생성
@@ -375,5 +376,70 @@ public class DiaryContoller {
 		return "redirect:../diary/detail.do?no=" + diary_no;
 	}
 	
+	
+	
+	
+	
+	
+	
+	// 스크랩하기 ==============================================================================================================
+	@RequestMapping("diary/scrap.do")
+	public String diary_scrap(String no, HttpSession session)
+	{
+		System.out.println("스크랩하기");
+		String id=(String)session.getAttribute("id");
+		Diary_scrapVO vo=new Diary_scrapVO();
+		vo.setId(id);
+		vo.setMno(Integer.parseInt(no));
+		dao.scrapInsert(vo);
+		return "redirect:../diary/detail.do?no="+no;
+	}
+	
+	
+	
+	// 스크랩 취소 ==============================================================================================================
+	@RequestMapping("diary/scrap_cancel.do")
+	public String diary_scrap_cancel(String no)
+	{
+		dao.scrapDelete(Integer.parseInt(no));
+		return "redirect:../diary/scrapList2.do";
+	}
+	
+	
+	
+	// 스크랩목록 가져오기 ==========================================================================================================
+	@RequestMapping("diary/scrap_list.do")
+	public String diary_scrapList(HttpServletRequest request, HttpSession session, Model model)
+	{
+		session=request.getSession();					// 세션 생성
+		String id=(String)session.getAttribute("id");				// id를 세션id로 
+		
+		  
+		List<Diary_scrapVO> scrap_List=dao.scrapListData(id);				// 찜 리스트 가져오기
+		List<DiaryVO> boardList=new ArrayList<DiaryVO>();						// boardList(게시글VO 리스트 객체) 생성
+		for(Diary_scrapVO scrap_vo : scrap_List) {											// 스크랩리스트 전부 for문 돌리기
+		DiaryVO board_vo=dao.diaryDetail(scrap_vo.getMno());				// board_vo(게시글 VO 객체)에 detail 메소드 넣기 (파라미터는 스크랩VO의 mno컬럼(글번호))
+//			String story=mvo.getStory();								
+//		board_vo.setScrap_no(scrap_vo.getNo());														// board_vo(게시글VO)의 scrap_no(찜번호 컬럼)에 scrap_vo의 번호(no) 넣기
+//			if(story.length()>150) {
+//			  
+//			story=story.substring(0,150)+"...";
+//			mvo.setStory(story);
+//			}
+		boardList.add(board_vo);											// 게시글VO리스트에 게시글VO객체 넣기
+		}
+		model.addAttribute("boardList", boardList);							// 게시글VO리스트를 전송
+		
+		System.out.println("스크랩목록 가져오기");
+		
+		
+		return "member/scrap_list";
+		
+//		request.setAttribute("mypage_jsp", "../jobKnowledge/scrapList2.jsp");
+//	    return "../mypage/mymain.jsp";
+//			  request.setAttribute("jobKnowledge_jsp", "../jobKnowledge/scrapList2.jsp");
+		
+//			return "../jobKnowledge/box.jsp";
+	}
 	
 }

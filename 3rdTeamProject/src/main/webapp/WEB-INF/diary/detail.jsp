@@ -68,7 +68,12 @@ $(function(){
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">좋아요</a>
-                <a href="#" class="tag-cloud-link">스크랩</a>
+                <c:if test="${count == 0 }">
+                	<a href="../diary/scrap.do?no=${diary_vo.no}" class="tag-cloud-link">스크랩</a>
+                </c:if>
+                <c:if test="${count != 0 }">
+                	<a href="../diary/scrap_cancel.do?no=${diary_vo.no}" class="tag-cloud-link">스크랩 취소</a>
+                </c:if>
                 <a href="#" class="tag-cloud-link">조회 ${diary_vo.hit }</a>
                 <c:if test="${sessionScope.id == diary_vo.id }">
                 	<a href="../diary/delete.do?no=${diary_vo.no }" class="tag-cloud-link">삭제</a>

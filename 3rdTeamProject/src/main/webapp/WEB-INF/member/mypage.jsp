@@ -56,6 +56,7 @@
               <div class="categories">
                 <h3>내 정보</h3>
                 <li><input type="button" value="회원정보 수정" id="update_member"></li>
+                <li><input type="button" value="스크랩 목록" id="update_member" onclick="location.href='../diary/scrap_list.do'"></li>
                 <li><a href="#">찜 목록 (여행기) <span>(22)</span></a></li>
               </div>
             </div>
