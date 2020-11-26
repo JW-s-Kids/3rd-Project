@@ -249,7 +249,7 @@ $(function(){
 				<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
           	<span class="subheading">반려동물 산책코스</span>
-            <h2 class="mb-4"><strong>반려동물과</strong> 산책가자</h2>
+            <h2 class="mb-4"><strong>반려동물과</strong> 함께</h2>
           </div>
         </div>    		
     	</div>
@@ -527,7 +527,7 @@ $(function(){
         	<c:forEach var="diary_vo" items="${diary_list }" varStatus="s">
 		          <div class="col-md-3 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch">
-		              <a href="../diary.detail.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');">
+		              <a href="../diary/detail.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');">
 		              </a>
 		              <div class="text p-4 d-block">
 		              	<span class="tag">${diary_vo.tag }</span>

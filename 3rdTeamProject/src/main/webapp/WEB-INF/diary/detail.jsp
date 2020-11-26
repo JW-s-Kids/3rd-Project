@@ -129,8 +129,9 @@ $(function(){
                     <p>${reply_vo.content }</p>
                     <%-- <p><a href="#" class="reply bring_comment_tab" id=${reply_vo.no }>댓글</a></p> --%>
                     <div>
-	                    <input type=button class="reply bring_comment_tab board_button" id=${reply_vo.no } value="댓글작성">
+	                    
 	                    <c:if test="${sessionScope.id == reply_vo.id }">
+	                    	<input type=button class="reply bring_comment_tab board_button" id=${reply_vo.no } value="댓글작성">
 	                    	<input type=button class="reply bring_comment_update_tab board_button" id=${reply_vo.no } value="수정">
 	                    	<input type=button class="reply deleteCommentButton board_button" value="삭제${reply_vo.no }"  id=${reply_vo.no }>
 	                    </c:if>

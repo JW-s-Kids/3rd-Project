@@ -153,36 +153,40 @@ public class DiaryContoller {
 			
 //			List<JobKnowledgeVO> list = JobKnowledgeDAO.jobknowledgeDetailReply(Integer.parseInt(no));	// list에 답변글들을 담기
 			
-			// 스크랩 버튼 활성화 여부 -------------------------------------
-			session=request.getSession();
-			String id=(String)session.getAttribute("id");
-			Diary_scrapVO svo=new Diary_scrapVO();
-			svo.setId(id);
-			svo.setMno(Integer.parseInt(no));
-			int count=dao.scrapCount(svo);
+			if(session.getAttribute("id") != null){
+				
 			
-			model.addAttribute("count", count);
-			
-			
-			// 쿠키 ---------------------------------------------------------------------------------------------------
-			session=request.getSession();
-//			String id=(String)session.getAttribute("id");
-			// 쿠키 읽기
-			Cookie[] cookies=request.getCookies();							// 쿠키 배열 생성
-			List<DiaryVO> cookie_list=new ArrayList<DiaryVO>();					// 쿠키를 담을 리스트 생성
-			if(cookies!=null)												// 쿠키가 비어있지 않으면
-			{
-				for(int i=cookies.length-1;i>=0;i--)						// (쿠키길이 - 1)부터 0까지 i를 1씩 감소 (그래야 최신 쿠키가 맨앞에 옴)
+				// 스크랩 버튼 활성화 여부 -------------------------------------
+				session=request.getSession();
+				String id=(String)session.getAttribute("id");
+				Diary_scrapVO svo=new Diary_scrapVO();
+				svo.setId(id);
+				svo.setMno(Integer.parseInt(no));
+				int count=dao.scrapCount(svo);
+				
+				model.addAttribute("count", count);
+				
+				
+				// 쿠키 ---------------------------------------------------------------------------------------------------
+				session=request.getSession();
+	//			String id=(String)session.getAttribute("id");
+				// 쿠키 읽기
+				Cookie[] cookies=request.getCookies();							// 쿠키 배열 생성
+				List<DiaryVO> cookie_list=new ArrayList<DiaryVO>();					// 쿠키를 담을 리스트 생성
+				if(cookies!=null)												// 쿠키가 비어있지 않으면
 				{
-					if(cookies[i].getName().startsWith(id + "diary"))							// 쿠키배열의 이름이 id를 시작하면
+					for(int i=cookies.length-1;i>=0;i--)						// (쿠키길이 - 1)부터 0까지 i를 1씩 감소 (그래야 최신 쿠키가 맨앞에 옴)
 					{
-						String cookie_no=cookies[i].getValue();								// 변수 no에 쿠키값 넣기
-						DiaryVO vo = dao.diaryDetail(Integer.parseInt(cookie_no));		// vo에 상세보기를 담아서
-						cookie_list.add(vo);													// 쿠키배열에 vo 담기
+						if(cookies[i].getName().startsWith(id + "diary"))							// 쿠키배열의 이름이 id를 시작하면
+						{
+							String cookie_no=cookies[i].getValue();								// 변수 no에 쿠키값 넣기
+							DiaryVO vo = dao.diaryDetail(Integer.parseInt(cookie_no));		// vo에 상세보기를 담아서
+							cookie_list.add(vo);													// 쿠키배열에 vo 담기
+						}
 					}
 				}
+				model.addAttribute("cookie_list", cookie_list);										// 쿠키값이 담긴 리스트를 전송
 			}
-			
 			
 			
 			// 워드클라우드 -----------------------------------------------------------------------------------------
@@ -192,7 +196,7 @@ public class DiaryContoller {
 			
 			
 			
-			model.addAttribute("cookie_list", cookie_list);										// 쿠키값이 담긴 리스트를 전송
+			
 			
 			model.addAttribute("diary_vo", diary_vo);
 			model.addAttribute("reply_list", reply_list);
