@@ -31,8 +31,8 @@
       
           <td class="text-center">
           <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-		              <a href="list.do#yong" class="nav-link active" aria-selected="true">같이가요</a>
-		              <a href="../pet/list.do" class="nav-link" aria-selected="false">자랑해요</a>
+		              <a href="list.do#yong" class="nav-link" aria-selected="false">같이가요</a>
+		              <a href="../pet/list.do" class="nav-link active" aria-selected="true">자랑해요</a>
 		              <a href="anonymous.do#yong" class="nav-link" aria-selected="false">익명게시판</a>
 		  </div>
           </td>
@@ -69,12 +69,12 @@
 		 </c:forEach>
 		 
 				<div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_8.jpg');">
+             <div class="blog-entry align-self-stretch">
+              <a href="#" class="block-20" style="background-image: url('../images/pet_5.jpg');">
               </a>
               <div class="text p-4 d-block">
-              	<span class="tag">홍길동</span>
-                <h3 class="heading mt-3"><a href="#">지금 바로 산책가실분?</a></h3>
+              	<span class="tag">최예진</span>
+                <h3 class="heading mt-3"><a href="#">울토토 기지개피는게 왜케이쁘누ㅋ</a></h3>
                 <div class="meta mb-3">
                   <div><a href="#">2020-11-28 16:23:35</a></div>
                   <div><a href="#">&nbsp;<br></a></div>
@@ -85,13 +85,13 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_10.jpg');">
+              <a href="#" class="block-20" style="background-image: url('../images/pet_3.jpg');">
               </a>
               <div class="text p-4 d-block">
-              	<span class="tag">율곡이이</span>
-                <h3 class="heading mt-3"><a href="#">코로나 시국이지만 그래도</a></h3>
+              	<span class="tag">지서현</span>
+                <h3 class="heading mt-3"><a href="#">우리집 강이 입냄새나도 귀여워</a></h3>
                 <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 15:12:31</a></div>
+                  <div><a href="#">2020-11-23 15:12:31</a></div>
                   <div><a href="#">&nbsp;<br></a></div>
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 1</a></div>
                 </div>
@@ -100,11 +100,11 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_4.jpg');">
+              <a href="#" class="block-20" style="background-image: url('../images/pet_2.jpg');">
               </a>
               <div class="text p-4 d-block">
-              	<span class="tag">신사임당</span>
-                <h3 class="heading mt-3"><a href="#">저희집 갱얼쥐랑 심심</a></h3>
+              	<span class="tag">현보영</span>
+                <h3 class="heading mt-3"><a href="#">점심시간 소확행 고먐미</a></h3>
                 <div class="meta mb-3">
                   <div><a href="#">2020-11-28 14:11:29</a></div>
                   <div><a href="#">&nbsp;<br></a></div>
@@ -115,11 +115,11 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_5.jpg');">
+              <a href="#" class="block-20" style="background-image: url('../images/pet_4.jpg');">
               </a>
               <div class="text p-4 d-block">
-              	<span class="tag">이순신</span>
-                <h3 class="heading mt-3"><a href="#">육포들고 보실분?</a></h3>
+              	<span class="tag">이주성</span>
+                <h3 class="heading mt-3"><a href="#">우리집 길동이 띠껍지만 사랑스러워버리고?</a></h3>
                 <div class="meta mb-3">
                   <div><a href="#">2020-11-28 14:01:31</a></div>
                   <div><a href="#">&nbsp;<br></a></div>
@@ -130,11 +130,11 @@
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_6.jpg');">
+              <a href="#" class="block-20" style="background-image: url('../images/pet_1.jpg');">
               </a>
               <div class="text p-4 d-block">
-              	<span class="tag">심청이</span>
-                <h3 class="heading mt-3"><a href="#">주말에 산책할분 계심?</a></h3>
+              	<span class="tag">서영빈</span>
+                <h3 class="heading mt-3"><a href="#">우리집 덕구 JGTGR</a></h3>
                 <div class="meta mb-3">
                   <div><a href="#">2020-11-28 13:51:34</a></div>
                   <div><a href="#">&nbsp;<br></a></div>
@@ -143,51 +143,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_7.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">영희</span>
-                <h3 class="heading mt-3"><a href="#">지금 나오실분</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 13:31:21</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 2</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_0.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">철수</span>
-                <h3 class="heading mt-3"><a href="#">산책 긔긔</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 13:21:56</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 11</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_9.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">심청이</span>
-                <h3 class="heading mt-3"><a href="#">달려볼까요?</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 12:56:47</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 1</a></div>
-                </div>
-              </div>
-            </div>
-          </div> -->
+          
           
 			</div>
 		  </div>
@@ -195,7 +151,7 @@
           <tr>
             <td class="text-right">
             <div style="height:30px"></div>
-              <a href="insert.do#yong" class="btn py-3 px-4 btn-primary">글쓰기</a>
+              <a href="../pet/insert.do" class="btn py-3 px-4 btn-primary">글쓰기</a>
             </td>
           </tr>
         </table>
@@ -207,25 +163,24 @@
 		            <div class="block-27">
 		              <ul>
 		              	<c:if test="${curpage>BLOCK }">
-		                <li><a href="../dogboard/list.do?page=${startPage-1 }#yong">&lt;</a></li>
+		                <li><a href="../pet/list.do?page=${startPage-1 }">&lt;</a></li>
 		                </c:if>
 		                <c:forEach var="i" begin="${startPage }" end="${endPage }">
 		                 <c:if test="${i==curpage }">
-		                 	<li class="active"><span><a href="../dogboard/list.do?page=${i }#yong">${i }</a></span></li>
+		                 	<li class="active"><span><a href="../pet/list.do?page=${i }">${i }</a></span></li>
 		                 </c:if>
 		                 <c:if test="${i!=curpage }">
-		                 	<li><a href="../dogboard/list.do?page=${i }#yong">${i }</a></li>
+		                 	<li><a href="../pet/list.do?page=${i }">${i }</a></li>
 		                 </c:if>
 		                </c:forEach>
 						<c:if test="${endPage<totalpage }">
-		                <li><a href="../dogboard/list.do?page=${endPage+1 }#yong">&gt;</a></li>
+		                <li><a href="../pet/list.do?page=${endPage+1 }">&gt;</a></li>
 		                </c:if>
 		              </ul>
 		            </div>
 		          </div>
 		        </div>
-      </div>
-
+      		</div>
         </div>
       </div>
     </section> <!-- .section -->

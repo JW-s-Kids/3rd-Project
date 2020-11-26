@@ -67,7 +67,7 @@
                   <div class="form-group">
                     <input type=submit value="댓글달기" class="btn py-3 px-4 btn-primary">
                     <input type=button value="취소" class="btn py-3 px-4 btn-primary"
-          			onclick="location.href='list.do#yong'"
+          			onclick="location.href='../pet/list.do'"
          			>
                   </div>
                 </form>
@@ -86,7 +86,7 @@
               <div class="categories">
                 <h3>카테고리</h3>
                 <li><a href="#">같이가요 <span>(12)</span></a></li>
-                <li><a href="#">자랑해요 <span>(22)</span></a></li>
+                <li><a href="../pet/list.do">자랑해요 <span>(22)</span></a></li>
                 <li><a href="#">익명게시판 <span>(37)</span></a></li>
               </div>
             </div>
