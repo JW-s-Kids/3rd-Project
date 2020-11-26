@@ -29,4 +29,11 @@ public interface TourMapper {
 	@Select("SELECT * FROM tour WHERE tno=#{no}")
 	public TourVO tourDetail(int no);
 	
+///////////////////////// 관련 여행지 가져오기 /////////////////////////
+	@Select("SELECT tno,title,photo,rownum "
+			+"FROM tour "
+			+"WHERE rownum<=3 AND "
+			+"REGEXP_LIKE(thema,#{finddata})")
+	public List<TourVO> tourLikeTourData(String finddata);
+	
 }

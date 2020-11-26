@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,6 +30,13 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css"> -->
+<style type="text/css">
+.hotel-img {
+width: 700px;
+height: 500px;
+margin: 0px auto;
+}
+</style>
   </head>
   <body>
     
@@ -57,19 +66,13 @@
           				<div class="item">
           					<div class="hotel-img" style="background-image: url(${tour_vo.photo});"></div>
           				</div>
-          				<div class="item">
-          					<div class="hotel-img" style="background-image: url(../images/hotel-3.jpg);"></div>
-          				</div>
-          				<div class="item">
-          					<div class="hotel-img" style="background-image: url(../images/hotel-4.jpg);"></div>
-          				</div>
           			</div>
           		</div>
-          		<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
+          		<div class="col-md-6 hotel-single mt-4 mb-5 ftco-animate">
           			<span>${tour_vo.thema }</span>
           			<h2>${tour_vo.title }</h2>
           			<p class="rate mb-5">
-          				<span class="loc"><a href="#"><i class="icon-map"></i>${tour_vo.address }</a></span>
+          				<span class="loc"><a href="#"><i class="icon-map"></i>${fn:substring(tour_vo.address, 5, 50)}</a></span>
           				<span class="star">
     						<img src="${tour_vo.site}" alt="평점">
     					</span>
@@ -87,97 +90,78 @@
     						</div>
     						<p>${tour_vo.tag }</p>
           		</div>
+          		<div class="col-md-6 hotel-single mt-4 mb-5 ftco-animate">
+          			 <h3>주변 지도</h3>
+		            <table class="table">
+		              <tr>
+		               <td class="text-center">
+		                <div id="map" style="width:100%;height:350px;"></div>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c2bc9a127e05847fd362986264b83197&libraries=services"></script>
+					  <script>
+		                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		        	    mapOption = {
+		        	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        	        level: 3 // 지도의 확대 레벨
+		        	    };  
+		        	
+		        	// 지도를 생성합니다    
+		        	var map = new kakao.maps.Map(mapContainer, mapOption); 
+		        	
+		        	// 주소-좌표 변환 객체를 생성합니다
+		        	var geocoder = new kakao.maps.services.Geocoder();
+		        	
+		        	// 주소로 좌표를 검색합니다
+		        	geocoder.addressSearch('${fn:substring(tour_vo.address, 5, 50)}', function(result, status) {
+		        	
+		        	    // 정상적으로 검색이 완료됐으면 
+		        	     if (status === kakao.maps.services.Status.OK) {
+		        	
+		        	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		        	
+		        	        // 결과값으로 받은 위치를 마커로 표시합니다
+		        	        var marker = new kakao.maps.Marker({
+		        	            map: map,
+		        	            position: coords
+		        	        });
+		        	
+		        	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        	        var infowindow = new kakao.maps.InfoWindow({
+		        	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${tour_vo.title}</div>'
+		        	        });
+		        	        infowindow.open(map, marker);
+		        	
+		        	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        	        map.setCenter(coords);
+		        	    } 
+		        	});    
+		                </script>
+		               </td>
+		              </tr>
+		            </table>
+          		</div>
           	
           		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
           			<h4 class="mb-4">연관 추천 정보</h4>
           			<div class="row">
+          			<c:forEach var="tour_vo" items="${list }">
           				<div class="col-md-4">
 				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/room-4.jpg);"></a>
+				    					<a href="../tour/detail.do?no=${tour_vo.tno }" class="img img-2 d-flex justify-content-center align-items-center">
+		    						 		<img src="${tour_vo.photo}" alt="여행지사진" width=100% height=100%>
+		    							</a>
 				    					<div class="text p-3">
 				    						<div class="d-flex">
 				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
+						    						<h3><a href="hotel-single.html">${tour_vo.title }</a></h3>
 						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
+						    						   <img src="${tour_vo.site}" alt="평점" style="width:100%">
 						    						</p>
 					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
 				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
 				    					</div>
 				    				</div>
 				    			</div>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/room-5.jpg);"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/room-6.jpg);"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
+				    	</c:forEach>
           			</div>
           		</div>
           		
