@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.sist.dao.DiaryVO;
 import com.sist.dao.Diary_replyVO;
+import com.sist.dao.Diary_scrapVO;
 
 import lombok.Delegate;
 
@@ -68,6 +69,10 @@ public interface DiaryMapper {
 	@Insert("INSERT INTO diary_reply(no, diary_no, id, content, gi) VALUES(#{no}, #{diary_no}, #{id}, #{content}, (SELECT NVL(MAX(gi)+1,1) FROM diary_reply))")
 	public void diary_insertReply(Diary_replyVO vo);
 	
+	// 댓글쓰면 게시글 댓글수 증가
+	@Update("UPDATE diary SET reply = reply + 1 WHERE no = #{no}")
+	public void diary_replyIncrement(int no);
+	
 	
 	// 댓글목록 출력 ============================================================================================================================================
 	@Select("SELECT no, diary_no, id, content, regdate, gt FROM diary_reply WHERE diary_no=#{diary_no} ORDER BY gi DESC , gs ASC")
@@ -102,46 +107,83 @@ public interface DiaryMapper {
 	public void diary_updateReply(Diary_replyVO vo);
 	
 	
-/*
- * <select id="replyInfoData" resultType="ReplyVO" parameterType="int">									<!-- 댓글삭제시 부모댓글 정보 가져오기 -->
-    SELECT depth,root FROM movie_reply
-    WHERE no=#{no}
-  </select>
- */
+
 	// 댓글 삭제시 부모댓글 정보 가져오기  ========================================================================================================================================
 	@Select("SELECT depth, root FROM diary_reply WHERE no = #{no}")
 	public Diary_replyVO diary_InfoData(int no);
 	
-	/*
-	 * <delete id="replyDelete" parameterType="int">															<!-- 댓글 삭제 -->
-    DELETE FROM movie_reply
-    WHERE no=#{no}
-  </delete>
-	 */
+	
 	// 댓글 삭제 ========================================================================================================================================
 	@Delete("DELETE FROM diary_reply WHERE no = #{no}")
 	public void diary_deleteReply(int no);
 	
-	/*
-	 * <update id="replyMsgUpdate" parameterType="int">														
-    UPDATE movie_reply SET
-    msg='관리자가 삭제한 댓글입니다'
-    WHERE no=#{no}
-  </update>
-	 */
+	
 	// 댓글 삭제시 관리자 메시지 삽입 ========================================================================================================================================
 	@Update("UPDATE diary_reply SET content = '관리자가 삭제한 댓글입니다' WHERE no = #{no}")
 	public void diary_adminMessage(int no);
 	
-	/*
-	 * <update id="replyDepthDecrement" parameterType="int">													<!-- 부모댓글 depth 감소 -->
-    UPDATE movie_reply SET
-    depth=depth-1
-    WHERE no=#{no}
-  </update>
-	 */
+	
 	// 부모댓글의 depth 감소 ========================================================================================================================================
 	@Update("UPDATE diary_reply SET depth = depth - 1 WHERE no = #{no}")
 	public void diary_depthDecrement(int no);
+	
+	
+	
+	/*
+	 * <!-- 스크랩 저장  -->
+	<insert id="scrapInsert" parameterType="JobKnowledgeScrapVO">
+	INSERT INTO JobKnowledgeScrap VALUES(
+	(SELECT NVL(MAX(no)+1,1) FROM JobKnowledgeScrap),#{id},#{mno}
+	)
+	</insert>
+	 */
+	// 스크랩 저장 =========================================================================================================================================
+	@Insert("INSERT INTO diary_scrap VALUES((SELECT NVL(MAX(no)+1,1) FROM diary_Scrap), #{id}, #{mno})")
+	public void scrap_insert(Diary_scrapVO vo);
+	
+	
+	/*
+	 * <!-- 스크랩 리스트 가져오기 -->
+	<select id="scrapListData" parameterType="String" resultType="JobKnowledgeScrapVO">
+	SELECT * FROM JobKnowledgeScrap
+	WHERE id=#{id}
+	ORDER BY no DESC
+	</select>
+	 */
+	// 스크랩 리스트 가져오기 ====================================================================================================================================
+	@Select("SELECT * FROM diary_scrap WHERE id = #{id} ORDER BY no DESC")
+	public List<Diary_scrapVO> scrapListData(String id);
+	
+	
+	/*
+	 * <!-- 스크랩 여부 확인 -->
+	<select id="scrapCount" parameterType="JobKnowledgeScrapVO" resultType="int">
+	SELECT COUNT(*) FROM JobKnowledgeScrap
+	WHERE id=#{id} AND mno=#{mno}
+	</select>
+	 */
+	// 스크랩 여부 확인 ====================================================================================================================================
+	@Select("SELECT COUNT(*) FROM diary_scrap WHERE id = #{id} AND mno = #{mno}")
+	public int scrapCount(Diary_scrapVO vo);
+	
+	
+	
+	/*
+	 * <!-- 스크랩 취소  -->
+	<delete id="scrapDelete" parameterType="int">
+	DELETE FROM JobKnowledgeScrap
+	WHERE mno=#{no}
+	</delete>
+	
+	 */
+	// 스크랩 취소 ====================================================================================================================================
+	@Delete("DELETE FROM diary_scrap WHERE no = #{no}")
+	public void scrapDelete(int no);
+	
+	
+	
+	
+	
+	
 }
 

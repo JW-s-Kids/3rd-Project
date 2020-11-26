@@ -27,6 +27,12 @@
 		p:url="jdbc:oracle:thin:@211.238.142.195:1521:XE"
 	/>
 	
+	<aop:aspectj-autoproxy/>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+        p:dataSource-ref="ds"
+    />
+    
 	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="ds"
 	/>
@@ -34,7 +40,12 @@
 	<mybatis-spring:scan base-package="com.sist.mapper"
 		factory-ref="ssf"
 	/>
+	<bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:sqlSessionFactory-ref="ssf"
+		p:mapperInterface="com.sist.mapper.DogMapper"
+	/>
 	
+	<mybatis-spring:scan base-package="com.sist.dao" factory-ref="ssf"/>
 	
 	
 	<!-- 뷰리졸버, 타일즈 ================================================================================================== -->
@@ -54,4 +65,16 @@
 		p:order="1"
 	/>
 
+	<!-- 한글 깨짐 방지 ==================================================================================================== -->
+	<mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>
