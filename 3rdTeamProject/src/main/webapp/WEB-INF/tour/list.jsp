@@ -55,7 +55,15 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
             <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Tour</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Destination</h1>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">다양한 서울의 여행지</h1>
+           <!--  <div style="position: relative;  top: 200px;">
+            <p class="browse d-md-flex" >
+            	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-fork"></i>가이드와 함께</a></span>
+            	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-hotel"></i>부모님과 함께</a></span> 
+            	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-meeting-point"></i>애인과 함께</a></span> 
+            	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-shopping-bag"></i>친구와 함께</a></span>
+            </p>
+            </div> -->
           </div>
         </div>
       </div>
@@ -144,12 +152,13 @@
 		    							<div class="one0">
 				    						<h3>${tour_vo.title }</h3>
 				    					</div>
-				    					
+				    				<c:if test="${tour_vo.site!=null }">
 				    					<div class="one">
 				    						<p class="rate">
 				    							 <img src="${tour_vo.site}" alt="평점" style="width:100%">
 				    						</p>
 			    						</div>
+			    					</c:if>
 		    						</div>
 		    						
 		    						<c:choose>

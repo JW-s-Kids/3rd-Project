@@ -47,8 +47,8 @@ margin: 0px auto;
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="hotel.html">Hotel</a></span> <span>Hotel Single</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Hotels Details</h1>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="hotel.html">Tour</a></span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">${tour_vo.title }</h1>
           </div>
         </div>
       </div>
@@ -72,11 +72,15 @@ margin: 0px auto;
           			<span>${tour_vo.thema }</span>
           			<h2>${tour_vo.title }</h2>
           			<p class="rate mb-5">
-          				<span class="loc"><a href="#"><i class="icon-map"></i>${fn:substring(tour_vo.address, 5, 50)}</a></span>
-          				<span class="star">
-    						<img src="${tour_vo.site}" alt="평점">
-    					</span>
-    						</p>
+          				<span class="loc">
+          				  <i class="icon-map">${fn:substring(tour_vo.address, 5, 50)}</i>
+          				</span>
+          				<c:if test="${tour_vo.site!=null }">
+	          				<span class="star">
+	    						<img src="${tour_vo.site}" alt="평점">
+	    					</span>
+	    			</c:if>
+    				</p>
     						<p>${tour_vo.content }</p>
     						<div class="d-md-flex mt-5 mb-5">
     							<ul>
@@ -91,7 +95,7 @@ margin: 0px auto;
     						<p>${tour_vo.tag }</p>
           		</div>
           		<div class="col-md-6 hotel-single mt-4 mb-5 ftco-animate">
-          			 <h3>주변 지도</h3>
+          			 <h4>주변 지도</h4>
 		            <table class="table">
 		              <tr>
 		               <td class="text-center">
@@ -153,9 +157,11 @@ margin: 0px auto;
 				    						<div class="d-flex">
 				    							<div class="one">
 						    						<h3><a href="hotel-single.html">${tour_vo.title }</a></h3>
-						    						<p class="rate">
-						    						   <img src="${tour_vo.site}" alt="평점" style="width:100%">
-						    						</p>
+						    						<c:if test="${tour_vo.site!=null }">
+						    						  <p class="rate">
+						    						   <img src="${tour_vo.site}" alt="평점" style="width:100%"> 
+						    					   	  </p>
+						    						</c:if>
 					    						</div>
 				    						</div>
 				    					</div>
