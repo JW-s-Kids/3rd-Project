@@ -212,7 +212,27 @@ public class DiaryContoller {
 	
 	// 여행기 작성 페이지만 출력 ===========================================================================================================================================================
 	@RequestMapping("diary/insert.do")
-	public String diary_insert(){
+	public String diary_insert(HttpSession session, HttpServletRequest request){
+		
+		// 쿠키 ---------------------------------------------------------------------------------------------------
+		session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		// 쿠키 읽기
+		Cookie[] cookies=request.getCookies();							// 쿠키 배열 생성
+		List<DiaryVO> cookie_list=new ArrayList<DiaryVO>();					// 쿠키를 담을 리스트 생성
+		if(cookies!=null)												// 쿠키가 비어있지 않으면
+		{
+			for(int i=cookies.length-1;i>=0;i--)						// (쿠키길이 - 1)부터 0까지 i를 1씩 감소 (그래야 최신 쿠키가 맨앞에 옴)
+			{
+				if(cookies[i].getName().startsWith(id + "diary"))							// 쿠키배열의 이름이 id를 시작하면
+				{
+					String cookie_no=cookies[i].getValue();								// 변수 no에 쿠키값 넣기
+					DiaryVO vo = dao.diaryDetail(Integer.parseInt(cookie_no));		// vo에 상세보기를 담아서
+					cookie_list.add(vo);													// 쿠키배열에 vo 담기
+				}
+			}
+		}
+		
 		return "diary/insert";
 	}
 	
@@ -402,7 +422,7 @@ public class DiaryContoller {
 	public String diary_scrap_cancel(String no)
 	{
 		dao.scrapDelete(Integer.parseInt(no));
-		return "redirect:../diary/scrapList2.do";
+		return "redirect:../member/mypage.do";
 	}
 	
 	
@@ -433,7 +453,7 @@ public class DiaryContoller {
 		System.out.println("스크랩목록 가져오기");
 		
 		
-		return "member/scrap_list";
+		return "scrap_list";
 		
 //		request.setAttribute("mypage_jsp", "../jobKnowledge/scrapList2.jsp");
 //	    return "../mypage/mymain.jsp";

@@ -37,15 +37,23 @@ $(function(){
 	});
 })
 </script>
+<style type="text/css">
+	.board_button{
+		border: none;
+	}
+	.board_button:hover{
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
-	<div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_4.jpg');">
+	<div class="hero-wrap js-fullheight" style="background-image: url('../images/diary_image.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> <span>Blog Single</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp; Articles</h1>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html"><!-- Home --></a></span> <span class="mr-2"><a href="blog.html"><!-- Blog --></a></span> <span><!-- Blog Single --></span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">여행기</h1>
           </div>
         </div>
       </div>
@@ -61,9 +69,9 @@ $(function(){
           	<p>방문일 <fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/></p>
           </div>
             <p>
-              <img src="../images/image_7.jpg" alt="" class="img-fluid">
+              <!-- <img src="../images/image_7.jpg" alt="" class="img-fluid"> -->
             </p>
-              <img src="../images/image_8.jpg" alt="" class="img-fluid">
+              <!-- <img src="../images/image_8.jpg" alt="" class="img-fluid"> -->
      		<p>${diary_vo.content }</p>
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
@@ -121,10 +129,10 @@ $(function(){
                     <p>${reply_vo.content }</p>
                     <%-- <p><a href="#" class="reply bring_comment_tab" id=${reply_vo.no }>댓글</a></p> --%>
                     <div>
-	                    <input type=button class="reply bring_comment_tab" id=${reply_vo.no } value="댓글">
+	                    <input type=button class="reply bring_comment_tab board_button" id=${reply_vo.no } value="댓글작성">
 	                    <c:if test="${sessionScope.id == reply_vo.id }">
-	                    	<input type=button class="reply bring_comment_update_tab" id=${reply_vo.no } value="수정">
-	                    	<input type=button class="reply deleteCommentButton" value="삭제${reply_vo.no }"  id=${reply_vo.no }>
+	                    	<input type=button class="reply bring_comment_update_tab board_button" id=${reply_vo.no } value="수정">
+	                    	<input type=button class="reply deleteCommentButton board_button" value="삭제${reply_vo.no }"  id=${reply_vo.no }>
 	                    </c:if>
                     </div>
                   </div>
@@ -139,7 +147,7 @@ $(function(){
 		                    <input type=hidden name=parent_no value=${reply_vo.no }>
 		                  </div>
 		                  <div class="form-group">
-		                    <input type="submit" value="댓글 입력" class="btn py-3 px-4 btn-primary">
+		                    <input type="submit" value="댓글 입력" class="btn btn-primary">
 		                  </div>
 	                </form>
 	              </div>
@@ -154,7 +162,7 @@ $(function(){
 			                    <input type=hidden name=no value=${reply_vo.no }>
 			                  </div>
 			                  <div class="form-group">
-			                    <input type="submit" value="수정" class="btn py-3 px-4 btn-primary">
+			                    <input type="submit" value="수정" class="btn btn-primary">
 			                  </div>
 		                </form>
 	              </div>
@@ -186,7 +194,7 @@ $(function(){
                     <input type=hidden name=diary_no value=${diary_vo.no }>
                   </div>
                   <div class="form-group">
-                    <input type="submit" value="댓글 입력" class="btn py-3 px-4 btn-primary">
+                    <input type="submit" value="댓글 입력" class="btn btn-primary">
                   </div>
 
                 </form>
@@ -200,14 +208,15 @@ $(function(){
           </div> <!-- .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
           	
-            <div class="sidebar-box">
+            <!-- <div class="sidebar-box">
               <form action="../diary/search.do" class="search-form">
                 <div class="form-group">
                   <span class="icon fa fa-search"></span>
-                  <input type="text" name="voca" class="form-control" placeholder="여행기 검색"><input type=submit ></input>
+                  <input type="text" name="voca" class="form-control" placeholder="검색">
+                  <input type="submit" value="검색" class="btn btn-primary" style="height: 50px; border-radius: 3px;">
                 </div>
               </form>
-            </div>
+            </div> -->
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>카테고리</h3>
@@ -244,7 +253,7 @@ $(function(){
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3>Tag Cloud</h3>
+              <!-- <h3>Tag Cloud</h3>
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">dish</a>
                 <a href="#" class="tag-cloud-link">menu</a>
@@ -254,7 +263,7 @@ $(function(){
                 <a href="#" class="tag-cloud-link">delicious</a>
                 <a href="#" class="tag-cloud-link">desserts</a>
                 <a href="#" class="tag-cloud-link">drinks</a>
-              </div>
+              </div> -->
             </div>
 
             <div class="sidebar-box ftco-animate">

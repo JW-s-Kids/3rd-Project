@@ -35,13 +35,13 @@
   <body>
     
     
-    <div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_4.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url('../images/diary_image.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Blog</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp; Articles</h1>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html"><!-- Home --></a></span> <span><!-- Blog --></span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">여행기</h1>
           </div>
         </div>
       </div>
@@ -52,23 +52,27 @@
       <div class="container">
       	
       	<div style="height: 100px; margin: 0px auto; text-align: center;">
-      		<input type="button" value="카테고리">
-      		<input type="button" value="카테고리">
-      		<input type="button" value="카테고리">
+      		<form action="#">
+              <div class="form-group" style="width:30%; text-align: center; margin: 0px auto; display: inline-block;">
+                <span class="icon fa fa-search"></span>
+                <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
+              </div>
+              <input type="submit" value="검색" class="btn btn-primary" style="height: 50px; border-radius: 3px;">
+            </form>
       	</div>
       	
       	<div style="height: 60px; margin: 0px auto; text-align: right;">
       		<c:if test="${sessionScope.id != null }">
-      			<input type="button" value="여행기 작성" onclick="location.href='../diary/insert.do'">
+      			<input type="button" class="btn btn-primary" value="여행기 작성" onclick="location.href='../diary/insert.do'">
       		</c:if>
       	</div>
       
         <div class="row d-flex">
         
-        	<c:forEach var="diary_vo" items="${list }">
+        	<c:forEach var="diary_vo" items="${list }" varStatus="s">
 		          <div class="col-md-3 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch">
-		              <a href="../diary/detail_before.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/image_1.jpg');">
+		              <a href="../diary/detail_before.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');">
 		              </a>
 		              <div class="text p-4 d-block">
 		              	<span class="tag">${diary_vo.tag }</span>
