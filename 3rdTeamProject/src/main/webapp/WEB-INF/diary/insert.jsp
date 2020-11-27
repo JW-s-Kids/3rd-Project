@@ -9,13 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_4.jpg');">
+	<div class="hero-wrap js-fullheight" style="background-image: url('../images/diary_image.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> <span>Blog Single</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp; Articles</h1>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html"><!-- Home --></a></span> <span class="mr-2"><a href="blog.html"><!-- Blog --></a></span> <span><!-- Blog Single --></span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">여행기</h1>
           </div>
         </div>
       </div>
@@ -78,42 +78,28 @@
 
             <div class="sidebar-box ftco-animate">
               <h3>최근 본 여행기</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(../images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
+              
+              <c:forEach var="cookie_vo" items="${cookie_list }" varStatus="s">
+              		<c:if test="${s.index < 6 }">
+			              <div class="block-21 mb-4 d-flex">
+			                <a class="blog-img mr-4" style="background-image: url(../images/image_1.jpg);"></a>
+			                <div class="text">
+			                  <h3 class="heading"><a href="../diary/detail_before.do?no=${cookie_vo.no }">${cookie_vo.subject }</a></h3>
+			                  <div class="meta">
+			                    <div><a href="#"><span class="icon-calendar"></span>
+			                   		<fmt:formatDate value="${cookie_vo.visitdate }" pattern="yyyy-MM-dd"/>
+			                    </a></div>
+			                    <div><a href="#"><span class="icon-person"></span>${cookie_vo.id }</a></div>
+			                    <div><a href="#"><span class="icon-chat"></span>${cookie_vo.reply }</a></div>
+			                  </div>
+			                </div>
+			              </div>
+	              	</c:if>
+              </c:forEach>
+              
             </div>
 
-            <div class="sidebar-box ftco-animate">
+            <!-- <div class="sidebar-box ftco-animate">
               <h3>Tag Cloud</h3>
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">dish</a>
@@ -126,11 +112,11 @@
                 <a href="#" class="tag-cloud-link">drinks</a>
               </div>
             </div>
-
-            <div class="sidebar-box ftco-animate">
+ -->
+            <!-- <div class="sidebar-box ftco-animate">
               <h3>Paragraph</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-            </div>
+            </div> -->
           </div>
 
         </div>

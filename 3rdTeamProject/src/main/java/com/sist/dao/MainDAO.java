@@ -17,4 +17,16 @@ public class MainDAO {
 	public List<TourVO> getTourList(){
 		return mapper.getTourList();
 	}
+	
+	
+	// 메인페이지 (반려동물 산책코스) ============================================================================================
+	public List<DogVO> getParkList(){
+		return mapper.getParkList();
+	}
+	
+	
+	// 메인페이지 (여행기) ============================================================================================
+	public List<DiaryVO> getDiaryList(){
+		return mapper.getDiaryList();
+	}
 }
