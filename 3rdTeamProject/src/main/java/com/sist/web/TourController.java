@@ -70,11 +70,15 @@ public class TourController {
 			
 			try {
 					TourVO tour_vo = dao.tourDetail(Integer.parseInt(no)); 
+					String thema=tour_vo.getThema();
+					List<TourVO> list=dao.tourLikeTourData(thema);
 					model.addAttribute("tour_vo", tour_vo);
+					model.addAttribute("list",list);
 				}catch (Exception e) 
 				{
 					System.out.println(e.getMessage());
 				}
+			
 			return "tour/detail";
 		}
 }

@@ -30,7 +30,11 @@ public class TourDAO {
 	{
 		return mapper.tourDetail(no);
 	}
-		
+/////////////////////// 관련 여행지 가져오기 /////////////////////////
+	 public List<TourVO> tourLikeTourData(String finddata)
+     {
+    	 return mapper.tourLikeTourData(finddata);
+     }
 	
 }
 	
