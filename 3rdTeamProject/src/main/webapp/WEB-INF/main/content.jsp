@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,40 +25,40 @@ $(function(){
 <body>
 	
 	
-	<div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_1.jpg');">
+	<div class="hero-wrap js-fullheight" style="background-image: url('../images/main_image.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>Explore <br></strong> your amazing city</h1>
-            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>오늘<br></strong>뭐하니?</h1>
+            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">네이버 검색</p>
             <div class="block-17 my-4">
               <form action="" method="post" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="text" class="form-control" placeholder="Ex: food, service, hotel">
+                  	<input type="text" class="form-control" placeholder="어디로 갈까요?">
                   </div>
                   <div class="select-wrap one-third">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                     <select name="" id="" class="form-control" placeholder="Keyword search">
-                      <option value="">Where</option>
-                      <option value="">San Francisco USA</option>
+                      <option value="">강동구</option>
+                      <!-- <option value="">San Francisco USA</option>
                       <option value="">Berlin Germany</option>
                       <option value="">Lodon United Kingdom</option>
-                      <option value="">Paris Italy</option>
+                      <option value="">Paris Italy</option> -->
                     </select>
                   </div>
                 </div>
                 <input type="submit" class="search-submit btn btn-primary" value="Search">  
               </form>
             </div>
-            <p>Or browse the highlights</p>
+            <!-- <p>Or browse the highlights</p>
             <p class="browse d-md-flex">
             	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-fork"></i>Restaurant</a></span>
             	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-hotel"></i>Hotel</a></span> 
             	<span class="d-flex justify-content-md-center align-items-md-center"><a href="#"><i class="flaticon-meeting-point"></i>Places</a></span> 
             	<span class="d-flex justify-content-md-center align-items-md-	center"><a href="#"><i class="flaticon-shopping-bag"></i>Shopping</a></span>
-            </p>
+            </p> -->
           </div>
         </div>
       </div>
@@ -66,7 +67,7 @@ $(function(){
 
 
 <!-- 메인페이지 사진 바로 아래 ------------------------------------------------------------------------------------------------------------------------------ -->
-	<section class="ftco-section services-section bg-light">
+	<!-- <section class="ftco-section services-section bg-light">
       <div class="container">
         <div class="row d-flex">
           <div class="col-md-3 d-flex align-self-stretch ftco-animate">
@@ -107,7 +108,7 @@ $(function(){
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     
     
 <!-- 여행지 리스트 -------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
@@ -115,8 +116,8 @@ $(function(){
     	<div class="container">
 				<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
-          	<!-- <span class="subheading">Special Offers</span> -->
-            <h2 class="mb-4"><strong>오늘 </strong>어디 갈래?</h2>
+          	<span class="subheading">투어</span>
+            <h2 class="mb-4"><strong>어디 </strong>갈래?</h2>
           </div>
         </div>    		
     	</div>
@@ -133,7 +134,7 @@ $(function(){
 	    					<div class="text p-3">
 	    						<div class="d-flex">
 	    							<div class="one">
-			    						<h3><a href="#">
+			    						<h3><a href="../tour/detail.do?no=${tour_vo.tno }">
 		    									<c:if test="${fn:length(tour_vo.title)>12 }">											<!-- 이용시간 -->
 						              				<span>${fn:substring(tour_vo.title, 0, 12) }...</span>
 						              			</c:if>
@@ -193,7 +194,7 @@ $(function(){
 
 
 <!-- 수치들 나오는 곳 ----------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(../images/bg_1.jpg);">
+    <!-- <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(../images/bg_1.jpg);">
     	<div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
@@ -240,190 +241,93 @@ $(function(){
 	        </div>
         </div>
     	</div>
-    </section>
+    </section> -->
 
 <!-- 반려동물 산책 코스 ----------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section class="ftco-section">
     	<div class="container">
 				<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
-          	<span class="subheading">Special Offers</span>
-            <h2 class="mb-4"><strong>Popular</strong> Hotels &amp; Rooms</h2>
+          	<span class="subheading">반려동물 산책코스</span>
+            <h2 class="mb-4"><strong>반려동물과</strong> 함께</h2>
           </div>
         </div>    		
     	</div>
     	<div class="container-fluid">
     		<div class="row">
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/hotel-1.jpg);">
-    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-    					</a>
-    					<div class="text p-3">
-    						<div class="d-flex">
-    							<div class="one">
-		    						<h3><a href="#">Hotel, Italy</a></h3>
-		    						<p class="rate">
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star-o"></i>
-		    							<span>8 Rating</span>
-		    						</p>
-	    						</div>
-	    						<div class="two">
-	    							<span class="price per-price">$40<br><small>/night</small></span>
-    							</div>
-    						</div>
-    						<p>Far far away, behind the word mountains, far from the countries</p>
-    						<hr>
-    						<p class="bottom-area d-flex">
-    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-    							<span class="ml-auto"><a href="#">Book Now</a></span>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/hotel-2.jpg);">
-    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-    					</a>
-    					<div class="text p-3">
-    						<div class="d-flex">
-    							<div class="one">
-		    						<h3><a href="#">Hotel, Italy</a></h3>
-		    						<p class="rate">
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star-o"></i>
-		    							<span>8 Rating</span>
-		    						</p>
-	    						</div>
-	    						<div class="two">
-	    							<span class="price per-price">$40<br><small>/night</small></span>
-    							</div>
-    						</div>
-    						<p>Far far away, behind the word mountains, far from the countries</p>
-    						<hr>
-    						<p class="bottom-area d-flex">
-    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-    							<span class="ml-auto"><a href="#">Book Now</a></span>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/hotel-3.jpg);">
-    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-    					</a>
-    					<div class="text p-3">
-    						<div class="d-flex">
-    							<div class="one">
-		    						<h3><a href="#">Hotel, Italy</a></h3>
-		    						<p class="rate">
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star-o"></i>
-		    							<span>8 Rating</span>
-		    						</p>
-	    						</div>
-	    						<div class="two">
-	    							<span class="price per-price">$40<br><small>/night</small></span>
-    							</div>
-    						</div>
-    						<p>Far far away, behind the word mountains, far from the countries</p>
-    						<hr>
-    						<p class="bottom-area d-flex">
-    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-    							<span class="ml-auto"><a href="#">Book Now</a></span>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/hotel-4.jpg);">
-    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-    					</a>
-    					<div class="text p-3">
-    						<div class="d-flex">
-    							<div class="one">
-		    						<h3><a href="#">Hotel, Italy</a></h3>
-		    						<p class="rate">
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star-o"></i>
-		    							<span>8 Rating</span>
-		    						</p>
-	    						</div>
-	    						<div class="two">
-	    							<span class="price per-price">$40<br><small>/night</small></span>
-    							</div>
-    						</div>
-    						<p>Far far away, behind the word mountains, far from the countries</p>
-    						<hr>
-    						<p class="bottom-area d-flex">
-    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-    							<span class="ml-auto"><a href="#">Book Now</a></span>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(../images/hotel-5.jpg);">
-    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-    					</a>
-    					<div class="text p-3">
-    						<div class="d-flex">
-    							<div class="one">
-		    						<h3><a href="#">Hotel, Italy</a></h3>
-		    						<p class="rate">
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star-o"></i>
-		    							<span>8 Rating</span>
-		    						</p>
-	    						</div>
-	    						<div class="two">
-	    							<span class="price per-price">$40<br><small>/night</small></span>
-    							</div>
-    						</div>
-    						<p>Far far away, behind the word mountains, far from the countries</p>
-    						<hr>
-    						<p class="bottom-area d-flex">
-    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-    							<span class="ml-auto"><a href="#">Book Now</a></span>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
+    		
+    		
+		    			<c:forEach var="park_vo" items="${park_list }">
+			    			<div class="col-sm col-md-6 col-lg ftco-animate">
+			    				<div class="destination">
+			    					<a href="../dog/parkdetail.do?no=${park_vo.no }" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${park_vo.img});">		<!-- ../images/destination-1.jpg -->
+			    						<div class="icon d-flex justify-content-center align-items-center">
+			    							<span class="icon-search2"></span>
+			    						</div>
+			    					</a>
+			    					<div class="text p-3">
+			    						<div class="d-flex">
+			    							<div class="one">
+					    						<h3><a href="../dog/parkdetail.do?no=${park_vo.no }">
+				    									<c:if test="${fn:length(park_vo.name)>12 }">											<!-- 이름 -->
+								              				<span>${fn:substring(park_vo.name, 0, 12) }...</span>
+								              			</c:if>
+								              			<c:if test="${fn:length(park_vo.name)<=12 }">
+								              				<span>${park_vo.name}</span>
+								              			</c:if>
+					    						</a></h3>
+					    						<!-- <p class="rate">
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star-o"></i>
+					    							<span>8 Rating</span>
+					    						</p> -->
+				    						</div>
+				    						<div class="two">
+				    							<span class="price" style="font-size: 7pt;">${park_vo.zone }</span>
+			    							</div>
+			    						</div>
+			    						<p>
+			    										<c:if test="${fn:length(park_vo.content)>45 }">											<!-- 설명 -->
+								              				<span>${fn:substring(park_vo.content, 0, 45) }...</span>
+								              			</c:if>
+								              			<c:if test="${fn:length(park_vo.content)<=45 }">
+								              				<span>${tour_vo.content}</span>
+								              			</c:if>
+			    						</p>
+			    						<p class="days"><span>산책 시간 &nbsp;
+							    						<c:if test="${fn:length(park_vo.time)>27 }">											<!-- 산책 소요시간 -->
+								              				<span>${fn:substring(park_vo.time, 0, 27) }...</span>
+								              			</c:if>
+								              			<c:if test="${fn:length(park_vo.time)<=27 }">
+								              				<span>${park_vo.time}</span>
+								              			</c:if>
+			    						</span></p>
+			    						<hr>
+			    						<p class="bottom-area d-flex">
+			    							<span><i class="icon-map-o"></i>
+						    							<c:if test="${fn:length(park_vo.addr)>16 }">											<!-- 주소 -->
+								              				<span>${fn:substring(park_vo.addr, 0, 16) }...</span>
+								              			</c:if>
+								              			<c:if test="${fn:length(park_vo.addr)<=16 }">
+								              				<span>${park_vo.addr}</span>
+								              			</c:if>
+			    							</span> 
+			    							<span class="ml-auto"><a href="#">찾아가기</a></span>
+			    						</p>
+			    					</div>
+			    				</div>
+			    			</div>
+			    		</c:forEach>
+    			
+    			
     		</div>
     	</div>
     </section>
 
-    <section class="ftco-section testimony-section bg-light">
+    <!-- <section class="ftco-section testimony-section bg-light">
       <div class="container">
         <div class="row justify-content-start">
           <div class="col-md-5 heading-section ftco-animate">
@@ -488,9 +392,9 @@ $(function(){
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="ftco-section">
+    <!-- <section class="ftco-section">
     	<div class="container">
 				<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
@@ -605,82 +509,54 @@ $(function(){
     			</div>
     		</div>
     	</div>
-    </section>
+    </section> -->
 
+
+
+<!-- 여행기 -------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
-            <span class="subheading">Recent Blog</span>
-            <h2><strong>Tips</strong> &amp; Articles</h2>
+            <span class="subheading">여행기</span>
+            <h2><strong>여행 후기 </strong>궁금해?</h2>
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_1.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">8 Best homestay in Philippines that you don't miss out</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_2.jpg');">
-              </a>
-              <div class="text p-4">
-              	<span class="tag">Culture</span>
-                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_3.jpg');">
-              </a>
-              <div class="text p-4">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('../images/image_4.jpg');">
-              </a>
-              <div class="text p-4">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        
+        	<c:forEach var="diary_vo" items="${diary_list }" varStatus="s">
+		          <div class="col-md-3 d-flex ftco-animate">
+		            <div class="blog-entry align-self-stretch">
+		              <a href="../diary/detail.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');">
+		              </a>
+		              <div class="text p-4 d-block">
+		              	<span class="tag">${diary_vo.tag }</span>
+		                <h3 class="heading mt-3" style="width: 205px;"><a href="../diary.detail.do?no=${diary_vo.no }">
+									<c:if test="${fn:length(diary_vo.subject)>20 }">											<!-- 제목 -->
+			              				<span>${fn:substring(diary_vo.subject, 0, 20) }...</span>
+			              			</c:if>
+			              			<c:if test="${fn:length(diary_vo.subject)<=20 }">
+			              				<span>${diary_vo.subject}</span>
+			              			</c:if>
+						</a></h3>
+		                <div class="meta mb-3">
+		                  <div><a href="#">
+		                  			<fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/>
+		                  </a></div>
+		                  <div><a href="#">${diary_vo.id }</a></div>
+		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span>${diary_vo.reply}</a></div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+          	</c:forEach>
+          
+          
         </div>
       </div>
     </section>
 		
-		<section class="ftco-section-parallax">
+		<!-- <section class="ftco-section-parallax">
       <div class="parallax-img d-flex align-items-center">
         <div class="container">
           <div class="row d-flex justify-content-center">
@@ -701,6 +577,6 @@ $(function(){
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 </body>
 </html>

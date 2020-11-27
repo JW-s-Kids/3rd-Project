@@ -20,6 +20,9 @@
 	<definition name="tour" template="/WEB-INF/main/tour.jsp">
 	</definition>
 	
+	<definition name="scrap_list" template="/WEB-INF/diary/scrap_list.jsp">
+	</definition>
+	
 	<!-- 
 	<definition name="login" template="/WEB-INF/member/login.jsp">
 	</definition>
