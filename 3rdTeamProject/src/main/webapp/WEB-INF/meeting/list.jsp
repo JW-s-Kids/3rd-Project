@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,8 +53,8 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Hotel</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Hotels</h1>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Meeting</h1>
           </div>
         </div>
       </div>
@@ -82,9 +83,7 @@
 		            </div>
 	            </form>
         		</div>
-        		<div class=button>
-					<a href="../meeting/insert.do" class="btn btn-lg btn-danger">모임 만들기</a>
-				</div>
+        		
         		
         		
         		
@@ -94,15 +93,28 @@
 					 <c:if test="${s.index<4 }">
 					    <div>
 					      <a href="detail_before.do?mno=${vo.mno }">
-					        <img src="${vo.mimg }" alt="Lights" style="width:30px; height: 30px;">
-					        <div>
-					          <h6 style="font-size:8pt">${vo.mname }</h6>
-					        </div>
+					        <span><img src="${vo.mimg }" alt="Lights" style="width:30px; height: 30px;"></span>
+					        <span style="font-size:10pt">
+					        	<c:choose>
+							        <c:when test="${fn:length(vo.mname) gt 10}">
+								        <c:out value="${fn:substring(vo.mname,0,9)}">...
+								        </c:out>
+							        </c:when>
+							        <c:otherwise>
+								        <c:out value="${vo.mname}"/>
+							        </c:otherwise>
+								</c:choose>	
+					        </span>
+					        <hr>
 					      </a>
 					    </div>
-					</c:if>
+					 </c:if>
 					 </c:forEach>
         		</div>
+        		
+        		<div class=button>
+					<a href="../meeting/insert.do" class="btn btn-lg btn-danger">모임 만들기</a>
+				</div>
          	 </div>
          	 <!-- 사이드바 영역 끝======================================================================= -->
          	  
@@ -127,7 +139,17 @@
     						<p>${vo.mmsg }</p>
     						<hr>
     						<p class="bottom-area d-flex">
-    							<span><i class="icon-map-o"></i> ${vo.maddr }</span> 
+    							<span><i class="icon-map-o"></i> 
+    							<c:choose>
+							        <c:when test="${fn:length(vo.maddr) gt 10}">
+								        <c:out value="${fn:substring(vo.maddr,0,9)}">...
+								        </c:out>
+							        </c:when>
+							        <c:otherwise>
+								        <c:out value="${vo.addr}"/>
+							        </c:otherwise>
+								</c:choose>	
+    							</span> 
     							<%-- <span class="btn btn-xs btn-success btns" value="${vo.mno }">참여하기</span> --%>
     							<span class="ml-auto"><a href="#">참여하기</a></span>
     						</p>

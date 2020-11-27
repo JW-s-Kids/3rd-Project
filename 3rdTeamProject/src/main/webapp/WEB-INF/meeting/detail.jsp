@@ -44,7 +44,7 @@
 		              	<div>
 			                <h2 class="mb-4">${vo.mname }</h2>
 			              	<p>모임 소개 : ${vo.mmsg }</p>
-			                <p>모임 주소 : ${vo.maddr } ${vo.maddr2 } ${vo.maddr3 } ${vo.maddr4 }</p>
+			                <p>모임 주소 : ${vo.maddr } ${vo.maddr2 }</p>
 			                <p>참여 인원 : ${vo.mjoin}/${vo.minwon }</p><br>
 			                <input type=button value="참여하기" class="btn btn-xs btn-success" id="JoinBtn">&nbsp;&nbsp;&nbsp;
 			                <input type=button value="채팅하기" class="btn btn-xs btn-info" id="ChatBtn">&nbsp;&nbsp;&nbsp;
