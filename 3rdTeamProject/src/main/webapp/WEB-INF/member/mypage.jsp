@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	$(function(){
 		
-		$('#update_member').click(function(){
+		/* $('#update_member').click(function(){
 			$.ajax({
 				type: 'get',
 				url:'update.do',
@@ -22,17 +22,35 @@
 					 $('#mypage_box').html(result);
 				 }
 			});	
+		}); */
+		
+		$('.mypage_button').hover(function(){
+			$(this).css("cursor", "pointer");
+		}, function(){
+			$(this).css("cursor", "");
+		})
+		
+		$('#diary_scrap').click(function(){
+			let no = $(this).attr('value');
+			
+			$.ajax({
+				type: 'post',
+				url: '../diary/scrap_list.do',
+				success: function(result){
+					$('#mypage_box').html(result);
+				}
+			});
 		});
 	})
 </script>
 </head>
 <body>
-	<div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_4.jpg');">
+	<div class="hero-wrap js-fullheight" style="background-image: url('../images/mypage_image.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> <span>Blog Single</span></p>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html"><!-- Home --></a></span> <span class="mr-2"><a href="blog.html"><!-- Blog --></a></span> <span><!-- Blog Single --></span></p>
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">마이페이지</h1>
           </div>
         </div>
@@ -45,8 +63,8 @@
         <div class="row">
           <div class="col-md-8 ftco-animate" style="height: 800px;">
           
-          		<div id="mypage_box" 
-          		style="width: 100%; height: 100%; background-color: white; border:1px solid black;">
+          		<div id="mypage_box" 																					
+          		style="width: 100%; height: 100%; background-color: white; padding:30px;">						<!-- 스크랩 목록 출력 -->
           		
           		</div>
           
@@ -55,9 +73,8 @@
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>내 정보</h3>
-                <li><input type="button" value="회원정보 수정" id="update_member"></li>
-                <li><input type="button" value="스크랩 목록" id="update_member" onclick="location.href='../diary/scrap_list.do'"></li>
-                <li><a href="#">찜 목록 (여행기) <span>(22)</span></a></li>
+                <li><span style="color: #f85959;" class="mypage_button" id="update_member">회원정보 수정</span></li>
+                <li><span style="color: #f85959;" class="mypage_button" id="diary_scrap">여행기 스크랩</span></li>
               </div>
             </div>
 

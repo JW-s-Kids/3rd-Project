@@ -59,9 +59,11 @@ $(function(){
 	          				<input type="text" placeholder="아이디" name="id" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px;" id="log_id">
 	          				<input type="password" placeholder="비밀번호" name="pwd" style="width:100%; border: 1px solid #E5E5E5; border-radius: 5px; height:40px; margin-top: 50px;" id="log_pwd">
 	          			</div>
-	          			<input type="button" value="로그인" id="logBtn"></input>
+	          			<div style="text-align: center; margin-top: 20px;">
+	          				<input type="button" value="로그인" id="logBtn" class="btn btn-primary" style="width: 183px; height: 45px;"></input>
+	          			</div>
           			</form>
-          			<div style="margin-top: 80px; text-align: center;">
+          			<div style="margin-top: 20px; text-align: center;">
           				         				
           				<c:if test="${userEmail == null }">
 	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8064/web/member/kakao_login.do&response_type=code">

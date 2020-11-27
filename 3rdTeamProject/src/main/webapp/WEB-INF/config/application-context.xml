@@ -40,12 +40,12 @@
 	<mybatis-spring:scan base-package="com.sist.mapper"
 		factory-ref="ssf"
 	/>
-	<bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+	<!-- <bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
 		p:sqlSessionFactory-ref="ssf"
 		p:mapperInterface="com.sist.mapper.DogMapper"
 	/>
 	
-	<mybatis-spring:scan base-package="com.sist.dao" factory-ref="ssf"/>
+	<mybatis-spring:scan base-package="com.sist.dao" factory-ref="ssf"/> -->
 	
 	
 	<!-- 뷰리졸버, 타일즈 ================================================================================================== -->

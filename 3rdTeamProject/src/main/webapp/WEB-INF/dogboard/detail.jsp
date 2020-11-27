@@ -33,7 +33,7 @@
       <td class="text-center">
           <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 		              <a href="list.do#yong" class="nav-link active" aria-selected="true">같이가요</a>
-		              <a href="insert.do#yong" class="nav-link" aria-selected="false">자랑해요</a>
+		              <a href="../pet/list.do" class="nav-link" aria-selected="false">자랑해요</a>
 		              <a href="anonymous.do#yong" class="nav-link" aria-selected="false">익명게시판</a>
 		  </div>
           </td>
