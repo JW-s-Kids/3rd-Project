@@ -30,7 +30,7 @@ public class KakaoAPI {
             StringBuilder sb = new StringBuilder();															// StringBuilder : String보다 문자열을 붙이는 성능이 좋음
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=b680389f36f31c90bbb5aea9d43841d6");
-            sb.append("&redirect_uri=http://localhost:8064/web/member/kakao_login.do");
+            sb.append("&redirect_uri=http://localhost:8067/web/member/kakao_login.do");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());																		// StringBuilder 객체를 문자열로 형변환 후, BufferedWriter 인스턴스로 읽기
             bw.flush();
