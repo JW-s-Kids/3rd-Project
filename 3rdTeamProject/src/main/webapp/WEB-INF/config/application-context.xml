@@ -29,6 +29,10 @@
 	
 	<aop:aspectj-autoproxy/>
 	
+	<mvc:resources mapping="/resources/**" location="/resources/" /> 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
         p:dataSource-ref="ds"
     />

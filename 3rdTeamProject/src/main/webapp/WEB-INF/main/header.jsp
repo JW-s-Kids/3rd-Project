@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>오늘 뭐하니?</title>
 <link rel="stylesheet" type="text/css" href="../css/member/member.css?after">
 
 </head>
