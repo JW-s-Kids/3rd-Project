@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-md-8 ftco-animate">
           
-          		<form action="insert_ok.do" method="post" id="smartEditor">
+          		<form action="insert_ok.do" method="post" id="smartEditor" enctype="multipart/form-data">
 			          <h2 class="mb-3">
 							<input type=text name="subject" id="subject" placeholder="제목을 입력하세요" style="background-color:  white; width: 600px;">
 						</h2>
@@ -36,11 +36,28 @@
 			          	<p>방문일 <fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/></p>
 			          </div>
 			            
-			     		<!-- <textarea rows="35" cols="100" name="content" style="resize: none;" placeholder="내용을 입력하세요"></textarea> -->
-			     		<textarea name="content" id="content" rows="10" cols="100" placeholder="내용을 입력해주세요"></textarea>
+			     		<textarea rows="35" cols="100" name="content" style="resize: none;" placeholder="내용을 입력하세요"></textarea>
+			     		<!-- <textarea name="content" id="content" rows="10" cols="100" placeholder="내용을 입력해주세요"></textarea> -->
+			     		<div>
+			     			<h5>사진 업로드</h5>
+			     			<input type="file" id="photo" name="file">
+			     			<div class="select_img"><img src="" /></div>
+			     			<script>
+								  $("#photo").change(function(){
+								   if(this.files && this.files[0]) {
+								    var reader = new FileReader;
+								    reader.onload = function(data) {
+								     $(".select_img img").attr("src", data.target.result).width(500);        
+								    }
+								    reader.readAsDataURL(this.files[0]);
+								   }
+								  });
+							 </script>
+			     			
+			     		</div>
 			            <div class="tag-widget post-tag-container mb-5 mt-5">
 			              <div class="tagcloud">
-			                <input type=button id="smartEditorButton" class="btn btn-primary" value="작성완료" class="tag-cloud-link"/>
+			                <input type=submit id="smartEditorButton" class="btn btn-primary" value="작성완료" class="tag-cloud-link"/>
 			              </div>
 			            </div>
 		        </form>

@@ -17,6 +17,7 @@ import com.sist.dao.Diary_replyVO;
 import com.sist.dao.Diary_scrapVO;
 
 import com.sist.service.NaverManager;
+import com.sist.utils.UploadFileUtils;
 
 import java.io.*;
 import java.io.File;
@@ -251,7 +252,7 @@ public class DiaryContoller {
 	
 	// 여행기 작성 수행 ===========================================================================================================================================================
 	@RequestMapping("diary/insert_ok.do")
-	public String diary_insert_ok(String subject, String content, HttpSession session){
+	public String diary_insert_ok(String subject, String content, HttpSession session, MultipartFile file){
 		
 		try {
 			System.out.println("여행기 작성 수행 컨트롤러");
@@ -266,6 +267,30 @@ public class DiaryContoller {
 			vo.setContent(content);
 			vo.setSubject(subject);
 			vo.setId(id);
+			
+			
+			String uploadPath = "C:/springDev/springStudy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/3rdTeamProject/resources";
+			
+//			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String imgUploadPath = uploadPath + File.separator;
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = null;
+
+			if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+				  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
+				  
+				  fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+
+				  // gdsImg에 원본 파일 경로 + 파일명 저장
+				  vo.setPhoto("..\\resources" + ymdPath + File.separator + fileName);
+				  // gdsThumbImg에 썸네일 파일 경로 + 썸네일 파일명 저장
+				  vo.setThumbnail("..\\resources" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+				  
+				 } else {  // 첨부된 파일이 없으면
+				  fileName = File.separator + File.separator + "none.png";
+				  // 미리 준비된 none.png파일을 대신 출력함
+
+				 }
 			dao.diaryInsert(vo);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -525,7 +550,7 @@ public class DiaryContoller {
 	
 	
 	// 여행기 사진 업로드 (멀티) ========================================================================================================
-	@RequestMapping("/file_uploader_html5.do")
+	@RequestMapping("file_uploader_html5.do")
 	public void diary_file_uploader_html5(HttpServletRequest request, HttpServletResponse response){
 		try { 
 			//파일정보 

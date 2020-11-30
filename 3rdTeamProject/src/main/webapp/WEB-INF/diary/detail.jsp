@@ -73,6 +73,12 @@ $(function(){
             </p>
               <!-- <img src="../images/image_8.jpg" alt="" class="img-fluid"> -->
      		<p>${diary_vo.content }</p>
+     		<h5>업로드 이미지</h5>
+            <img src="${diary_vo.photo }">
+            <h5>${diary_vo.photo }</h5>
+            <h5>썸네일 이미지</h5>
+            <img src="${diary_vo.thumbnail }">
+            
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">좋아요</a>

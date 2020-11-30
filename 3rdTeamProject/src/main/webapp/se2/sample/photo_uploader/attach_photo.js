@@ -334,7 +334,8 @@
     	var tempFile,
     		sUploadURL;
     	
-    	sUploadURL= "/file_uploader_html5.do"; 	//upload URL
+    	sUploadURL= "file_uploader_html5.do"; 	//upload URL
+//    	sUploadURL= "../se2/upload/";
     	
     	//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {
