@@ -63,7 +63,7 @@ public class MeetingController {
 	@RequestMapping("detail_before.do")
 	public String meeting_detail_before(int mno,HttpServletResponse response){
 		
-	System.out.println("detail_befor 호출 ");
+	System.out.println("detail_before 호출 ");
 	Cookie cookie=new Cookie("m"+mno, String.valueOf(mno));//쿠키생성,다른 쿠키와 구별하기 위해 m으로 저장
 	cookie.setMaxAge(60*60*24);//쿠키기간 설정
 	response.addCookie(cookie);//클라이언트에 쿠키 저장
@@ -85,11 +85,47 @@ public class MeetingController {
 		return "meeting/insert";
 	}
 	@RequestMapping("insert_ok.do")
-	public String meeting_insert_ok(MeetingVO vo) {
-		dao.meetingInsert(vo);
+	public String meeting_insert_ok(String mno,String mname,String maddr,String maddr2,String minwon,String mmsg) {
+		MeetingVO vo=new MeetingVO();
+			vo.setMname(mname);
+			vo.setMaddr(maddr);
+			vo.setMaddr2(maddr2);
+			vo.setMinwon(Integer.parseInt(minwon));
+			vo.setMmsg(mmsg);
+			dao.meetingInsert(vo);
+
 		return "redirect:../meeting/list.do";
 	}
 	
+	//모임 수정
+	//수정내용 가져오기
+	@RequestMapping("meeting/update.do")
+	public String meetingUpdate(String mno,Model model) {
+		MeetingVO vo=dao.meetingDetailData(Integer.parseInt(mno));
+		model.addAttribute("vo", vo);
+		return "meeting/update";
+	}
+	//수정하기
+	@RequestMapping("meeting/update_ok.do")
+	public String meetingUpdate_ok(String mno,String mname,String maddr,String maddr2,int minwon,String mmsg) {
+		Map map=new HashMap();
+		map.put("mno", mno);
+		map.put("mname", mname);
+		map.put("maddr", maddr);
+		map.put("maddr2", maddr2);
+		map.put("minwon", minwon);
+		map.put("mmsg", mmsg);
+		
+		dao.meetingUpdate(map);
+		return "redirect:../meeting/detail.do?mno="+mno;
+	}
+	
+	//모임 삭제
+	@RequestMapping("meeting/delete.do")
+	public String meetingDelete(String mno) {
+		dao.meetingDelete(Integer.parseInt(mno));
+		return "redirect:../meeting/list.do";
+	}
 	
 	
 	

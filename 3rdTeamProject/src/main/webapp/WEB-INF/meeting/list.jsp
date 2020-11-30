@@ -48,7 +48,7 @@
 </head>
 <body>
     
-    <div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_5.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url('../images/image_1.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -136,7 +136,19 @@
 	    							<span class="price per-price">${vo.hit }<br><small>${vo.mjoin} / ${vo.minwon }</small></span>
     							</div>
     						</div>
-    						<p>${vo.mmsg }</p>
+    						
+    						<p>
+    						<c:choose>
+						        <c:when test="${fn:length(vo.mmsg) gt 25}">
+							        <c:out value="${fn:substring(vo.mmsg,0,24)}">...
+							        </c:out>
+						        </c:when>
+						        <c:otherwise>
+							        <c:out value="${vo.mmsg}"/>
+						        </c:otherwise>
+							</c:choose>
+    						</p>
+    						
     						<hr>
     						<p class="bottom-area d-flex">
     							<span><i class="icon-map-o"></i> 

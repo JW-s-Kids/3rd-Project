@@ -55,7 +55,7 @@ function postfind()
               	<input type=text name=addr2 class="form-control" size=45 id="addr2" placeholder="상세 주소(건물/상호명)">
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder="참석 인원 설정">
+                <input type="text" class="form-control" placeholder="참석 인원 설정">
               </div>
               <div class="form-group">
                 <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="모임 소개"></textarea>
