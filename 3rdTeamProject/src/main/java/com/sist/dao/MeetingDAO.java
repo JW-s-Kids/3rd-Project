@@ -58,6 +58,12 @@ public class MeetingDAO {
 		}
 			
 	}
+	//모임검색
+	public List<MeetingVO> meetingFindListData(Map map){
+		return mapper.meetingFindListData(map);
+	}
+	
+	
 	
 
 	

@@ -54,6 +54,14 @@ public interface MeetingMapper {
 	@Delete("DELETE FROM meeting WHERE mno=#{mno}")
 	public void meetingDelete(int mno);
 	
+	//모임검색
+	@Select("SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit,num "
+			+"FROM (SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit,rownum as num "
+			+"FROM (SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit "
+			+"FROM meeting WHERE mname LIKE '%'||'${fmname}'||'%')) "
+			+"WHERE num BETWEEN #{start} AND #{end}")
+	public List<MeetingVO> meetingFindListData(Map map);
+	
 	
 	
 	

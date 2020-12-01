@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.dao.*;
@@ -85,28 +87,34 @@ public class MeetingController {
 		return "meeting/insert";
 	}
 	@RequestMapping("insert_ok.do")
-	public String meeting_insert_ok(String mno,String mname,String maddr,String maddr2,String minwon,String mmsg) {
+	public String meeting_insert_ok(HttpServletRequest request,
+			@RequestParam(value="mname")String mname,
+			@RequestParam(value="maddr")String maddr,
+			@RequestParam(value="maddr2")String maddr2,
+			@RequestParam(value="minwon")String minwon,
+			@RequestParam(value="mmsg")String mmsg) {
+			
 		MeetingVO vo=new MeetingVO();
-			vo.setMname(mname);
-			vo.setMaddr(maddr);
-			vo.setMaddr2(maddr2);
-			vo.setMinwon(Integer.parseInt(minwon));
-			vo.setMmsg(mmsg);
-			dao.meetingInsert(vo);
+		vo.setMname(mname);
+		vo.setMaddr(maddr);
+		vo.setMaddr2(maddr2);
+		vo.setMinwon(Integer.parseInt(minwon));
+		vo.setMmsg(mmsg);
+		dao.meetingInsert(vo);
 
 		return "redirect:../meeting/list.do";
 	}
 	
 	//모임 수정
 	//수정내용 가져오기
-	@RequestMapping("meeting/update.do")
+	@RequestMapping("update.do")
 	public String meetingUpdate(String mno,Model model) {
 		MeetingVO vo=dao.meetingDetailData(Integer.parseInt(mno));
 		model.addAttribute("vo", vo);
 		return "meeting/update";
 	}
 	//수정하기
-	@RequestMapping("meeting/update_ok.do")
+	@RequestMapping("update_ok.do")
 	public String meetingUpdate_ok(String mno,String mname,String maddr,String maddr2,int minwon,String mmsg) {
 		Map map=new HashMap();
 		map.put("mno", mno);
@@ -121,12 +129,39 @@ public class MeetingController {
 	}
 	
 	//모임 삭제
-	@RequestMapping("meeting/delete.do")
+	@RequestMapping("delete.do")
 	public String meetingDelete(String mno) {
 		dao.meetingDelete(Integer.parseInt(mno));
 		return "redirect:../meeting/list.do";
 	}
 	
+	//모임 검색
+	@RequestMapping("find.do")
+	public String meeting_find(String page,String fmname,Model model,HttpServletRequest request){
+		if(page==null)
+			page="1";
+		int curpage=Integer.parseInt(page);		
+		int rowSize=6;
+		int start=(curpage*rowSize)-(rowSize-1);
+		int end=curpage*rowSize;
+		
+		
+		Map map=new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("fmname", fmname);
+		System.out.println("fmname:"+fmname);
+
+		int totalpage=dao.meetingTotalPage();
+		List<MeetingVO> fList=dao.meetingFindListData(map);
+
+		model.addAttribute("fList", fList);
+		model.addAttribute("curpage", curpage);
+		model.addAttribute("totalpage", totalpage);
+		
+		
+		return "meeting/list";
+	}
 	
 	
 	
