@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
+            <!-- <div class="ftco-footer-widget mb-4 ml-md-5">
               <h2 class="ftco-heading-2">팀원 명단</h2>
               <ul class="list-unstyled">
               	<li><a href="#" class="py-2 d-block">강신진</a></li>
@@ -34,7 +34,7 @@
                 <li><a href="#" class="py-2 d-block">현보영</a></li>
                 <li><a href="#" class="py-2 d-block">홍순형</a></li>
               </ul>
-            </div>
+            </div> -->
           </div>
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">

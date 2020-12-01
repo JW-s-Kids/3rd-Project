@@ -62,7 +62,7 @@ public class MemberController {
 		}
 		
 		
-		return "main";
+		return "redirect:../main/main.do";
 	}
 	
 	
@@ -74,7 +74,7 @@ public class MemberController {
 	    session.removeAttribute("userId");
 	    session.invalidate();
 //	    kakao.kakaoLogout_entire();
-	    return "main";
+	    return "redirect:../main/main.do";
 	}
 	
 	
@@ -94,14 +94,14 @@ public class MemberController {
 		model.addAttribute("msg", vo.getMsg());
 		System.out.println("로그인 OK");
 		
-		return "member/login_ok";
+		return "redirect:../main/main.do";
 	}
 	
 	// 로그아웃 ===============================================================================================================================
 	@RequestMapping("member/logout.do")
 	public String member_logout(HttpSession session){
 		session.invalidate();
-		return "main";
+		return "redirect:../main/main.do";
 	}
 	
 	

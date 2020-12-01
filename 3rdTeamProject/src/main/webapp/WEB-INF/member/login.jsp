@@ -66,7 +66,7 @@ $(function(){
           			<div style="margin-top: 20px; text-align: center;">
           				         				
           				<c:if test="${userEmail == null }">
-	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8064/web/member/kakao_login.do&response_type=code">
+	          				<a href="https://kauth.kakao.com/oauth/authorize?client_id=b680389f36f31c90bbb5aea9d43841d6&redirect_uri=http://localhost:8067/web/member/kakao_login.do&response_type=code">
 	          					<img src="../images/kakao_login_medium_narrow.png">
 	          				</a>
           			</c:if>
@@ -82,21 +82,6 @@ $(function(){
           		</div>
           	</div>
           	
-        </div>
-        <div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </section>

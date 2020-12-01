@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -27,18 +28,36 @@
         <div class="row">
           <div class="col-md-8 ftco-animate">
           
-          		<form action="insert_ok.do" method="post">
+          		<form action="insert_ok.do" method="post" id="smartEditor" enctype="multipart/form-data">
 			          <h2 class="mb-3">
-							<input type=text name="subject" placeholder="제목을 입력하세요" style="background-color:  white; width: 600px;">
+							<input type=text name="subject" id="subject" placeholder="제목을 입력하세요" style="background-color:  white; width: 600px;">
 						</h2>
 			          <div style="height:80px; margin-top: 30px; border-top:1px solid #f2f2f2; padding-top: 10px;">
 			          	<p>방문일 <fmt:formatDate value="${diary_vo.visitdate }" pattern="yyyy-MM-dd"/></p>
 			          </div>
 			            
 			     		<textarea rows="35" cols="100" name="content" style="resize: none;" placeholder="내용을 입력하세요"></textarea>
+			     		<!-- <textarea name="content" id="content" rows="10" cols="100" placeholder="내용을 입력해주세요"></textarea> -->
+			     		<div>
+			     			<h5>사진 업로드</h5>
+			     			<input type="file" id="photo" name="file">
+			     			<div class="select_img"><img src="" /></div>
+			     			<script>
+								  $("#photo").change(function(){
+								   if(this.files && this.files[0]) {
+								    var reader = new FileReader;
+								    reader.onload = function(data) {
+								     $(".select_img img").attr("src", data.target.result).width(500);        
+								    }
+								    reader.readAsDataURL(this.files[0]);
+								   }
+								  });
+							 </script>
+			     			
+			     		</div>
 			            <div class="tag-widget post-tag-container mb-5 mt-5">
 			              <div class="tagcloud">
-			                <button class="tag-cloud-link">작성완료</button>
+			                <input type=submit id="smartEditorButton" class="btn btn-primary" value="작성완료" class="tag-cloud-link"/>
 			              </div>
 			            </div>
 		        </form>
@@ -123,4 +142,55 @@
       </div>
     </section> <!-- .section -->
 </body>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+ oAppRef: oEditors,
+ elPlaceHolder: "content",
+ sSkinURI: "../se2/SmartEditor2Skin.html",
+ fCreator: "createSEditor2",
+ htParams: {
+	 bUseModeChanger : false
+ }
+});
+
+
+$(function() {
+	$("#smartEditorButton").click(function() {
+		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); //textarea의 id를 적어줍니다. 
+		//var selcatd = $("#selcatd > option:selected").val(); 
+		var title = $("#subject").val(); 
+		var content = $("#content").val();
+		/* if (selcatd == ""){ 
+			alert("카테고리를 선택해주세요."); 
+			return; 
+		}  */
+		
+		if (title == null || title == "") { 
+			alert("제목을 입력해주세요."); 
+			$("#subject").focus(); return; 
+		} 
+		if(content == "" || content == null || content == '&nbsp;' || content == '<br>' || content == '<br/>' || content == '<p>&nbsp;</p>'){ 
+			alert("본문을 작성해주세요."); 
+			//oEditors.getById["content"].exec("FOCUS"); //포커싱 return; 
+			$('#content').focus();
+		} //이 부분은 스마트에디터 유효성 검사 부분이니 참고하시길 바랍니다. 
+			
+		var result = confirm("여행기를 작성하시겠습니까?"); 
+		if(result){ 
+			alert("작성 완료!"); 
+			$("#smartEditor").submit(); 
+		}else{ 
+			return; 
+		} 
+	}); 
+});
+
+</script>
+
+
+
 </html>

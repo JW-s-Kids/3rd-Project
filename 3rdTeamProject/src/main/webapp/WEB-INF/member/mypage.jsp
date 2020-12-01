@@ -79,7 +79,7 @@
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <h3>Tag Cloud</h3>
+              <!-- <h3>Tag Cloud</h3>
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">dish</a>
                 <a href="#" class="tag-cloud-link">menu</a>
@@ -89,7 +89,7 @@
                 <a href="#" class="tag-cloud-link">delicious</a>
                 <a href="#" class="tag-cloud-link">desserts</a>
                 <a href="#" class="tag-cloud-link">drinks</a>
-              </div>
+              </div> -->
             </div>
 
 

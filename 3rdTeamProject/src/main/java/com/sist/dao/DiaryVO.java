@@ -28,8 +28,16 @@ public class DiaryVO {
 	private int good;			// 좋아요
 	private String addr;		// 다녀간 여행지 주소
 	private Date visitdate;		// 여행지에 방문한 일자
+	private String thumbnail;	// 썸네일
 	
 	
+	
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public Date getVisitdate() {
 		return visitdate;
 	}

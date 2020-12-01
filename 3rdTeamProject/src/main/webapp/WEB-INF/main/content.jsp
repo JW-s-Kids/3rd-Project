@@ -193,55 +193,7 @@ $(function(){
 
 
 
-<!-- 수치들 나오는 곳 ----------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <!-- <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(../images/bg_1.jpg);">
-    	<div class="container">
-    		<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-            <h2 class="mb-4">Some fun facts</h2>
-            <span class="subheading">More than 100,000 websites hosted</span>
-          </div>
-        </div>
-    		<div class="row justify-content-center">
-    			<div class="col-md-10">
-		    		<div class="row">
-		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		                <strong class="number" data-number="100000">0</strong>
-		                <span>Happy Customers</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		                <strong class="number" data-number="40000">0</strong>
-		                <span>Destination Places</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		                <strong class="number" data-number="87000">0</strong>
-		                <span>Hotels</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center">
-		              <div class="text">
-		                <strong class="number" data-number="56400">0</strong>
-		                <span>Restaurant</span>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-        </div>
-    	</div>
-    </section> -->
+
 
 <!-- 반려동물 산책 코스 ----------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section class="ftco-section">
@@ -249,7 +201,7 @@ $(function(){
 				<div class="row justify-content-start mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate">
           	<span class="subheading">반려동물 산책코스</span>
-            <h2 class="mb-4"><strong>반려동물과</strong> 산책가자</h2>
+            <h2 class="mb-4"><strong>반려동물과</strong> 함께</h2>
           </div>
         </div>    		
     	</div>
@@ -513,6 +465,57 @@ $(function(){
 
 
 
+<!-- 수치들 나오는 곳 ----------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(../images/main_tower.jpeg);">
+    	<div class="container">
+    		<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2 class="mb-4"><!-- Some fun facts --></h2>
+            <!-- <span class="subheading">More than 100,000 websites hosted</span> -->
+          </div>
+        </div>
+    		<div class="row justify-content-center">
+    			<div class="col-md-10">
+		    		<div class="row">
+		          <!-- <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="100000">0</strong>
+		                <span>Happy Customers</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="40000">0</strong>
+		                <span>Destination Places</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="87000">0</strong>
+		                <span>Hotels</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="56400">0</strong>
+		                <span>Restaurant</span>
+		              </div>
+		            </div>
+		          </div> -->
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+
 <!-- 여행기 -------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <section class="ftco-section bg-light">
       <div class="container">
@@ -527,7 +530,7 @@ $(function(){
         	<c:forEach var="diary_vo" items="${diary_list }" varStatus="s">
 		          <div class="col-md-3 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch">
-		              <a href="../diary.detail.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');">
+		              <a href="../diary/detail.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');">
 		              </a>
 		              <div class="text p-4 d-block">
 		              	<span class="tag">${diary_vo.tag }</span>
