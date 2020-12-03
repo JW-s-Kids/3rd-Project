@@ -36,7 +36,7 @@ $(function(){
               <form action="" method="post" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="text" class="form-control" placeholder="어디로 갈까요?">
+                  	<input type="text" class="form-control" placeholder="통합 검색">
                   </div>
                   <div class="select-wrap one-third">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
