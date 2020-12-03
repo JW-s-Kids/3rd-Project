@@ -87,20 +87,31 @@ public class MeetingController {
 		return "meeting/insert";
 	}
 	@RequestMapping("insert_ok.do")
-	public String meeting_insert_ok(HttpServletRequest request,
-			@RequestParam(value="mname")String mname,
-			@RequestParam(value="maddr")String maddr,
-			@RequestParam(value="maddr2")String maddr2,
-			@RequestParam(value="minwon")String minwon,
-			@RequestParam(value="mmsg")String mmsg) {
-			
+	public String meeting_insert_ok(String mname,String maddr,String maddr2,String minwon,String mmsg) {
+		System.out.println("insert_ok 실행");
 		MeetingVO vo=new MeetingVO();
-		vo.setMname(mname);
-		vo.setMaddr(maddr);
-		vo.setMaddr2(maddr2);
-		vo.setMinwon(Integer.parseInt(minwon));
-		vo.setMmsg(mmsg);
-		dao.meetingInsert(vo);
+		try{
+			vo.setMname(mname);
+			System.out.println("mname:"+mname);
+			
+			vo.setMaddr(maddr);
+			System.out.println("maddr:"+maddr);
+			
+			vo.setMaddr2(maddr2);
+			System.out.println("maddr2:"+maddr2);
+			
+			vo.setMinwon(Integer.parseInt(minwon));
+			System.out.println("minwon:"+minwon);
+			
+			vo.setMmsg(mmsg);
+			System.out.println("mmsg:"+mmsg);
+			
+			dao.meetingInsert(vo);
+			System.out.println("insert_ok 실행완료");
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+		}
+		
 
 		return "redirect:../meeting/list.do";
 	}
@@ -150,6 +161,7 @@ public class MeetingController {
 		map.put("start", start);
 		map.put("end", end);
 		map.put("fmname", fmname);
+
 		System.out.println("fmname:"+fmname);
 
 		int totalpage=dao.meetingTotalPage();

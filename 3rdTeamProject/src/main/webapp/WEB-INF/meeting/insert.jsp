@@ -13,7 +13,7 @@ function postfind()
 	new daum.Postcode({
 		oncomplete:function(data)
 		{
-			$('#addr').val(data.address);
+			$('#maddr').val(data.address);
 		}
 	}).open();
 }
@@ -47,15 +47,15 @@ function postfind()
           <div class="col-md-6 pr-md-5">
             <form action="insert_ok.do" method="post">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="모임 제목" id="mname">
+                <input type="text" class="form-control" placeholder="모임 제목" id="mname" name="mname">
               </div>
               <div class="form-group">
               	<input type=button value="장소 찾기" style="padding-left: 20px;" class="btn btn-xs btn-info" id="button" onclick="postfind()">
-              	<input type=text name=addr class="form-control" size=45 readonly id="addr" placeholder="장소">
-              	<input type=text name=addr2 class="form-control" size=45 id="addr2" placeholder="상세 주소(건물/상호명)">
+              	<input type=text name=maddr class="form-control" size=45 readonly id="maddr" placeholder="장소">
+              	<input type=text name=maddr2 class="form-control" size=45 id="maddr2" placeholder="상세 주소(건물/상호명)">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="참석 인원 설정" id="minwon">
+                <input type="text" class="form-control" placeholder="참석 인원 설정" id="minwon" name=minwon>
               </div>
               <div class="form-group">
                 <textarea name="mmsg" id="mmsg" cols="30" rows="7" class="form-control" placeholder="모임 소개"></textarea>
