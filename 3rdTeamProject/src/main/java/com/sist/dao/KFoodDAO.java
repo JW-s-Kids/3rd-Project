@@ -13,6 +13,7 @@ public class KFoodDAO {
   // _____________음식 리스트[목록] 출력________________
     public List<KFoodVO> kfoodList(Map map)
     {
+    	
    	 return mapper.kfoodList(map);
     }
     

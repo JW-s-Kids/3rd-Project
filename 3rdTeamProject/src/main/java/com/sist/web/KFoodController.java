@@ -49,7 +49,7 @@ public class KFoodController {
 				map.put("start", start);
 				map.put("end", end);
 				
-				
+//	______________________________음식점 리스트 목록 잘라 오기 _______________________________
 				List<KFoodVO> list = kfdao.kfoodList(map);	
 				for(KFoodVO vo:list){
 					String s=vo.getKf_content();
@@ -58,7 +58,33 @@ public class KFoodController {
 						vo.setKf_content(s);
 					}
 				}
+				// 쿠키 ---------------------------------------------------------------------------------------------------
 			
+			//	session=request.getSession();
+			//	String id=(String)session.getAttribute("id");
+				// 쿠키 읽기
+				Cookie[] cookies=request.getCookies();							// 쿠키 배열 생성
+				List<KFoodVO> cList=new ArrayList<KFoodVO>();					// 쿠키를 담을 리스트 생성
+				if(cookies!=null)												// 쿠키가 비어있지 않으면
+				{
+					for(int i=cookies.length-1;i>=0;i--)						// (쿠키길이 - 1)부터 0까지 i를 1씩 감소 (그래야 최신 쿠키가 맨앞에 옴)
+					{
+						if(cookies[i].getName().startsWith("m"))							// 쿠키배열의 이름이 id를 시작하면
+						{
+						//	String no=cookies[i].getValue();								// 변수 no에 쿠키값 넣기
+						//	KFoodVO vo = kfdao.kfoodDetail(Integer.parseInt(cookie_no));
+							KFoodVO vo=kfdao.kfoodDetail(Integer.parseInt(cookies[i].getValue()));		// vo에 상세보기를 담아서
+							cList.add(vo);													// 쿠키배열에 vo 담기
+						}
+					}
+				}
+				request.setAttribute("cList", cList);
+				
+				
+				
+				
+				
+				
 				model.addAttribute("list", list);
 				model.addAttribute("block", block);
 				model.addAttribute("currpage", currpage);
@@ -67,7 +93,7 @@ public class KFoodController {
 				model.addAttribute("endpage", endpage);
 				
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			
 			return "kfood/list";
@@ -75,7 +101,7 @@ public class KFoodController {
 
 
 // 상세보기 전에 쿠키 생성하기
-/*	@RequestMapping("kfood/detail_before.do")
+	@RequestMapping("kfood/detail_before.do")
 	public String kfood_detail_before(HttpServletRequest request, HttpServletResponse response) {
 			String no = "";
 		try {
@@ -97,7 +123,7 @@ public class KFoodController {
 		}
 
 		return "redirect:../kfood/detail.do?no=" + no;		// 글번호에 해당하는 detail.do로 리다이렉트
-	}*/
+	}
    
 //________________음식 상세보기 ___________________________________________
 	@RequestMapping("kfood/detail.do")

@@ -26,8 +26,42 @@
 
 
     <section class="ftco-section ftco-degree-bg">
+    
       <div class="container">
-       
+       <div class="block-17 my-4">
+              <form action="" method="post" class="d-block d-flex">
+                <div class="fields d-block d-flex">
+                  <div class="textfield-search one-third">
+                  	<input type="text" class="form-control" placeholder="오늘은 뭐먹지 ?">
+                  </div>
+                  <div class="select-wrap one-third">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select name="" id="" class="form-control" placeholder="Keyword search">
+                    <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">
+					                 
+					                  </a></div>
+                      <option value="detail.do?tag=서울">서울</option>
+                      <option value="">인천</option>
+                      <option value="">대전</option>
+                      <option value="">대구</option>
+                      <option value="">광주</option> 
+                      <option value="">부산</option> 
+                      <option value="">울산</option> 
+                      <option value="">세종특별자치시</option> 
+                      <option value="">경기도</option>
+                      <option value="">강원도</option>
+                      <option value="">충청도</option>
+                      <option value="">경상도</option>
+                      <option value="">전라도</option>
+                      <option value="">제주도</option>
+                       
+                      
+                    </select>
+                  </div>
+                </div>
+                <input type="submit" class="search-submit btn btn-primary" value="Search">  
+              </form>
+            </div>
         
           	<div class="row d-flex">
           	
@@ -45,6 +79,7 @@
 					                  </a></div>
 					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_tel }</a></div>
 					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="meta-chat"><span class="icon-chat"></span></a></div>
+					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_zone }">${kfood_vo.kf_zone }</a></div>
 					               </div>
 					              </div>
 					            </div>
