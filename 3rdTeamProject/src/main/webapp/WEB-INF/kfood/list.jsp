@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,7 +18,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
             <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Tour</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">���� ����</h1>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">맛집 순례</h1>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
               <form action="" method="post" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="text" class="form-control" placeholder="������ ������ ?">
+                  	<input type="text" class="form-control" placeholder="오늘은 뭐먹지 ?">
                   </div>
                   <div class="select-wrap one-third">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -40,20 +40,20 @@
                     <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">
 					                 
 					                  </a></div>
-                      <option value="detail.do?tag=����">����</option>
-                      <option value="">��õ</option>
-                      <option value="">����</option>
-                      <option value="">�뱸</option>
-                      <option value="">����</option> 
-                      <option value="">�λ�</option> 
-                      <option value="">���</option> 
-                      <option value="">����Ư����ġ��</option> 
-                      <option value="">��⵵</option>
-                      <option value="">������</option>
-                      <option value="">��û��</option>
-                      <option value="">���</option>
-                      <option value="">����</option>
-                      <option value="">���ֵ�</option>
+                      <option value="detail.do?tag=서울">서울</option>
+                      <option value="">인천</option>
+                      <option value="">대전</option>
+                      <option value="">대구</option>
+                      <option value="">광주</option> 
+                      <option value="">부산</option> 
+                      <option value="">울산</option> 
+                      <option value="">세종특별자치시</option> 
+                      <option value="">경기도</option>
+                      <option value="">강원도</option>
+                      <option value="">충청도</option>
+                      <option value="">경상도</option>
+                      <option value="">전라도</option>
+                      <option value="">제주도</option>
                        
                       
                     </select>
@@ -86,7 +86,7 @@
 					          </div>
 					        
 					    </c:forEach>
-				    						<-- <h3><a href="#">${kfood_vo.kf_title }</a></h3>
+				    						<%-- <h3><a href="#">${kfood_vo.kf_title }</a></h3>
 				    						<p class="rate">
 				    							<i class="icon-star"></i>
 				    							<i class="icon-star"></i>

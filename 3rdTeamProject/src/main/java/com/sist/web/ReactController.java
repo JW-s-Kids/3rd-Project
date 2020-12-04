@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sist.dao.Main_totalsearchDAO;
-import com.sist.dao.RecipeVO;
 import com.sist.dao.TourVO;
 import com.sist.news.Item;
 import com.sist.news.NewsManager;
@@ -26,8 +24,6 @@ public class ReactController {
 	@Autowired
 	private NewsManager mgr;
 	
-	@Autowired
-	private Main_totalsearchDAO mdao;
 	
 	// 리액트로 뉴스 페이지 전송 ====================================================================
 	@RequestMapping(value="react_news/list.do", produces="text/plain;charset=UTF-8")
@@ -81,29 +77,6 @@ public class ReactController {
 	
 	
 	
-	// 리액트로 투어 검색 리스트 전송 =========================================================================================================================
-	@RequestMapping(value="react_tour/list.do", produces="text/plain;charset=UTF-8")
-	public String tour_list(String fd){
-		List<TourVO> tour_list = mdao.totalseacrh_tour(fd);
-		
-		String json = "";
-		
-		try {
-			JSONArray arr = new JSONArray();						// [ {}, {}, {}... ]
-			for(TourVO vo : tour_list){
-				JSONObject obj = new JSONObject();
-				obj.put("tno", vo.getTno());
-				obj.put("photo", vo.getPhoto());
-				obj.put("title", vo.getTitle());
-				obj.put("address", vo.getAddress());
-				arr.add(obj);
-			}
-			
-			json = arr.toJSONString();
-		
-		return json;
-		
-		}
-	}
-}
+	
+
 }

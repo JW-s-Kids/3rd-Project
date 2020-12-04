@@ -101,7 +101,7 @@ public class KFoodController {
 
 
 // 상세보기 전에 쿠키 생성하기
-/*	@RequestMapping("kfood/detail_before.do")
+	@RequestMapping("kfood/detail_before.do")
 	public String kfood_detail_before(HttpServletRequest request, HttpServletResponse response) {
 			String no = "";
 		try {
@@ -123,7 +123,7 @@ public class KFoodController {
 		}
 
 		return "redirect:../kfood/detail.do?no=" + no;		// 글번호에 해당하는 detail.do로 리다이렉트
-	}*/
+	}
    
 //________________음식 상세보기 ___________________________________________
 	@RequestMapping("kfood/detail.do")
@@ -198,7 +198,3 @@ public class KFoodController {
 	
 
 }
-
-
-
-
