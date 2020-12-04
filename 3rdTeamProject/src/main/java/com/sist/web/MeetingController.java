@@ -126,7 +126,7 @@ public class MeetingController {
 	}
 	//수정하기
 	@RequestMapping("update_ok.do")
-	public String meetingUpdate_ok(String mno,String mname,String maddr,String maddr2,int minwon,String mmsg) {
+	public String meetingUpdate_ok(String mno,String mname,String maddr,String maddr2,String minwon,String mmsg) {
 		Map map=new HashMap();
 		map.put("mno", mno);
 		map.put("mname", mname);

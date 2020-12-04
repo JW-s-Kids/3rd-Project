@@ -46,7 +46,7 @@
 			              	<p>모임 소개 : ${vo.mmsg }</p>
 			                <p>모임 주소 : ${vo.maddr } ${vo.maddr2 }</p>
 			                <p>참여 인원 : ${vo.mjoin}/${vo.minwon }</p><br>
-			                <a href="#" class="btn btn-xs btn-success" value="참여하기" id="JoinBtn">참여하기</a>&nbsp;&nbsp;&nbsp;
+			                <a href="../meeting/update.do?mno=${vo.mno }" class="btn btn-xs btn-success" value="수정하기" id="UpdateBtn">수정하기</a>&nbsp;&nbsp;&nbsp;
 			                <a href="#" class="btn btn-xs btn-info" value="채팅하기" id="ChatBtn">채팅하기</a>&nbsp;&nbsp;&nbsp;
 			                <a href="../meeting/delete.do?mno=${vo.mno }" class="btn btn-xs btn-danger" value="삭제하기" id="DeleteBtn">삭제하기</a>&nbsp;&nbsp;&nbsp;
 			                <a href="../meeting/list.do" class="btn btn-xs btn-warning" value="목록보기" id="ListBtn">목록보기</a>&nbsp;&nbsp;&nbsp;     
