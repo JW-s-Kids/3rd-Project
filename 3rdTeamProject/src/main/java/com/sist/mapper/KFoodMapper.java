@@ -34,32 +34,35 @@ KF_SCORE
 
 	 */
 	
-// _____________음식 리스트[목록] 출력________________
-  @Select("SELECT kf_no, kf_poster, kf_title, kf_tel, kf_addr1, kf_content, kf_park, kf_time, kf_holiday, kf_delemenu, kf_togo, kf_reserve, kf_hit, kf_score, kf_zone num "
-		 + "FROM (SELECT kf_no,kf_poster,kf_title,kf_tel,kf_addr1,kf_content,kf_park,kf_time,kf_holiday,kf_delemenu,kf_togo,kf_reserve,kf_hit,kf_score,kf_zone, rownum as num "
-		 + "FROM (SELECT kf_no,kf_poster,kf_title,kf_tel,kf_addr1,kf_content,kf_park,kf_time,kf_holiday,kf_delemenu,kf_togo,kf_reserve,kf_hit,kf_score,kf_zone "
-		 + "FROM kfood ORDER BY kf_no)) "
-		 + "WHERE num BETWEEN #{start} AND #{end}" )
+// _____________�쓬�떇 由ъ뒪�듃[紐⑸줉] 異쒕젰________________
+  @Select("SELECT kf_no, kf_poster, kf_title, kf_tel, kf_addr1, kf_content, kf_park, kf_time, kf_holiday, kf_delemenu, kf_togo, kf_reserve, kf_hit, kf_score, kf_zone, num "
+			 + "FROM (SELECT kf_no, kf_poster, kf_title, kf_tel, kf_addr1, kf_content, kf_park, kf_time, kf_holiday, kf_delemenu, kf_togo, kf_reserve, kf_hit, kf_score, kf_zone, rownum as num "
+			 + "FROM (SELECT kf_no, kf_poster, kf_title, kf_tel, kf_addr1, kf_content, kf_park, kf_time, kf_holiday, kf_delemenu, kf_togo, kf_reserve, kf_hit, kf_score, kf_zone "
+			 + "FROM kfood ORDER BY kf_no)) "
+			 + "WHERE num BETWEEN #{start} AND #{end}")
   public List<KFoodVO> kfoodList(Map map);
 
-// _____________음식 총 페이지 가져오기________________
+// _____________�쓬�떇 珥� �럹�씠吏� 媛��졇�삤湲�________________
   @Select("SELECT CEIL(COUNT(*)) FROM kfood")
   public int kfoodTotalPage();
   
   
-// ________________음식 디테일[상세] 출력________________
+// ________________�쓬�떇 �뵒�뀒�씪[�긽�꽭] 異쒕젰________________
   @Select("SELECT * FROM kfood "
 		 +"WHERE kf_no=#{kf_no}")
   public KFoodVO kfoodDetail(int kf_no);
  // @Update("UPDATE kfood SET hit = hit + 1 WHERE kf_no = #{kf_no}")
 //	public void kfoodHit(int kf_no);
+  
+  @Select("SELECT * FROM kfood WHERE kf_zone = #{kf_zone}")
+  public List<KFoodVO> kfoodzonetag(String kf_zone);
  
   
   
 
 	
 	
-//________________관련 음식점 목록 출력________________
+//________________愿��젴 �쓬�떇�젏 紐⑸줉 異쒕젰________________
 //@Select("SELECT kf_no,kf_title,kf_poster, rownum "
 //+"FROM kfood "
 //+"WHERE rownum<=3 AND "

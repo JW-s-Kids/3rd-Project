@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -53,10 +53,44 @@ margin: 0px auto;
         </div>
       </div>
     </div>
-
+ 
 
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
+      <div class="block-17 my-4">
+              <form action="" method="post" class="d-block d-flex">
+                <div class="fields d-block d-flex">
+                  <div class="textfield-search one-third">
+                  	<input type="text" class="form-control" placeholder="오늘은 뭐먹지 ?">
+                  </div>
+                  <div class="select-wrap one-third">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select name="" id="" class="form-control" placeholder="Keyword search">
+                    <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">
+					                 
+					                  </a></div>
+                      <option value="detail.do?tag=서울">서울</option>
+                      <option value="">인천</option>
+                      <option value="">대전</option>
+                      <option value="">대구</option>
+                      <option value="">광주</option> 
+                      <option value="">부산</option> 
+                      <option value="">울산</option> 
+                      <option value="">세종특별자치시</option> 
+                      <option value="">경기도</option>
+                      <option value="">강원도</option>
+                      <option value="">충청도</option>
+                      <option value="">경상도</option>
+                      <option value="">전라도</option>
+                      <option value="">제주도</option>
+                       
+                      
+                    </select>
+                  </div>
+                </div>
+                <input type="submit" class="search-submit btn btn-primary" value="Search">  
+              </form>
+            </div>
         <div class="row">
         	
           <div class="col-lg-12">
@@ -70,7 +104,7 @@ margin: 0px auto;
           		</div>
           		<div class="col-md-6 hotel-single mt-4 mb-5 ftco-animate">
           			<span>${kfood_vo.kf_zone }</span>
-          			<h2>${kfood_vo.kf_title }</h2>
+          			<h2>${kfood_vo.kf_title }&emsp;&emsp;&emsp;&emsp;${kfood_vo.kf_score }</li></h2>
           			<p class="rate mb-5">
           				<span class="loc">
           				  <i class="icon-map">${(kfood_vo.kf_addr1)}</i>
@@ -85,15 +119,20 @@ margin: 0px auto;
     						<p>${kfood_vo.kf_content }</p>
     						<div class="d-md-flex mt-5 mb-5">
     							<ul>
-    								<li>${kfood_vo.kf_tel }</li>
-	    							<li>${kfood_vo.kf_park }</li>
-	    							<li>${kfood_vo.kf_time }</li>
-	    							<li>${kfood_vo.kf_holiday }</li>
-	    							<li>${kfood_vo.kf_delemenu }</li>
+    								<li>주소&emsp;&emsp;&emsp;&emsp;&emsp;<span>${kfood_vo.kf_addr1 }</span></li>
+	    							<li>전화번호&emsp;&emsp;&emsp;<span>${kfood_vo.kf_tel }</span></li>
+	    							<li>주차&emsp;&emsp;&emsp;&emsp;&emsp;<span>${kfood_vo.kf_park }</span></li>
+	    							<li>영업시간&emsp;&emsp;&emsp;<span>${kfood_vo.kf_time }</span></li>
+	    							<li>휴일&emsp;&emsp;&emsp;&emsp;&emsp;<span>${kfood_vo.kf_holiday }</span></li>
+	    							<li>대표메뉴&emsp;&emsp;&emsp;<span>${kfood_vo.kf_delemenu }</span></li>
+	    							<li>포장&emsp;&emsp;&emsp;&emsp;&emsp;<span>${kfood_vo.kf_togo }</span></li>
+	    							<li>예약&emsp;&emsp;&emsp;&emsp;&emsp;<span>${kfood_vo.kf_reserve }</span></li>
+	    							
+	    							
 	    						</ul>
 	    						
     						</div>
-    						<p>${kfood_vo.kf_zone }</p>
+    						<!--  <p>${kfood_vo.kf_zone }</p>-->
           		</div>
           		<div class="col-md-6 hotel-single mt-4 mb-5 ftco-animate">
           			 <h4>주변 지도</h4>
@@ -148,7 +187,7 @@ margin: 0px auto;
           		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
           			<h4 class="mb-4">연관 추천 정보</h4>
           			<div class="row">
-          			<c:forEach var="kfood_vo" items="${list }">
+          		  <c:forEach var="kfood_vo" items="${list }"> 
           				<div class="col-md-4">
 				    				<div class="destination">
 				    					<a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="img img-2 d-flex justify-content-center align-items-center">
@@ -158,17 +197,17 @@ margin: 0px auto;
 				    						<div class="d-flex">
 				    							<div class="one">
 						    						<h3><a href="hotel-single.html">${kfood_vo.kf_title }</a></h3>
-						    						<c:if test="${kfood_vo.kf_score!=null }">
+						    					<!-- 	<c:if test="${kfood_vo.kf_score!=null }"> -->
 						    						  <p class="rate">
 						    						   <img src="${kfood_vo.kf_score}" alt="평점" style="width:100%"> 
-						    					   	  </p>
-						    						</c:if>
+						    					    	  </p>
+						    					<!-- 	</c:if> -->
 					    						</div>
 				    						</div>
 				    					</div>
 				    				</div>
 				    			</div>
-				    	</c:forEach>
+				     	</c:forEach> 
           			</div>
           		</div>
           		
@@ -176,9 +215,10 @@ margin: 0px auto;
           		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
           			<h4 class="mb-4">주변 맛집 추천</h4>
           			<div class="row">
+          		 	<c:forEach var="kfood_vo" items="${list }"> 
           				<div class="col-md-4">
 				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/hotel-1.jpg);"></a>
+				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/hotel-2.jpg);"></a>
 				    					<div class="text p-3">
 				    						<div class="d-flex">
 				    							<div class="one">
@@ -205,6 +245,7 @@ margin: 0px auto;
 				    					</div>
 				    				</div>
 				    			</div>
+				    		</c:forEach>
 				    			<div class="col-md-4">
 				    				<div class="destination">
 				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/hotel-2.jpg);"></a>

@@ -18,7 +18,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
             <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Tour</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">¸ÀÁý ¼ø·Ê</h1>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</h1>
           </div>
         </div>
       </div>
@@ -26,8 +26,42 @@
 
 
     <section class="ftco-section ftco-degree-bg">
+    
       <div class="container">
-       
+       <div class="block-17 my-4">
+              <form action="" method="post" class="d-block d-flex">
+                <div class="fields d-block d-flex">
+                  <div class="textfield-search one-third">
+                  	<input type="text" class="form-control" placeholder="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ?">
+                  </div>
+                  <div class="select-wrap one-third">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select name="" id="" class="form-control" placeholder="Keyword search">
+                    <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">
+					                 
+					                  </a></div>
+                      <option value="detail.do?tag=ï¿½ï¿½ï¿½ï¿½">ï¿½ï¿½ï¿½ï¿½</option>
+                      <option value="">ï¿½ï¿½Ãµ</option>
+                      <option value="">ï¿½ï¿½ï¿½ï¿½</option>
+                      <option value="">ï¿½ë±¸</option>
+                      <option value="">ï¿½ï¿½ï¿½ï¿½</option> 
+                      <option value="">ï¿½Î»ï¿½</option> 
+                      <option value="">ï¿½ï¿½ï¿½</option> 
+                      <option value="">ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½</option> 
+                      <option value="">ï¿½ï¿½âµµ</option>
+                      <option value="">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>
+                      <option value="">ï¿½ï¿½Ã»ï¿½ï¿½</option>
+                      <option value="">ï¿½ï¿½ï¿½</option>
+                      <option value="">ï¿½ï¿½ï¿½ï¿½</option>
+                      <option value="">ï¿½ï¿½ï¿½Öµï¿½</option>
+                       
+                      
+                    </select>
+                  </div>
+                </div>
+                <input type="submit" class="search-submit btn btn-primary" value="Search">  
+              </form>
+            </div>
         
           	<div class="row d-flex">
           	
@@ -45,13 +79,14 @@
 					                  </a></div>
 					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_tel }</a></div>
 					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="meta-chat"><span class="icon-chat"></span></a></div>
+					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_zone }">${kfood_vo.kf_zone }</a></div>
 					               </div>
 					              </div>
 					            </div>
 					          </div>
 					        
 					    </c:forEach>
-				    						<%-- <h3><a href="#">${kfood_vo.kf_title }</a></h3>
+				    						<-- <h3><a href="#">${kfood_vo.kf_title }</a></h3>
 				    						<p class="rate">
 				    							<i class="icon-star"></i>
 				    							<i class="icon-star"></i>
