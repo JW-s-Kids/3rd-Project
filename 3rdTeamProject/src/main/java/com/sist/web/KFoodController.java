@@ -51,7 +51,13 @@ public class KFoodController {
 				
 				
 				List<KFoodVO> list = kfdao.kfoodList(map);	
-				
+				for(KFoodVO vo:list){
+					String s=vo.getKf_content();
+					if(s.length()>20){
+						s=s.substring(0,20)+"..";
+						vo.setKf_content(s);
+					}
+				}
 			
 				model.addAttribute("list", list);
 				model.addAttribute("block", block);
@@ -60,8 +66,6 @@ public class KFoodController {
 				model.addAttribute("startpage", startpage);
 				model.addAttribute("endpage", endpage);
 				
-				System.out.println("음식점 목록 컨트롤러");
-				System.out.println(request.getRealPath(""));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -71,13 +75,11 @@ public class KFoodController {
 
 
 // 상세보기 전에 쿠키 생성하기
-	@RequestMapping("kfood/detail_before.do")
+/*	@RequestMapping("kfood/detail_before.do")
 	public String kfood_detail_before(HttpServletRequest request, HttpServletResponse response) {
 			String no = "";
 		try {
-			
-			
-			System.out.println("쿠키생성 모델");
+		//	System.out.println("쿠키생성 모델");
 			
 			// 글번호 no와 세션의 id 가져오기-----------------------------
 			
@@ -90,20 +92,12 @@ public class KFoodController {
 			cookie.setMaxAge(60);
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			System.out.println("쿠키이름 : " + cookie.getName() + "값 : " + cookie.getValue());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		return "redirect:../kfood/detail.do?no=" + no;		// 글번호에 해당하는 detail.do로 리다이렉트
-	}
-   
-   
-   
-   
-   
+	}*/
    
 //________________음식 상세보기 ___________________________________________
 	@RequestMapping("kfood/detail.do")
@@ -116,11 +110,11 @@ public class KFoodController {
 			
 //			kfdao.kfoodHit(Integer.parseInt(no));
 			
-			List<KFood_replyVO> reply_list = kfdao.kfood_listReply(Integer.parseInt(no));
+//			List<KFood_replyVO> reply_list = kfdao.kfood_listReply(Integer.parseInt(no));
 			
 //			List<JobKnowledgeVO> list = JobKnowledgeDAO.jobknowledgeDetailReply(Integer.parseInt(no));	// list에 답변글들을 담기
 			
-			if(session.getAttribute("id") != null){
+			if(session.getAttribute("i") != null){
 				
 			
 				// 스크랩 버튼 활성화 여부  X -------------------------------------
@@ -157,7 +151,7 @@ public class KFoodController {
 			
 			
 			// 워드클라우드 -----------------------------------------------------------------------------------------
-			nm.naverData(kfood_vo.getKf_content());
+//			nm.naverData(kfood_vo.getKf_content());
 			
 //			rm_kfood.graph(Integer.parseInt(no));
 			
@@ -166,7 +160,7 @@ public class KFoodController {
 			
 			
 			model.addAttribute("kfood_vo", kfood_vo);
-			model.addAttribute("reply_list", reply_list);
+//			model.addAttribute("reply_list", reply_list);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -176,91 +170,6 @@ public class KFoodController {
 	}
 
 	
-	
-	// 댓글 달기 =====================================================================================================================================================
-	@RequestMapping("kfood/insert_reply.do")
-	public String kfood_insertReply(String kfood_no, String content, HttpSession session){
-		
-		try {
-			KFood_replyVO vo = new KFood_replyVO();
-			String id = (String)session.getAttribute("id");
-			vo.setId(id);
-			vo.setKfood_no(Integer.parseInt(kfood_no));
-			vo.setContent(content);
-			
-			kfdao.kfood_replyIncrement(Integer.parseInt(kfood_no));
-			
-			System.out.println("id : " + id);
-			System.out.println("kfood_no : " + kfood_no);
-			System.out.println("content : " + content);
-			
-			kfdao.kfood_insertReply(vo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		return "redirect:../kfood/detail.do?no=" + kfood_no;
-	}
-	
-	
-	// 대댓글 달기 =====================================================================================================================================================
-	@RequestMapping("kfood/insert_replyReply.do")
-	public String kfood_insertReplyReply(String parent_no, String kfood_no, String content, HttpSession session){
-		
-		try {
-			// 부모댓글번호 받기
-			// 게시글번호 받기
-			// 댓글내용 받기
-			String id = (String)session.getAttribute("id");
-			
-			KFood_replyVO vo = new KFood_replyVO();
-			vo.setKfood_no(Integer.parseInt(kfood_no));
-			vo.setContent(content);
-			vo.setId(id);
-			
-			kfdao.kfood_replyReplyInsert(Integer.parseInt(parent_no), vo);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		return "redirect:../kfood/detail.do?no=" + kfood_no;
-	}
-	
-	
-	
-	
-	// 댓글 수정 =====================================================================================================================================================
-	@RequestMapping("kfood/updateReply.do")
-	public String kfood_updateReply(String kfood_no, String no, String content){
-		try {
-			KFood_replyVO vo = new KFood_replyVO();
-			vo.setContent(content);
-			vo.setNo(Integer.parseInt(no));
-			kfdao.kfood_updateReply(vo);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		return "redirect:../kfood/detail.do?no=" + kfood_no;
-	}
-	
-	
-	
-	// 댓글 삭제 =====================================================================================================================================================
-	@RequestMapping("kfood/deleteReply.do")
-	public String kfood_deleteReply(String no, String kfood_no){
-		try {
-			System.out.println("no : " + no);
-			System.out.println("kfood_no : " + kfood_no);
-			kfdao.kfood_deleteReply(Integer.parseInt(no));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		return "redirect:../kfood/detail.do?no=" + kfood_no;
-	}
-		
 
 }
 
