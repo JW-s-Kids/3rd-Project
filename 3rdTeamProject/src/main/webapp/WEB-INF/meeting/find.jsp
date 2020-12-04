@@ -72,7 +72,7 @@
         			<form action="../meeting/find.do">
         				<div class="fields">
 			              <div class="form-group">
-			                <input type="text" class="form-control" placeholder="모임 이름 검색">
+			                <input type="text" class="form-control" placeholder="시,군/구">
 			              </div>
 			              <div class="form-group">
 			                <input type="submit" value="검색" class="btn btn-primary py-3 px-5">
@@ -118,7 +118,7 @@
          	 <!-- 본문영역=================================================================================================== -->
           <div class="col-lg-9">
           	<div class="row">
-          		<c:forEach var="vo" items="${list }">
+          		<c:forEach var="vo" items="${fList }">
           		<div class="col-md-4 ftco-animate">
     				<div class="destination">
     					<a href="../meeting/detail_before.do?mno=${vo.mno }" class="img img-2 d-flex justify-content-center align-items-center">

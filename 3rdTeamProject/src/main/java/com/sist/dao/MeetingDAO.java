@@ -32,15 +32,40 @@ public class MeetingDAO {
 	
 	//모임추가
 	public void meetingInsert(MeetingVO vo) {
-		mapper.meetingInsert(vo);
+		try {
+			mapper.meetingInsert(vo);
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		
 	}
 	
 	//모임수정
+	public void meetingUpdate(Map map) {
+		try {
+			mapper.meetingUpdate(map);
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+	
+	//모임 삭제
+	public void meetingDelete(int mno) {
+		try {
+			mapper.meetingDelete(mno);
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+			
+	}
+	//모임검색
+	public List<MeetingVO> meetingFindListData(Map map){
+		return mapper.meetingFindListData(map);
+	}
 	
 	
 	
-	
-	
+
 	
 	//참여인원증가
 	public int meetingJoinHitIncrement(int mno){
