@@ -34,17 +34,17 @@
           		    	<c:forEach var="kfood_vo" items="${list }" varStatus="s">
 					          	<div class="col-md-3 d-flex ftco-animate">
 					            <div class="blog-entry align-self-stretch">
-					              <a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }" class="block-20" style="background-image: url(${kfood_vo.kf_poster });">
+					              <a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="block-20" style="background-image: url(${kfood_vo.kf_poster });">
 					              </a>
 					              <div class="text p-4 d-block">
 					              	<span class="tag">${kfood_vo.kf_title }</span>
-					                <h3 class="heading mt-3" style="width: 205px;"><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_content }</a></h3>
+					                <h3 class="heading mt-3" style="width: 205px;"><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_content }</a></h3>
 					               <div class="meta mb-3">
-					             <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">
+					             <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">
 					                 
 					                  </a></div>
-					                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_tel }</a></div>
-					                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }" class="meta-chat"><span class="icon-chat"></span></a></div>
+					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_tel }</a></div>
+					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="meta-chat"><span class="icon-chat"></span></a></div>
 					               </div>
 					              </div>
 					            </div>
