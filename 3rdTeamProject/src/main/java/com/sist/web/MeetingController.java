@@ -156,21 +156,25 @@ public class MeetingController {
 		int start=(curpage*rowSize)-(rowSize-1);
 		int end=curpage*rowSize;
 		
+		System.out.println("fmname:"+fmname);
 		
 		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("fmname", fmname);
+		System.out.println("put 성공");
 
-		System.out.println("fmname:"+fmname);
 
-		int totalpage=dao.meetingTotalPage();
+		int totalpage=dao.meetingFindTotalPage();
+		System.out.println("검색총페이지");
+		
 		List<MeetingVO> fList=dao.meetingFindListData(map);
 
 		model.addAttribute("fList", fList);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		
+		System.out.println("검색완료");
 		
 		return "meeting/list";
 	}

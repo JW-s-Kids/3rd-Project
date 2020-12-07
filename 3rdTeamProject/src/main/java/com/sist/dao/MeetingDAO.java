@@ -63,6 +63,11 @@ public class MeetingDAO {
 		return mapper.meetingFindListData(map);
 	}
 	
+	//모임 검색 총페이지
+	public int meetingFindTotalPage() {
+		return mapper.meetingFindTotalPage();
+	}
+	
 	
 	
 

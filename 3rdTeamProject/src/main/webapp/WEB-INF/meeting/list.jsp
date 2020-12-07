@@ -72,7 +72,7 @@
         			<form action="../meeting/find.do">
         				<div class="fields">
 			              <div class="form-group">
-			                <input type="text" class="form-control" placeholder="모임 이름 검색">
+			                <input type="text" class="form-control" placeholder="모임 이름 검색" name="fmname">
 			              </div>
 			              <div class="form-group">
 			                <input type="submit" value="검색" class="btn btn-primary py-3 px-5">
@@ -190,9 +190,9 @@
           
           <!-- 내위치 기반 모임 찾기(지도)======================================= -->
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <h3 class="heading mb-4">내 주변 놀만한 곳 찾기</h3>
+          <h3 class="heading mb-4">내 주변 놀만한 곳 찾기</h3><br>
           
-          <div id="map" style="width:100%;height:350px;"></div>
+          <div id="map"></div>
 
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>

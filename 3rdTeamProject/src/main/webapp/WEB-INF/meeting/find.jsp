@@ -72,7 +72,7 @@
         			<form action="../meeting/find.do">
         				<div class="fields">
 			              <div class="form-group">
-			                <input type="text" class="form-control" placeholder="시,군/구">
+			                <input type="text" class="form-control" placeholder="시,군/구" name="fmname">
 			              </div>
 			              <div class="form-group">
 			                <input type="submit" value="검색" class="btn btn-primary py-3 px-5">
@@ -118,30 +118,30 @@
          	 <!-- 본문영역=================================================================================================== -->
           <div class="col-lg-9">
           	<div class="row">
-          		<c:forEach var="vo" items="${fList }">
+          		<c:forEach var="fvo" items="${fList }">
           		<div class="col-md-4 ftco-animate">
     				<div class="destination">
-    					<a href="../meeting/detail_before.do?mno=${vo.mno }" class="img img-2 d-flex justify-content-center align-items-center">
-    					<img src="${vo.mimg }" width="250" height="200">
+    					<a href="../meeting/detail_before.do?mno=${fvo.mno }" class="img img-2 d-flex justify-content-center align-items-center">
+    					<img src="${fvo.mimg }" width="250" height="200">
     					</a>
     					<div class="text p-3">
     						<div class="d-flex">
     							<div class="one">
-		    						<h3><a href="../meeting/detail.do?mno=${vo.mno }">${vo.mname }</a></h3>
+		    						<h3><a href="../meeting/detail.do?mno=${fvo.mno }">${fvo.mname }</a></h3>
 	    						</div>
 	    						<div class="two">
-	    							<span class="price per-price">${vo.hit }<br><small>${vo.mjoin} / ${vo.minwon }</small></span>
+	    							<span class="price per-price">${fvo.hit }<br><small>${fvo.mjoin} / ${fvo.minwon }</small></span>
     							</div>
     						</div>
     						
     						<p>
     						<c:choose>
-						        <c:when test="${fn:length(vo.mmsg) gt 25}">
-							        <c:out value="${fn:substring(vo.mmsg,0,24)}">...
+						        <c:when test="${fn:length(fvo.mmsg) gt 25}">
+							        <c:out value="${fn:substring(fvo.mmsg,0,24)}">...
 							        </c:out>
 						        </c:when>
 						        <c:otherwise>
-							        <c:out value="${vo.mmsg}"/>
+							        <c:out value="${fvo.mmsg}"/>
 						        </c:otherwise>
 							</c:choose>
     						</p>
@@ -150,12 +150,12 @@
     						<p class="bottom-area d-flex">
     							<span><i class="icon-map-o"></i> 
     							<c:choose>
-							        <c:when test="${fn:length(vo.maddr) gt 10}">
-								        <c:out value="${fn:substring(vo.maddr,0,9)}">...
+							        <c:when test="${fn:length(fvo.maddr) gt 10}">
+								        <c:out value="${fn:substring(fvo.maddr,0,9)}">...
 								        </c:out>
 							        </c:when>
 							        <c:otherwise>
-								        <c:out value="${vo.addr}"/>
+								        <c:out value="${fvo.addr}"/>
 							        </c:otherwise>
 								</c:choose>	
     							</span> 
