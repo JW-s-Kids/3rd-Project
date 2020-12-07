@@ -5,10 +5,12 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import com.sist.mapper.MainMapper;
 
 @Repository
 public class MainDAO {
+	
 
 	@Autowired
 	private MainMapper mapper;
@@ -29,4 +31,6 @@ public class MainDAO {
 	public List<DiaryVO> getDiaryList(){
 		return mapper.getDiaryList();
 	}
+	
+	
 }

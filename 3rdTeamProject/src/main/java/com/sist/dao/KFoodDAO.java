@@ -9,37 +9,39 @@ import com.sist.mapper.KFoodMapper;
 public class KFoodDAO {
      @Autowired
      private KFoodMapper mapper;
-    public List<KFoodVO> kfoodAllData()
+     
+  // _____________음식 리스트[목록] 출력________________
+    public List<KFoodVO> kfoodList(Map map)
     {
-   	 return mapper.kfoodAllData();
+    	
+   	 return mapper.kfoodList(map);
     }
     
- //    public List<KFoodVO> kfoodCategoryListData(int kf_no)
-//     {
-//    	 return mapper.kfoodCategoryListData(kf_no);
-//     }
-//     public KFoodVO kfoodCategoryInfoData(int kf_no)
-//    {
-//    	 return mapper.kfoodCategoryInfoData(kf_no);
-//     }
-     public KFoodVO kfoodListData(int kf_no)
-     {
-    	 return mapper.kfoodListData(kf_no);
-     }
-//     public List<RecipeVO> foodLikeRecipeData(String finddata)
-//     {
-//    	 return mapper.foodLikeRecipeData(finddata);
-//     }
-//     public List<FoodVO> foodLocationFindData(String gu)
-//     {
- //   	 return mapper.foodLocationFindData(gu);
- //    }
-     public List<KFoodVO> kfoodTop10()
-     {
-    	 return mapper.kfoodTop10();
-     }
- //    public List<RecipeVO> recipeTop10()
- //    {
- //   	 return mapper.recipeTop10();
- //    }
+ // _____________음식 총 페이지 가져오기________________  
+	public int kfoodTotalPage(){
+		return mapper.kfoodTotalPage();
+	}
+
+// ________________음식 디테일[상세] 출력________________	
+	public KFoodVO kfoodDetail(int kf_no){
+		return mapper.kfoodDetail(kf_no);
+	}
+//  ________________조회수________________	
+//	public void kfoodHit(int kf_no){
+//		mapper.kfoodHit(kf_no);
+//	}
+// ________________관련 음식점 가져오기________________
+//public List<KFoodVO> kfoodLikeKFoodData(String finddata)
+//{
+//return mapper.kfoodLikeKFoodData(finddata);/
+//}
+
+// 	________________Kfood_replyVO________________________________________________
+	
+	
+
+
+	
+	
+	
 }

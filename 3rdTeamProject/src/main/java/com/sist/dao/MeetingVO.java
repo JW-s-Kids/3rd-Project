@@ -3,13 +3,12 @@ package com.sist.dao;
 MNO    NOT NULL NUMBER         
 MNAME  NOT NULL VARCHAR2(200)  
 MMSG   NOT NULL VARCHAR2(1000) 
-MIMG   NOT NULL VARCHAR2(1000) 
+MIMG            VARCHAR2(1000) 
 MADDR  NOT NULL VARCHAR2(1000) 
 MADDR2 NOT NULL VARCHAR2(1000) 
-MADDR3 NOT NULL VARCHAR2(1000) 
 MINWON NOT NULL NUMBER         
 MJOIN           NUMBER         
-HIT             NUMBER   
+HIT             NUMBER  
  */
 public class MeetingVO {
 	private int mno; //모임번호
@@ -18,7 +17,6 @@ public class MeetingVO {
 	private String mimg; //모임이미지
 	private String maddr; //도로명 주소
 	private String maddr2; //건물 이름/상호명
-	private String maddr3; //동 이름
 	private int minwon; //참석 가능인원
 	private int mjoin; //현재 참여인원
 	private int hit; //조회수
@@ -57,12 +55,6 @@ public class MeetingVO {
 	}
 	public void setMaddr2(String maddr2) {
 		this.maddr2 = maddr2;
-	}
-	public String getMaddr3() {
-		return maddr3;
-	}
-	public void setMaddr3(String maddr3) {
-		this.maddr3 = maddr3;
 	}
 	public int getMinwon() {
 		return minwon;

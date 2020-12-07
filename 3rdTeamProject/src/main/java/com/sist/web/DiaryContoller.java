@@ -620,7 +620,7 @@ public class DiaryContoller {
 			} catch (Exception e) {
 				e.printStackTrace(); 
 			}
-}
+	}
 }	
 
 

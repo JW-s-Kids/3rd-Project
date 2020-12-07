@@ -61,4 +61,17 @@ public class MainController {
 		model.addAttribute("diary_list", diary_list);
 	}
 	
+	
+	
+	
+	
+	// 통합 검색 페이지만 출력 ===========================================================================================================
+	@RequestMapping("main/totalsearch.do")
+	public String main_totalsearch(){
+		return "main/totalsearch";
+	}
+	
+	
+	
+	
 }

@@ -31,7 +31,15 @@ public class KFoodVO {
 					kf_togo,
 					kf_reserve,
 					kf_hit,
-					kf_score;
+					kf_score,
+					kf_zone;
+					
+	public String getKf_zone() {
+		return kf_zone;
+	}
+	public void setKf_zone(String kf_zone) {
+		this.kf_zone = kf_zone;
+	}
 	public int getKf_no() {
 		return kf_no;
 	}

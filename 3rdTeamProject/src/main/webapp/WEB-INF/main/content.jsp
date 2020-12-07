@@ -31,26 +31,29 @@ $(function(){
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>오늘<br></strong>뭐하니?</h1>
-            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">네이버 검색</p>
-            <div class="block-17 my-4">
-              <form action="" method="post" class="d-block d-flex">
+            <!-- <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">네이버 검색</p> -->
+            <div style="height: 100px;"></div>
+            <div class="block-17 my-4" style="background: none;">
+              <!-- <form action="" method="post" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="text" class="form-control" placeholder="어디로 갈까요?">
+                  	<input type="text" class="form-control" placeholder="통합 검색">
                   </div>
                   <div class="select-wrap one-third">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                     <select name="" id="" class="form-control" placeholder="Keyword search">
                       <option value="">강동구</option>
-                      <!-- <option value="">San Francisco USA</option>
+                      <option value="">San Francisco USA</option>
                       <option value="">Berlin Germany</option>
                       <option value="">Lodon United Kingdom</option>
-                      <option value="">Paris Italy</option> -->
+                      <option value="">Paris Italy</option>
                     </select>
                   </div>
                 </div>
-                <input type="submit" class="search-submit btn btn-primary" value="Search">  
-              </form>
+                  
+              </form> -->
+              
+              <input type="button" class="btn btn-primary" value="통합 검색" style="width:400px; height:60px; border-radius: none; font-size: 12pt;" onclick="location.href='../main/totalsearch.do'">
             </div>
             <!-- <p>Or browse the highlights</p>
             <p class="browse d-md-flex">
