@@ -69,12 +69,11 @@ public class MeetingDAO {
 	}
 	
 	
-	
-
-	
-	//참여인원증가
-	public int meetingJoinHitIncrement(int mno){
-		return mapper.meetingJoinHitIncrement();
+	//참여하기
+	public void meetingJoinIncrement(int mno) {
+		mapper.meetingJoinIncrement(mno);
+		
 	}
+	
 	
 }

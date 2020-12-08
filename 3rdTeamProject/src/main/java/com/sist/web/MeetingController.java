@@ -179,6 +179,18 @@ public class MeetingController {
 		return "meeting/list";
 	}
 	
+	//참여하기
+	@RequestMapping("like.do")
+	public String meeting_join(HttpServletRequest request,String mno) {
+		try {
+			dao.meetingJoinIncrement(Integer.parseInt(mno));
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		
+		return "redirect:../meeting/detail.do?mno="+mno;
+	}
+	
 	
 	
 	
