@@ -53,13 +53,11 @@ $(function(){
         	<div class="col-lg-3 sidebar ftco-animate">
         		<div class="sidebar-wrap bg-light ftco-animate">
         			<h3 class="heading mb-4">공원 찾기</h3>
-        			<form action="../dog/parksearch.do">
+        			<form action="../dog/parksearch.do#yong">
         				<div class="fields">
         				
 		              <div class="form-group">
-		             	
 		                <input type="text" id="searchkey" class="form-control" placeholder="공원명" name="searchkey">
-		                
 		              </div>
 		        
 		              <div class="form-group">
@@ -67,29 +65,6 @@ $(function(){
 		              </div>
 		            </div>
 	           		</form>
-        		</div>
-        		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">산책 난이도</h3>
-        			<form method="post" class="star-rating">
-							  <div class="form-check">
-									<input type="checkbox" class="form-check-input" id="exampleCheck1">
-									<label class="form-check-label" for="exampleCheck1">
-										<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-									</label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						    	   <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-						      </label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-						     </label>
-							  </div>
-							</form>
         		</div>
           </div>
           <div class="col-lg-9">

@@ -25,18 +25,6 @@ $(function(){
 	});
 });
 
-function disp(){
-	var msg="확인";
-	var checkBoxes = document.getElementsByName("chk");
-
-	for(var i=0; i<checkBoxes.length; i++){
-		if(checkBoxes[i].checked){
-		msg+="-"+checkBoxes[i].value+"\n";
-			}
-		}
-	alert(msg);
-}
-
 </script>
 
 </head>
@@ -64,7 +52,7 @@ function disp(){
         	<div class="col-lg-3 sidebar ftco-animate">
         		<div class="sidebar-wrap bg-light ftco-animate">
         			<h3 class="heading mb-4">공원 찾기</h3>
-        			<form action="../dog/parksearch.do">
+        			<form action="../dog/parksearch.do#yong">
         				<div class="fields">
         			
 		              <div class="form-group">
