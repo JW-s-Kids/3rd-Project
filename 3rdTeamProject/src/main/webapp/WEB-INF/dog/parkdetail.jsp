@@ -8,15 +8,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	// 검색창
+	$('#Search').click(function(){
+		let searchkey = $('#searchkey').val();
+		if (searchkey.trim()==""){
+				alert("검색어를 입력하세요!");
+				$('#searchkey').focus();
+				history.back();
+				return;
+		}
+	});
+	// 대댓글 작성 공간 
+	$('.comment_Insert_area').hide();
+	$('.bring_comment_tab').click(function(){
+		let no = $(this).attr('id')
+		$('#comment_Insert_area' + no).toggle();
+	});
+	
+	// 댓글 수정 공간
+	$('.comment_Update_area').hide();
+	$('.bring_comment_update_tab').click(function(){
+		let no = $(this).attr('id')
+		$('#comment_Update_area' + no).toggle();
+	});
+	
+})
+
+
+</script>
 </head>
 <body>
-	<div class="hero-wrap js-fullheight" style="background-image: url('../images/dog_1.jpg');">
+	<div class="hero-wrap js-fullheight" style="background-image: url('../images/dog_12.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="#">Home</a></span> <span>Board</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">반려견 산책코스</h1>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="../main/main.do">Home</a></span> <span>Board</span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">반려견 산책</h1>
           <div style="position: relative; left: 0px; top: 250px;">
         <button style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='far fa-calendar-alt'></i> 일정세우기</button>&nbsp;&nbsp;&nbsp;
         <button onclick="location.href='../dogboard/list.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fab fa-gratipay'></i> 소통하기</button>
@@ -26,12 +59,9 @@
       </div>
     </div>
 	<a name="yong"></a>
-
-	
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
-        
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3"><span style="color:#FFB914;">공원명 | </span> ${vo.name }</h2>
             <p>${vo.content }</p>
@@ -65,7 +95,46 @@
             <pre>${vo.visit_road}</pre>
             <br>
             <h5>Map</h5>
-            <img src="../images/seoulmap.jpg">
+            <div id="map" style="width:100%; height:350px;"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2f2cd1358d3e8c7a2692ed4acf113be&libraries=services"></script>
+			<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng('${vo.latitude}', '${vo.longitude}'), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+			
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch('${vo.addr}', function(result, status) {
+			
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+			
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			
+			        // 결과값으로 받은 위치를 마커로 표시합니다
+			        var marker = new kakao.maps.Marker({
+			            map: map,
+			            position: coords
+			        });
+			
+			        // 인포윈도우로 장소에 대한 설명을 표시합니다
+			        var infowindow = new kakao.maps.InfoWindow({
+			            content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.name}</div>'
+			        });
+			        infowindow.open(map, marker);
+			
+			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			    } 
+			});    
+			</script>
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">${vo.zone }</a>
@@ -81,103 +150,86 @@
 
           
           <div class="pt-5 mt-5">
-              <h3 class="mb-5">2 Comments</h3>
+          <h3 class="mb-5">댓글</h3>
+          <c:forEach var="rvo" items="${rList }">
+
               <ul class="comment-list">
-                <li class="comment">
+               
+                <li class="comment" style="margin-bottom:15px; padding-top:5px">
+               <c:if test="${rvo.getGroup_tab()>0 }">
+              		<c:forEach var="i" begin="1" end="${rvo.getGroup_tab() }">
+              		<ul class="children" style="padding-top:0px">
+              		
+              		</c:forEach>
+              	</c:if>
                   <div class="vcard bio">
-                    <img src="../images/dogicon1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>이안</h3>
-                    <div class="meta">November 27, 2020 at 2:21pm</div>
-                    <p style="font-size:16px;">정보 감사합니다. 코로나 조심하세요~!</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
-				<!--
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>댓글내용</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="images/person_1.jpg" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>John Doe</h3>
-                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                        <p>댓글내용</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="images/person_1.jpg" alt="Image placeholder">
-                          </div>
-                          <div class="comment-body">
-                            <h3>John Doe</h3>
-                            <div class="meta">June 27, 2018 at 2:21pm</div>
-                            <p>댓글내용</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>John Doe</h3>
-                                  <div class="meta">June 27, 2018 at 2:21pm</div>
-                                  <p>댓글내용</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-				-->
-                <li class="comment">
-                  <div class="vcard bio">
+                    
                     <img src="../images/dogicon2.jpg" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>개집사</h3>
-                    <div class="meta">November 27, 2020 at 3:06pm</div>
-                    <p style="font-size:16px;">다음에 저희집 갱얼쥐랑 같이 가야겠어요!</p>
-                    <p><a href="#" class="reply">Reply</a></p>
+                    <h3>${rvo.name} (${rvo.id })</h3>
+                    <div class="meta">${rvo.regdate }</div>
+                    <p style="font-size:16px;">${rvo.msg }</p>
+                    	<span type=button style="display: inline; border:none" class="reply bring_comment_tab" id=${rvo.no } value="Reply">Reply</span>
+                    <c:if test="${sessionScope.id==rvo.id }">                    	
+	                    <span type=button style="display: inline; border:none" class="reply bring_comment_update_tab" id=${rvo.no } value="Update">Update</span>
+                    	<form action="deleteReply.do" method="post" style="display: inline; border:none">
+							<!-- <input type="password" size=10 placeholder="비밀번호 입력" name="pwd"> -->
+							<input type="submit" class="reply deleteCommentButton board_button" id=${rvo.no } style="display: inline; border:none" value="Delete">
+							<input type=hidden name=no value=${rvo.no } >
+							<input type=hidden name=bno value=${vo.no }>
+						</form>
+                    </c:if>
+                    	
+						<div class="comment-form-wrap pt-5 comment_Insert_area" id="comment_Insert_area${rvo.no }">
+						<form action="insert_replyReply.do" style="padding: 10px 10px 10px 10px;" method="post">
+		                  <div class="form-group">
+		                  	<input type="text" class="form-control" style="height:15px; width:200px; font-size:16px" name=name id="name" placeholder="닉네임"><br>
+		                    <textarea id="message" cols="10" rows="5" style="height:100px; width:100%; font-size:16px; line-height:160%; border:1px solid #ddd; width:100%;" placeholder=" 내용을 입력하세요" name=msg></textarea>
+				                    <input type=hidden name=no value=${rvo.no }>
+				                    <input type=hidden name=parent_no value=${rvo.no }>
+				                    <input type=hidden name=bno value=${vo.no }>
+				           </div>
+				                  <div class="form-group" style="text-align:right">
+				                    <input type="submit" value="대댓글" class="btn btn-primary">
+				                  </div>
+			                </form>
+			            </div>
+                    	<div class="comment-form-wrap pt-5 comment_Update_area" id="comment_Update_area${rvo.no }">
+                    	<form action="updateReply.do" style="padding: 10px 10px 10px 10px;" method="post">
+			                  <div class="form-group">
+			                    <textarea id="message" cols="10" rows="5" style="height:100px; width:100%; line-height:160%; border:1px solid #ddd; width:100%;" name=msg>${rvo.msg }</textarea>
+			                    <input type=hidden name=bno value=${vo.no }>
+			                    <input type=hidden name=no value=${rvo.no }>
+			                  </div>
+			                  <div class="form-group" style="text-align:right">
+			                    <input type="submit" value="수정" class="btn btn-primary">
+			                  </div>
+		                </form>
+						</div>
                   </div>
                 </li>
+                
+                
               </ul>
-              <!-- END comment-list -->
+              </c:forEach>
+             
+              </ul>
+              </div>
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">댓글 남기기</h3>
-                <form action="#" class="p-5 bg-light">
+                <form action="insert_reply.do" class="p-5 bg-light" method="post">
                   <div class="form-group">
                     <label for="name">닉네임 *</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">비밀번호 *</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="text" class="form-control" name=name id="name">
                   </div>
                   <div class="form-group">
                     <label for="message">내용 *</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name=msg id="msg" cols="10" rows="3" class="form-control"></textarea>
+                  	<input type=hidden name=bno value="${vo.no }">
+                  	<input type=hidden name=no value="${rvo.no }">
+                  	
                   </div>
                   <div class="form-group">
                     <input type="submit" value="댓글달기" class="btn py-3 px-4 btn-primary">
@@ -186,92 +238,49 @@
                 </form>
               </div>
             </div>
-          </div>
+            
           
           <!-- 사이드바 .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
             <div class="sidebar-box">
-              <form action="#" class="search-form">
+            
+              <form action="../dog/parksearch.do" class="search-form">
                 <div class="form-group">
                   <span class="icon fa fa-search"></span>
-                  <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
+                  <input type="text" id="searchkey" name="searchkey" class="form-control" placeholder="공원명을 입력하세요.">
                 </div>
               </form>
             </div>
             <div class="sidebar-box ftco-animate">
               <div class="categories">
-                <h3>지역별 검색</h3>
-                <li><a href="#">서울 동부 <span>(32)</span></a></li>
-                <li><a href="#">서울 서부 <span>(22)</span></a></li>
-                <li><a href="#">서울 남부 <span>(27)</span></a></li>
-                <li><a href="#">서울 북부 <span>(19)</span></a></li>
+                <h3>공원 검색평</h3>
+                <td class="text-center">
+                	<img src="../naverpark${vo.no }.png" width=300px height=300px>
+                </td>
               </div>
             </div>
 			<div class="sidebar-box ftco-animate">
               <div class="categories">
-                <h3>난이도별 검색</h3>
-                <li><a href="#">
-                <i class="icon-star"></i>
-			<i class="icon-star"></i>
-			<i class="icon-star"></i>
-                <span>(49)</span></a></li>
-                <li><a href="#">
-                <i class="icon-star"></i>
-			<i class="icon-star"></i>
-			<i class="icon-star-o"></i>
-                <span>(51)</span></a></li>
-                <li><a href="#">
-                <i class="icon-star"></i>
-			<i class="icon-star-o"></i>
-			<i class="icon-star-o"></i>
-                <span>(31)</span></a></li>
+                <h3>최근 본 산책코스</h3>
+                <c:forEach var="cvo" items="${cList }" varStatus="s">
+                <c:if test="${s.index<3 }">
+                <div class="block-21 mb-4 d-flex">
+	                <a href="../dog/park_before.do?no=${cvo.no }#yong" class="blog-img mr-4"><img src="${cvo.img}" width=130px height=80px></a>
+	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="text">
+	                  <div class="meta">
+	                  	<p style="color:#FFB914; font-weight:bold; margin:0px 0px 0px 0px;"><a href="../dog/park_before.do?no=${cvo.no }#yong"><span style="color:#FFB914">${cvo.name }</span></a></p>
+	                    <div><a href="../dog/park_before.do?no=${cvo.no }#yong">
+	                    <i class="icon-map-o"></i>&nbsp;&nbsp;${cvo.zone}
+	                    </a></div>
+	                    <div><a href="../dog/park_before.do?no=${cvo.no }#yong"><i class="fa fa-eye" style="font-size:16px"></i>&nbsp;&nbsp;${cvo.hit }</a></div>
+	                  </div>
+	                </div>
+	              </div>
+	              </c:if>
+      			</c:forEach>
               </div>
             </div>
-            
-            <div class="sidebar-box ftco-animate">
-              <h3>최근 본 산책코스</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1884" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">남산도시자연공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:12</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 3</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1888" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">월드컵공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:15</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 2</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- <div class="sidebar-box ftco-animate">
-              <h3>태그별</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">태그1</a>
-                <a href="#" class="tag-cloud-link">태그2</a>
-                <a href="#" class="tag-cloud-link">태그3</a>
-                <a href="#" class="tag-cloud-link">태그4</a>
-                <a href="#" class="tag-cloud-link">태그5</a>
-                <a href="#" class="tag-cloud-link">태그6</a>
-                <a href="#" class="tag-cloud-link">태그7</a>
-                <a href="#" class="tag-cloud-link">태그8</a>
-              </div>
-            </div> -->
-
-            <!-- <div class="sidebar-box ftco-animate">
-              <h3>핫딜</h3>
-              <p>광고 자리</p>
-            </div>
-          </div> -->
-
+			</div>
         </div>
       </div>
     </section> <!-- .section -->
