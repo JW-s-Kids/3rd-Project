@@ -256,9 +256,6 @@ public class PetController {
 		}
 		
 		
-		
-		
-		
 		// 반려동물 자랑하기 update.do
 		@RequestMapping("pet/update.do")
 		public String petUpdate(String no, Model model){
