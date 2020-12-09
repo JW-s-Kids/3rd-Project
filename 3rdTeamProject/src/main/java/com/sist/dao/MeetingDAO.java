@@ -64,8 +64,8 @@ public class MeetingDAO {
 	}
 	
 	//모임 검색 총페이지
-	public int meetingFindTotalPage() {
-		return mapper.meetingFindTotalPage();
+	public int meetingFindTotalPage(Map map) {
+		return mapper.meetingFindTotalPage(map);
 	}
 	
 	

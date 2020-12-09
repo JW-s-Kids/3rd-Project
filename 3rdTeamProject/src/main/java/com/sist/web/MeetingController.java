@@ -165,12 +165,15 @@ public class MeetingController {
 		System.out.println("put 성공");
 
 
-		int totalpage=dao.meetingFindTotalPage();
+		int totalpage=dao.meetingFindTotalPage(map);
 		System.out.println("검색총페이지");
 		
 		List<MeetingVO> fList=dao.meetingFindListData(map);
-
-		model.addAttribute("fList", fList);
+        for(MeetingVO v:fList)
+        {
+        	System.out.println(v.getMname());
+        }
+		model.addAttribute("list", fList);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		
