@@ -15,7 +15,7 @@ import java.util.*;
  */
 
 public class PetVO {
-	 private String id,subject,content,pwd,poster,filename,filesize;
+	 private String id,subject,content,pwd,poster,filename,filesize,thumbnail;
 	 private int no,hit,filecount;
 	 private Date regdate;
 	public String getId() {
@@ -83,5 +83,11 @@ public class PetVO {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 }
