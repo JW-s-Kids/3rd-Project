@@ -17,6 +17,18 @@
 		<put-attribute name="content" value="/WEB-INF/{1}/{2}/{3}.jsp"/>
 	</definition>
 	
+<<<<<<< Updated upstream
+=======
+	<definition name="tour" template="/WEB-INF/main/tour.jsp">
+	</definition>
+	
+	<definition name="scrap_list" template="/WEB-INF/diary/scrap_list.jsp">
+	</definition>
+	
+	<definition name="parkfind" template="/WEB-INF/dogboard/parkfind.jsp">
+	</definition>
+	
+>>>>>>> Stashed changes
 	<!-- 
 	<definition name="login" template="/WEB-INF/member/login.jsp">
 	</definition>

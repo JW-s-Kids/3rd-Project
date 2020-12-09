@@ -8,6 +8,60 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	// 검색창
+	$('#Search').click(function(){
+		let searchkey = $('#searchkey').val();
+		if (searchkey.trim()==""){
+				alert("검색어를 입력하세요!");
+				$('#searchkey').focus();
+				history.back();
+				return;
+		}
+	});
+	
+	// 대댓글 작성 공간 
+	$('.comment_Insert_area').hide();
+	$('.bring_comment_tab').click(function(){
+		let no = $(this).attr('id')
+		$('#comment_Insert_area' + no).toggle();
+	});
+	
+	// 댓글 수정 공간
+	$('.comment_Update_area').hide();
+	$('.bring_comment_update_tab').click(function(){
+		let no = $(this).attr('id')
+		$('#comment_Update_area' + no).toggle();
+	});
+
+	$('.images').hover(function(){
+		$(this).css("cursor","pointer");
+	},function(){
+		$(this).css("cursor","");
+	});
+
+	// 지도 ajax
+	$('.images').click(function(){
+		let no=$(this).attr("data-value");
+		$.ajax({
+			type:'POST',
+			url:'../dogboard/parkfind.do',
+			data:{"no":no},
+			success:function(res)
+			{
+				$('#print').html(res);
+			}
+		});
+	});
+	
+})
+
+
+</script>
 </head>
 <body>
     <div class="hero-wrap js-fullheight" style="background-image: url('../images/dog_3.jpg');">
@@ -15,11 +69,11 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="#">Home</a></span> <span>Board</span></p>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="../main/main.do">Home</a></span> <span>Board</span></p>
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">소통하기</h1>
           <div style="position: relative; left: 0px; top: 250px;">
         <button style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='far fa-calendar-alt'></i> 일정세우기</button>&nbsp;&nbsp;&nbsp;
-        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견산책코스</button>
+        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견 산책</button>
           </div>
           </div>
         </div>
@@ -58,120 +112,96 @@
             <div style="height:20px;"></div>
             
             <p>
-              <img src="../images/dog_2.jpg" alt="" class="img-fluid">
+              <img src="..${vo.poster}" alt="" class="img-fluid">
             </p>
             <pre style="font-size:16px;">${vo.content }</pre>
-			<td colspan="4" class="text-right">
-           <!--<c:if test="${sessionScope.id!=null }">-->
-            <a href="../dogboard/reply.do?no=${vo.no }" class="btn btn-xs btn-danger">답변</a>
-            <a href="#" class="btn btn-xs btn-success">수정</a>
-            <a href="#" class="btn btn-xs btn-info">삭제</a>
-           <!--</c:if>-->
+            <div style="height:100px"></div>
            <div style="text-align:right;">
-            <a href="../dogboard/list.do#yong" class="btn py-2 px-3 btn-warning">수정</a>
-            <a href="../dogboard/list.do#yong" class="btn py-2 px-3 btn-warning">삭제</a>
+           <c:if test="${sessionScope.id!=null }">
+            <a href="../dogboard/update.do?no=${vo.no }#yong" class="btn py-2 px-3 btn-warning">수정</a>
+            <a href="../dogboard/delete.do?no=${vo.no }" class="btn py-2 px-3 btn-warning">삭제</a>
+           </c:if>
             <a href="../dogboard/list.do#yong" class="btn py-2 px-3 btn-warning">목록</a>
            </div>
-          </td>
-
-            <div class="pt-5 mt-5">
-              <h3 class="mb-5">2 Comments</h3>
+           
+           <div class="pt-5 mt-5">
+            <h3 class="mb-5">댓글</h3>
+          <c:forEach var="rvo" items="${rList }">            
               <ul class="comment-list">
-                <li class="comment">
+                <li class="comment" style="margin-bottom:15px; padding-top:5px">
+               <c:if test="${rvo.getGroup_tab()>0 }">
+              		<c:forEach var="i" begin="1" end="${rvo.getGroup_tab() }">
+              		<ul class="children" style="padding-top:0px">
+              		
+              		</c:forEach>
+              	</c:if>
                   <div class="vcard bio">
-                    <img src="../images/dogicon1.jpg" alt="Image placeholder">
+                    
+                    <img src="../images/dogicon3.jpg" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>이안</h3>
-                    <div class="meta">November 27, 2020 at 2:21pm</div>
-                    <p style="font-size:16px;">시바견 2마리랑 한강라이딩 같이 가실래요?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
+                    <h3>${rvo.name} (${rvo.id })</h3>
+                    <div class="meta">${rvo.regdate }</div>
+                    <p style="font-size:16px;">${rvo.msg }</p>
+                    	<span type=button style="display: inline; border:none" class="reply bring_comment_tab" id=${rvo.no } value="Reply">Reply</span>
+                    <c:if test="${sessionScope.id==rvo.id }">                    	
+	                    <span type=button style="display: inline; border:none" class="reply bring_comment_update_tab" id=${rvo.no } value="Update">Update</span>
+                    	<form action="deleteReply.do" method="post" style="display: inline; border:none">
+							<!-- <input type="password" size=10 placeholder="비밀번호 입력" name="pwd"> -->
+							<input type="submit" class="reply deleteCommentButton board_button" id=${rvo.no } style="display: inline; border:none" value="Delete">
+							<input type=hidden name=no value=${rvo.no } >
+							<input type=hidden name=bno value=${vo.no }>
+						</form>
+                    </c:if>
+                    	
+						<div class="comment-form-wrap pt-5 comment_Insert_area" id="comment_Insert_area${rvo.no }">
+						<form action="insert_replyReply.do" style="padding: 10px 10px 10px 10px;" method="post">
+		                  <div class="form-group">
+		                  	<input type="text" class="form-control" style="height:15px; width:200px; font-size:16px" name=name id="name" placeholder="닉네임"><br>
+		                    <textarea id="message" cols="10" rows="5" style="height:100px; width:100%; font-size:16px; line-height:160%; border:1px solid #ddd; width:100%;" placeholder=" 내용을 입력하세요" name=msg></textarea>
+				                    <input type=hidden name=no value=${rvo.no }>
+				                    <input type=hidden name=parent_no value=${rvo.no }>
+				                    <input type=hidden name=bno value=${vo.no }>
+				           </div>
+				                  <div class="form-group" style="text-align:right">
+				                    <input type="submit" value="대댓글" class="btn btn-primary">
+				                  </div>
+			                </form>
+			            </div>
+                    	<div class="comment-form-wrap pt-5 comment_Update_area" id="comment_Update_area${rvo.no }">
+                    	<form action="updateReply.do" style="padding: 10px 10px 10px 10px;" method="post">
+			                  <div class="form-group">
+			                    <textarea id="message" cols="10" rows="5" style="height:100px; width:100%; line-height:160%; border:1px solid #ddd; width:100%;" name=msg>${rvo.msg }</textarea>
+			                    <input type=hidden name=bno value=${vo.no }>
+			                    <input type=hidden name=no value=${rvo.no }>
+			                  </div>
+			                  <div class="form-group" style="text-align:right">
+			                    <input type="submit" value="수정" class="btn btn-primary">
+			                  </div>
+		                </form>
+						</div>
                   </div>
                 </li>
-				<!--
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>댓글내용</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="images/person_1.jpg" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>John Doe</h3>
-                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                        <p>댓글내용</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="images/person_1.jpg" alt="Image placeholder">
-                          </div>
-                          <div class="comment-body">
-                            <h3>John Doe</h3>
-                            <div class="meta">June 27, 2018 at 2:21pm</div>
-                            <p>댓글내용</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>John Doe</h3>
-                                  <div class="meta">June 27, 2018 at 2:21pm</div>
-                                  <p>댓글내용</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-				-->
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="../images/dogicon2.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>갱얼쥐</h3>
-                    <div class="meta">November 27, 2020 at 3:06pm</div>
-                    <p style="font-size:16px;">산책싫어하는 저희집 불독이랑 다음에 같이가요~</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
+                
+                
               </ul>
-              <!-- END comment-list -->
-              
-              <div class="comment-form-wrap pt-5">
+              </c:forEach>
+             
+              </ul>
+              </div>
+      		<div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">댓글 남기기</h3>
-                <form action="#" class="p-5 bg-light">
+                <form action="insert_reply.do" class="p-5 bg-light" method="post">
                   <div class="form-group">
                     <label for="name">닉네임 *</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">비밀번호 *</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="text" class="form-control" name=name id="name">
                   </div>
                   <div class="form-group">
                     <label for="message">내용 *</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name=msg id="msg" cols="10" rows="3" class="form-control"></textarea>
+                  	<input type=hidden name=bno value="${vo.no }">
+                  	<input type=hidden name=no value="${rvo.no }">
+                  	
                   </div>
                   <div class="form-group">
                     <input type="submit" value="댓글달기" class="btn py-3 px-4 btn-primary">
@@ -179,73 +209,21 @@
 
                 </form>
               </div>
-            </div>
-
           </div> 
           
           <!-- 사이드바 .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon fa fa-search"></span>
-                  <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
-                </div>
-              </form>
-            </div>
-            <div class="sidebar-box ftco-animate">
-              <div class="categories">
-                <h3>카테고리</h3>
-                <li><a href="#">같이가요 <span>(12)</span></a></li>
-                <li><a href="#">자랑해요 <span>(22)</span></a></li>
-                <li><a href="#">익명게시판 <span>(37)</span></a></li>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>최근 본 산책코스</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1884" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">남산도시자연공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:12</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 3</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1888" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">월드컵공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:15</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 2</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-			<!--  
-            <div class="sidebar-box ftco-animate">
-              <h3>태그별</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">태그1</a>
-                <a href="#" class="tag-cloud-link">태그2</a>
-                <a href="#" class="tag-cloud-link">태그3</a>
-                <a href="#" class="tag-cloud-link">태그4</a>
-                <a href="#" class="tag-cloud-link">태그5</a>
-                <a href="#" class="tag-cloud-link">태그6</a>
-                <a href="#" class="tag-cloud-link">태그7</a>
-                <a href="#" class="tag-cloud-link">태그8</a>
-              </div>
-            </div>
-			
-            <div class="sidebar-box ftco-animate">
-              <h3>핫딜</h3>
-              <p>아라님 자리</p>
-            </div>
-          </div>
-			-->
+          <h3 style="padding-left: 50px;">서울시 공원 맵 <img src="../images/dogreplyicon.png" width=50px height=50px style="padding-bottom: 12px;"> </h3>
+            <div id="a">
+		     <img id="seoul_1" src="../map/1111.png">
+		      <c:forEach var="i" begin="1" end="25">
+		       <img id="gu${i }" src="../map/gu_${i }_off.png" 
+		         onmouseover="this.src='../map/gu_${i}_on.png'"  
+		         onmouseout="this.src='../map/gu_${i}_off.png'" class="images" data-value="${i }"> 
+		     </c:forEach>
+		   </div>
+		   <div id="print" class="row" style="padding-left: 50px;"></div>
+           
         </div>
       </div>
     </section> <!-- .section -->

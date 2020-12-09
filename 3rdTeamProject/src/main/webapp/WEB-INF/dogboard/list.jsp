@@ -15,11 +15,11 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="#">Home</a></span> <span>Board</span></p>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="../main/main.do">Home</a></span> <span>Board</span></p>
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">소통하기</h1>
           <div style="position: relative; left: 0px; top: 250px;">
         <button style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='far fa-calendar-alt'></i> 일정세우기</button>&nbsp;&nbsp;&nbsp;
-        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견산책코스</button>
+        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견 산책</button>
           </div>
           </div>
         </div>
@@ -48,149 +48,28 @@
           
           <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel" aria-labelledby="v-pills-whatwedo-tab">
 		  	<div>
-				
 				<div class="row d-flex">
- 		 <c:forEach var="vo" items="${list }">
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="detail.do?no=${vo.no }#yong" class="block-20" style="background-image: url('../images/dog_2.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">${vo.id }</span>
-                <h3 class="heading mt-3"><a href="detail.do?no=${vo.no }">${vo.subject }</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd hh:mm:ss"/></a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> hit</a></div>
+		 		 <c:forEach var="vo" items="${list }">
+		          <div class="col-md-3 d-flex ftco-animate">
+		            <div class="blog-entry align-self-stretch">
+		              <a href="detail.do?no=${vo.no }#yong" class="block-20" style="background-image: url('..${vo.poster}');">
+		              </a>
+		              <div class="text p-4 d-block">
+		              	<span class="tag">${vo.id }</span>
+		                <h3 class="heading mt-3"><a href="detail.do?no=${vo.no }">${vo.subject }</a></h3>
+		                <div class="meta mb-3">
+		                  <div><a href="detail.do?no=${vo.no }#yong"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd hh:mm:ss"/></a></div>
+		                  <div><a href="detail.do?no=${vo.no }#yong">&nbsp;<br></a></div>
+		                  <div><a href="detail.do?no=${vo.no }#yong" class="meta-chat"><span class="icon-chat"></span> ${vo.reply}</a></div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+				 </c:forEach>
                 </div>
-              </div>
-            </div>
-          </div>
-		 </c:forEach>
-		 
-				<div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_8.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">홍길동</span>
-                <h3 class="heading mt-3"><a href="#">지금 바로 산책가실분?</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 16:23:35</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 5</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_10.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">율곡이이</span>
-                <h3 class="heading mt-3"><a href="#">코로나 시국이지만 그래도</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 15:12:31</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 1</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_4.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">신사임당</span>
-                <h3 class="heading mt-3"><a href="#">저희집 갱얼쥐랑 심심</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 14:11:29</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 7</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_5.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">이순신</span>
-                <h3 class="heading mt-3"><a href="#">육포들고 보실분?</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 14:01:31</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 23</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_6.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">심청이</span>
-                <h3 class="heading mt-3"><a href="#">주말에 산책할분 계심?</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 13:51:34</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 0</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_7.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">영희</span>
-                <h3 class="heading mt-3"><a href="#">지금 나오실분</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 13:31:21</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 2</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_0.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">철수</span>
-                <h3 class="heading mt-3"><a href="#">산책 긔긔</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 13:21:56</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 11</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20" style="background-image: url('../images/dog_9.jpg');">
-              </a>
-              <div class="text p-4 d-block">
-              	<span class="tag">심청이</span>
-                <h3 class="heading mt-3"><a href="#">달려볼까요?</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2020-11-28 12:56:47</a></div>
-                  <div><a href="#">&nbsp;<br></a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 1</a></div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-          
 			</div>
 		  </div>
+		  
           <table class="table">
           <tr>
             <td class="text-right">

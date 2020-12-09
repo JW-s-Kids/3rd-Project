@@ -8,6 +8,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	
+	// 댓글 수정 공간
+	$('.comment_Update_area').hide();
+	$('.bring_comment_update_tab').click(function(){
+		let no = $(this).attr('id')
+		$('#comment_Update_area' + no).toggle();
+	});
+	
+})
+
+
+</script>
 </head>
 <body>
     <div class="hero-wrap js-fullheight" style="background-image: url('../images/dog_3.jpg');">
@@ -15,11 +32,11 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="#">Home</a></span> <span>Board</span></p>
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="../main/main.do">Home</a></span> <span>Board</span></p>
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">소통하기</h1>
           <div style="position: relative; left: 0px; top: 250px;">
         <button style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='far fa-calendar-alt'></i> 일정세우기</button>&nbsp;&nbsp;&nbsp;
-        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견산책코스</button>
+        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견 산책</button>
           </div>
           </div>
         </div>
@@ -56,42 +73,35 @@
                     <img src="../images/dogicon1.jpg" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>익명</h3>
+                    <h3>익명 ${vo.no }</h3>
                     <div class="meta">${vo.regdate }</div>
                     <p style="font-size:16px;">${vo.msg }</p>
-                    <p><a href="#" class="reply">Delete</a></p>
+                    
+                    <c:if test="${sessionScope.id==vo.ip }">                    	
+	                    <span type=button style="display: inline; border:none" class="reply bring_comment_update_tab" id=${vo.no } value="Update">Update</span>
+                    	<form action="ano_delete.do" method="post" style="display: inline; border:none">
+							<!-- <input type="password" size=10 placeholder="비밀번호 입력" name="pwd"> -->
+							<input type="submit" class="reply deleteCommentButton board_button" id=${vo.no } style="display: inline; border:none" value="Delete">
+							<input type=hidden name=no value=${vo.no }>
+						</form>
+                    </c:if>
+                    
+                    <div class="comment-form-wrap pt-5 comment_Update_area" id="comment_Update_area${vo.no }">
+                    	<form action="ano_update.do" style="padding: 10px 10px 10px 10px;" method="post">
+			                  <div class="form-group">
+			                    <textarea id="message" cols="10" rows="5" style="height:100px; width:100%; line-height:160%; border:1px solid #ddd; width:100%;" name=msg>${vo.msg }</textarea>
+			                    <input type=hidden name=no value=${vo.no }>
+			                  </div>
+			                  <div class="form-group" style="text-align:right">
+			                    <input type="submit" value="수정" class="btn btn-primary">
+			                  </div>
+		                </form>
+						</div>
                   </div>
                 </li>
               </ul>
               </c:forEach>
-              <!-- END comment-list -->
-              
-              <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">글쓰기</h3>
-                <form method="post" action="ano_insert_ok.do" class="p-5 bg-light">
-                  <div class="form-group">
-                    <label for="email">비밀번호 *</label>
-                    <input type="password" class="form-control" name="pwd">
-                  </div>
-                  <div class="form-group">
-                    <label for="message">내용 *</label>
-                    <textarea name="msg" id="msg" cols="30" rows="10" class="form-control"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" value="글쓰기" class="btn py-3 px-4 btn-primary">
-                  </div>
 
-                </form>
-              </div>
-			
-			<!-- <td colspan="4" class="text-right">
-           <div style="text-align:right;">
-            <a href="../dogboard/list.do#yong" class="btn py-2 px-3 btn-warning">수정</a>
-            <a href="../dogboard/list.do#yong" class="btn py-2 px-3 btn-warning">삭제</a>
-            <a href="../dogboard/list.do#yong" class="btn py-2 px-3 btn-warning">목록</a>
-           </div>
-          </td> -->
-          
           <!-- 페이지 -->
 			<div class="row mt-5">
 		          <div class="col text-center">
@@ -115,73 +125,25 @@
 		            </div>
 		          </div>
 		        </div>
-		        
           </div> 
           
           <!-- 사이드바 .col-md-8 -->
           <div class="col-md-4 sidebar ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon fa fa-search"></span>
-                  <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
-                </div>
-              </form>
-            </div>
-            <div class="sidebar-box ftco-animate">
-              <div class="categories">
-                <h3>카테고리</h3>
-                <li><a href="#">같이가요 <span>(12)</span></a></li>
-                <li><a href="#">자랑해요 <span>(22)</span></a></li>
-                <li><a href="#">익명게시판 <span>(37)</span></a></li>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3>최근 본 산책코스</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1884" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">남산도시자연공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:12</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 3</a></div>
+          <div class="comment-form-wrap pt-5">
+                <form method="post" action="ano_insert_ok.do" class="p-5 bg-light">
+                  <div class="form-group">
+                    <label for="message">내용 *</label>
+                    <textarea name="msg" id="msg" cols="30" rows="10" class="form-control"></textarea>
                   </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1888" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">월드컵공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:15</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 2</a></div>
+                  <div class="form-group">
+                    <label for="email">비밀번호 *</label>
+                    <input type="password" class="form-control" name="pwd">
                   </div>
-                </div>
+                  <div class="form-group">
+                    <input type="submit" value="글쓰기" class="btn py-3 px-4 btn-primary">
+                  </div>
+                </form>
               </div>
-            </div>
-			<!--  
-            <div class="sidebar-box ftco-animate">
-              <h3>태그별</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">태그1</a>
-                <a href="#" class="tag-cloud-link">태그2</a>
-                <a href="#" class="tag-cloud-link">태그3</a>
-                <a href="#" class="tag-cloud-link">태그4</a>
-                <a href="#" class="tag-cloud-link">태그5</a>
-                <a href="#" class="tag-cloud-link">태그6</a>
-                <a href="#" class="tag-cloud-link">태그7</a>
-                <a href="#" class="tag-cloud-link">태그8</a>
-              </div>
-            </div>
-			
-            <div class="sidebar-box ftco-animate">
-              <h3>핫딜</h3>
-              <p>아라님 자리</p>
-            </div>
-          </div>
-			-->
-        </div>
       </div>
     </section> <!-- .section -->
   </body>
