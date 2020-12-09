@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
+%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
@@ -17,7 +26,7 @@
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">소통하기</h1>
           <div style="position: relative; left: 0px; top: 250px;">
         <button style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='far fa-calendar-alt'></i> 일정세우기</button>&nbsp;&nbsp;&nbsp;
-        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견산책코스</button>
+        <button onclick="location.href='../dog/parkmain.do#yong'" style='opacity: 0.7; font-size:24px; width:300pt; height:60pt;'><i class='fas fa-dog'></i> 반려견 산책</button>
           </div>
           </div>
         </div>
@@ -47,15 +56,7 @@
           <div class="row">
           <div class="col-md-8 ftco-animate">
             <h2 class="mb-3">글쓰기</h2>
-                <form method="post" action="insert_ok.do" class="p-5 bg-light">
-                  <div class="form-group">
-                    <label for="name">닉네임 *</label>
-                    <input type="text" class="form-control" name=id>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">비밀번호 *</label>
-                    <input type="password" class="form-control" name=pwd>
-                  </div>
+                <form method="post" action="insert_ok.do" class="p-5 bg-light" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="website">제목 *</label>
                     <input type="text" class="form-control" name=subject>
@@ -65,7 +66,29 @@
                     <textarea name=content cols="30" rows="10" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
-                    <input type=submit value="댓글달기" class="btn py-3 px-4 btn-primary">
+                    <label for="pwd">비밀번호 *</label>
+                    <input type="password" class="form-control" name=pwd>
+                  </div>
+                  <div class="form-group">
+                    <label for="website">사진 업로드</label>
+					 <input type="file" id="poster" name="file">
+					 <div class="select_img"><img src="" /></div>
+					 
+					 <script>
+					  $("#poster").change(function(){
+					   if(this.files && this.files[0]) {
+					    var reader = new FileReader;
+					    reader.onload = function(data) {
+					     $(".select_img img").attr("src", data.target.result).width(500);        
+					    }
+					    reader.readAsDataURL(this.files[0]);
+					   }
+					  });
+					 </script>
+					<%-- <%=request.getRealPath("/") %> --%>
+                  </div>
+                  <div class="form-group">
+                    <input type=submit value="글쓰기" class="btn py-3 px-4 btn-primary">
                     <input type=button value="취소" class="btn py-3 px-4 btn-primary"
           			onclick="location.href='list.do#yong'"
          			>
