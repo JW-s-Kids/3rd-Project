@@ -1,0 +1,164 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DirEngine - Free Bootstrap 4 Template by Colorlib</title>
+    <style type="text/css">
+    .text {
+    margin: 0 auto;
+    height: 250px;
+    }
+    .d-flex {
+    height: 75px;
+    }
+    .one {
+    width: 220px;
+    }
+    .bottom-area {
+    margin: 0 auto;
+    }
+    </style>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    
+    <div class="hero-wrap js-fullheight" style="background-image: url('../images/hotel-2.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>HotDeal</span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">핫딜 호텔 추천</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+        	<div class="col-lg-3 sidebar ftco-animate">
+        		<div class="sidebar-wrap bg-light ftco-animate">
+        			<h3 class="heading mb-4">여행지 검색</h3>
+        			<form action="#">
+        				<div class="fields">
+		              <div class="form-group">
+		                <input type="text" class="form-control" placeholder="Destination, City">
+		              </div>
+		             
+		             
+		              
+		              <div class="form-group">
+		                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
+		              </div>
+		            </div>
+	            </form>
+        		</div>
+        		<div class="sidebar-wrap bg-light ftco-animate">
+        			<h3 class="heading mb-4">여행자 평점</h3>
+        			<form method="post" class="star-rating">
+							  <div class="form-check">
+									<input type="checkbox" class="form-check-input" id="exampleCheck1">
+									<label class="form-check-label" for="exampleCheck1">
+										<p class="rate">
+										<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/5.0-20215-5.svg" alt="평점:5.0">
+										</p>
+									</label>
+							  </div>
+							  <div class="form-check">
+						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						      <label class="form-check-label" for="exampleCheck1">
+						    	   <p class="rate">
+						    	   <img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/4.0-20215-5.svg" alt="평점:4.0">
+						    	   </p>
+						      </label>
+							  </div>
+							  <div class="form-check">
+						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						      <label class="form-check-label" for="exampleCheck1">
+						      	<p class="rate">
+						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/3.0-20215-5.svg" alt="평점:3.0">
+						      	</p>
+						     </label>
+							  </div>
+							  <div class="form-check">
+							    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						      <label class="form-check-label" for="exampleCheck1">
+						      	<p class="rate">
+						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/2.0-20215-5.svg" alt="평점:2.0">
+						      	</p>
+						      </label>
+							  </div>
+							  <div class="form-check">
+						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						      <label class="form-check-label" for="exampleCheck1">
+						      	<p class="rate">
+						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/1.0-20215-5.svg" alt="평점:1.0">
+						      	</p>
+							    </label>
+							  </div>
+							</form>
+        		</div>
+          </div>
+          
+		  <!-- 본문 출력 -->
+		           
+          <div class="col-lg-9">
+          	<div class="row">
+          	 <c:forEach var="vo" items="${list }">
+          	  <div class="col-md-4 ftco-animate">
+		    				<div class="destination">
+		    					<a href="../hotdeal/detail.do?no=${vo.hd_no}" class="img img-2 d-flex justify-content-center align-items-center">
+		    						 <img src="${vo.hd_img1}" width="100%" height="100%">
+		    					</a>
+		    					
+		    					<div class="text p-3">
+		    						<div class="d-flex">
+		    							<div class="one">
+		    								<font size="2em" color="green">
+		    								${vo.hd_addr1 }
+		    								</font>
+				    						<h3><a href="../hotdeal/detail.do?no=${vo.hd_no}">${vo.hd_name }</a></h3>
+				    					</div>
+				    					<div class="two">
+				    						<span><font color="green">${vo.hd_score }</font></span>
+			    						</div>
+			    						<hr>
+		    						</div>
+		    					</div>
+		    				</div>
+		      </div>
+		     </c:forEach>
+          	</div>
+          	<div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+               		<c:if test="${currpage>block }">
+							<li><a href="../hotdeal/list.do?page=${startpage-1 }">&lt;</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${startpage }" end="${endpage }">
+							<c:if test="${i==currpage }">
+							<li class="active"><a href="../hotdeal/list.do?page=${i }">${i }</a></li>
+							</c:if>
+							<c:if test="${i!=currpage }">
+							<li><a href="../hotdeal/list.do?page=${i }">${i }</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${endpage<totalpage }">
+							<li><a href="../hotdeal/list.do?page=${endpage+1 }">&gt;</a></li>
+					</c:if>
+              </ul>
+            </div>
+          </div>
+        </div>
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section> <!-- .section -->
+  </body>
+</html>

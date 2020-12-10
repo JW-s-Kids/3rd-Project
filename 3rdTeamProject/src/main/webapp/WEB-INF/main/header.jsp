@@ -27,6 +27,7 @@
           <li class="nav-item" style="color: black;"><a href="../diary/list.do" class="nav-link">여행기</a></li>
           <li class="nav-item" style="color: black;"><a href="../news/list.do" class="nav-link">여행소식</a></li>
           <li class="nav-item" style="color: black;"><a href="../kfood/list.do" class="nav-link">맛집순례</a></li>
+          <li class="nav-item" style="color: black;"><a href="../hotdeal/list.do" class="nav-link">핫딜</a></li>
           
           <c:if test="${sessionScope.userName != null }">
           	<li class="nav-item"><a href="../member/mypage.do" class="nav-link">${sessionScope.userName }님</a></li>
