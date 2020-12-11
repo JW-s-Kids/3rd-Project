@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../assets/css/chat.css">
+<link rel="stylesheet" href="../css/chat.css">
 </head>
 <body>
  <div id="chat_root"></div>
@@ -36,15 +36,18 @@
 				log2.push(obj)
 				this.setState({logs:log2})
 		   })
+		   
            $('div#chat').toggleClass('active');
            var $win = $(window);
            var top = $(window).scrollTop(); // 현재 스크롤바의위치값을 반환합니다.
            /*사용자 설정 값 시작*/
+		   /*
            var speed          = 1000;     // 따라다닐 속도 : "slow", "normal", or "fast" or numeric(단위:msec)
            var easing         = 'linear'; // 따라다니는 방법 기본 두가지 linear, swing
            var $layer         = $('div#chat_container'); // 레이어셀렉팅
            var layerTopOffset = 0;   // 레이어 높이 상한선, 단위:px
            $layer.css('position', 'absolute');
+			*/
            /*사용자 설정 값 끝*/
            // 스크롤 바를 내린 상태에서 리프레시 했을 경우를 위해
            if (top > 0 )

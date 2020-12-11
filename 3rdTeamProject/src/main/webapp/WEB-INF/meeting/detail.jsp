@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
  function chat() {
-	 window.open("../chat/chat.jsp", "chat", "width=320,height=300");
+	 window.open("../chat/chat.jsp", "chat", "width=275,height=300");
  }
 </script>
 </head>
