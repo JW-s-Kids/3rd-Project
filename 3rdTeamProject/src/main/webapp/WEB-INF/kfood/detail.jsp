@@ -2,35 +2,51 @@
     pageEncoding="EUC-KR"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DirEngine - Free Bootstrap 4 Template by Colorlib</title>
-    <meta charset="utf-8">
-   <!--  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 대댓글 작성 공간 
+	$('.comment_Insert_area').hide();
+	
+	$('.bring_comment_tab').click(function(){				// bring_comment_tab 클릭시
+		let no = $(this).attr('id')						// 변수 no는 클릭한 bring_comment_tab의 value값
+		$('#comment_Insert_area' + no).toggle(); 			// #comment_Insert_area + no를 토글
+	});
+	
+	// 댓글 수정 공간
+	$('.comment_Update_area').hide();
+	
+	$('.bring_comment_update_tab').click(function(){				// bring_comment_tab 클릭시
+		let no = $(this).attr('id')						// 변수 no는 클릭한 bring_comment_tab의 value값
+		$('#comment_Update_area' + no).toggle(); 			// #comment_Insert_area + no를 토글
+	});
+	
+	
+	// 댓글 삭제 공간
+	$('.inputPwdComment').hide();
+	
+	$('.deleteCommentButton').click(function(){				// bring_comment_tab 클릭시
+		let comment_no = $(this).attr('id')								// 변수 no는 클릭한 bring_comment_tab의 value값
+		$('#inputPwdComment' + comment_no).toggle(); 			// #comment_Insert_area + no를 토글
+	});
+})
+</script>
 <style type="text/css">
-.hotel-img {
-width: 700px;
-height: 500px;
-margin: 0px auto;
-}
+	.board_button{
+		border: none;
+	}
+	.board_button:hover{
+		cursor: pointer;
+	}
+
+
 </style>
   </head>
   <body>
@@ -177,132 +193,145 @@ margin: 0px auto;
 		               </td>
 		              </tr>
 		            </table>
+		            <h3>맛집 댓글평</h3>
+            <table class="table">
+              <tr>
+               <td class="text-center">
+                <img src="" width=450 height=450>
+               </td>
+              </tr>
+            </table>
           		</div>
           	
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-          			<h4 class="mb-4">연관 추천 정보</h4>
-          			<div class="row">
-          		  <c:forEach var="kfood_vo" items="${list }"> 
-          				<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="img img-2 d-flex justify-content-center align-items-center">
-		    						 		<img src="${kfood_vo.kf_poster}" alt="맛집 순례" width=100% height=100%>
-		    							</a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">${kfood_vo.kf_title }</a></h3>
-						    					<!-- 	<c:if test="${kfood_vo.kf_score!=null }"> -->
-						    						  <p class="rate">
-						    						   <img src="${kfood_vo.kf_score}" alt="평점" style="width:100%"> 
-						    					    	  </p>
-						    					<!-- 	</c:if> -->
-					    						</div>
-				    						</div>
-				    					</div>
-				    				</div>
-				    			</div>
-				     	</c:forEach> 
-          			</div>
-          		</div>
-          		
-          		
-          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
-          			<h4 class="mb-4">주변 맛집 추천</h4>
-          			<div class="row">
-          		 	<c:forEach var="kfood_vo" items="${list }"> 
-          				<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/hotel-2.jpg);"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-				    		</c:forEach>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/hotel-2.jpg);"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-				    			<div class="col-md-4">
-				    				<div class="destination">
-				    					<a href="hotel-single.html" class="img img-2" style="background-image: url(../images/hotel-3.jpg);"></a>
-				    					<div class="text p-3">
-				    						<div class="d-flex">
-				    							<div class="one">
-						    						<h3><a href="hotel-single.html">Hotel, Italy</a></h3>
-						    						<p class="rate">
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star"></i>
-						    							<i class="icon-star-o"></i>
-						    							<span>8 Rating</span>
-						    						</p>
-					    						</div>
-					    						<div class="two">
-					    							<span class="price per-price">$40<br><small>/night</small></span>
-				    							</div>
-				    						</div>
-				    						<p>Far far away, behind the word mountains, far from the countries</p>
-				    						<hr>
-				    						<p class="bottom-area d-flex">
-				    							<span><i class="icon-map-o"></i> Miami, Fl</span> 
-				    							<span class="ml-auto"><a href="#">Book Now</a></span>
-				    						</p>
-				    					</div>
-				    				</div>
-				    			</div>
-          			</div>
-          		</div>
+          	<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->          	
+          	<div class="col-lg-12">
+              <h3 class="mb-5">댓글 </h3>
+              <!-- 댓글목록 출력 ------------------------------------------------------------------------------------------------------------------------------------------ 댓글 목록 출력 -->
+              <c:forEach var="reply_vo" items="${reply_list }">
+             	<c:if test="${reply_vo.getGt() > 0 }">
+              		
+              		<img src="../images/reply_icon.png" style="width:30px; height: 30px;">
+              		<c:forEach var="i" begin="1" end="${reply_vo.getGt() }">
+              		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              		</c:forEach>
+              	</c:if>
+              <ul class="comment-list">
+              	
+              	 
+                <li class="comment">
+                
+                  <div class="vcard bio">
+                    <img src="../images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>${reply_vo.id }</h3>
+                    <div class="meta">
+						<fmt:formatDate value="${reply_vo.regdate }" pattern="yyyy-MM-dd"/>
+					</div>
+                    <p>${reply_vo.content }</p>
+                    <%-- <p><a href="#" class="reply bring_comment_tab" id=${reply_vo.no }>댓글</a></p> --%>
+                    <div>
+	                    
+	                    <c:if test="${sessionScope.id == reply_vo.id }">
+	                    	<input type=button class="reply bring_comment_tab board_button" id=${reply_vo.no } value="댓글작성">
+	                    	<input type=button class="reply bring_comment_update_tab board_button" id=${reply_vo.no } value="수정">
+	                    	<input type=button class="reply deleteCommentButton board_button" value="삭제${reply_vo.no }"  id=${reply_vo.no }>
+	                    </c:if>
+                    </div>
+                  </div>
+                </li>
+                
+                <!-- 대댓글 입력 공간 ----------------------------------------------------------------------------------------------------------------------------- 대댓글 입력 공간 -->
+                <div class="comment-form-wrap pt-5 comment_Insert_area" id="comment_Insert_area${reply_vo.no }">
+	                <form action="insert_replyReply.do" class="p-5 bg-light" method="post">
+		                  <div class="form-group">
+		                    <textarea id="message" cols="30" rows="5" class="form-control" placeholder="댓글을 달아주세요" name=content></textarea>
+		                    <input type=hidden name=kfood_no value=${kfood_vo.kf_no }>
+		                    <input type=hidden name=parent_no value=${reply_vo.no }>
+		                  </div>
+		                  <div class="form-group">
+		                    <input type="submit" value="댓글 입력" class="btn btn-primary">
+		                  </div>
+	                </form>
+	              </div>
+	              
+	          <!-- 댓글 수정 공간 --------------------------------------------------------------------------------------------------------------------------------- 댓글 수정 공간 -->
+	          
+		          <div class="comment-form-wrap pt-5 comment_Update_area" id="comment_Update_area${reply_vo.no }">
+		                <form action="updateReply.do" class="p-5 bg-light" method="post">
+			                  <div class="form-group">
+			                    <textarea id="message" cols="30" rows="5" class="form-control" name=content>${reply_vo.content }</textarea>
+			                    <input type=hidden name=kfood_no value=${kfood_vo.kf_no }>
+			                    <input type=hidden name=no value=${reply_vo.no }>
+			                  </div>
+			                  <div class="form-group">
+			                    <input type="submit" value="수정" class="btn btn-primary">
+			                  </div>
+		                </form>
+	              </div>
+	              
+	          <!-- 댓글 삭제 공간 --------------------------------------------------------------------------------------------------------------------------------- 댓글 삭제 공간 -->
+					<div class="inputPwdComment" id="inputPwdComment${reply_vo.no }" style="text-align: right;">
+						<p style="display: inline; color: red; font-weight: bold;">* 삭제한 댓글은 복구할 수 없습니다. 삭제하시겠습니까?</p>
+						<form action="../kfood/deleteReply.do" method="post" style="display: inline;">
+							<!-- <input type="password" size=10 placeholder="비밀번호 입력" name="pwd"> -->
+							<input type="submit" value="삭제" class="littleButton deleteReplyButton">
+							<input type=hidden value=${reply_vo.no } name="no">
+							<input type=hidden name=kfood_no value=${kfood_vo.kf_no }>
+						</form>
+					</div>
+              
+              
+              </ul>
+              </c:forEach>
+              
+              <!-- END comment-list -->
+              
+              
+              
+              <!-- 댓글 입력 공간 --------------------------------------------------------------------------------------------------------------------------------- 댓글 입력 공간 -->
+              <div class="comment-form-wrap pt-5">
+                <form action="insert_reply.do" class="p-5 bg-light" method="post">
+                  <div class="form-group">
+                    <textarea id="message" cols="30" rows="5" class="form-control" placeholder="댓글을 달아주세요" name=content></textarea>
+                    <input type=hidden name=kfood_no value=${kfood_vo.kf_no }>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="댓글 입력" class="btn btn-primary">
+                  </div>
 
-          	</div>
+                </form>
+              </div>
+            </div>
+          
+          
+          
+          
+               <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+          	  <div class="sidebar-box ftco-animate">
+          	  <div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
+              <h4>최근 본 맛집</h4>
+              <div class="row">
+              <c:forEach var="cookie_vo" items="${cookie_list}" varStatus="s">
+              		<c:if test="${s.index < 6 }">
+			              <div class="block-21 mb-4 d-flex">
+			                <a class="blog-img mr-4" style="background-image: url(${cookie_vo.kf_poster}); "></a>
+			                <div class="text">
+			                  <h3 class="heading"><a href="../kfood/detail.do?no=${cookie_vo.kf_no }">${cookie_vo.kf_title }</a></h3>
+			                  <h3 class="heading"><a href="../kfood/detail.do?no=${cookie_vo.kf_no }">${cookie_vo.kf_zone }</a></h3>
+			                  <div class="meta">
+			                   
+			                   
+			                  </div>
+			                </div>
+			              </div>
+	              	</c:if>
+              </c:forEach>
+              </div>
+              </div>
+            </div>
+          		
+          		 
           </div> <!-- .col-md-8 -->
         </div>
       </div>

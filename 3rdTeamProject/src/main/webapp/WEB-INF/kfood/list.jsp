@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,7 +18,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
             <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Tour</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">ÎßõÏßë ÏàúÎ°Ä</h1>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">∏¿¡˝ º¯∑ </h1>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
               <form action="" method="post" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="text" class="form-control" placeholder="Ïò§ÎäòÏùÄ Î≠êÎ®πÏßÄ ?">
+                  	<input type="text" class="form-control" placeholder="ø¿¥√¿∫ ππ∏‘¡ˆ ?">
                   </div>
                   <div class="select-wrap one-third">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -40,20 +40,20 @@
                     <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">
 					                 
 					                  </a></div>
-                      <option value="detail.do?tag=ÏÑúÏö∏">ÏÑúÏö∏</option>
-                      <option value="">Ïù∏Ï≤ú</option>
-                      <option value="">ÎåÄÏ†Ñ</option>
-                      <option value="">ÎåÄÍµ¨</option>
-                      <option value="">Í¥ëÏ£º</option> 
-                      <option value="">Î∂ÄÏÇ∞</option> 
-                      <option value="">Ïö∏ÏÇ∞</option> 
-                      <option value="">ÏÑ∏Ï¢ÖÌäπÎ≥ÑÏûêÏπòÏãú</option> 
-                      <option value="">Í≤ΩÍ∏∞ÎèÑ</option>
-                      <option value="">Í∞ïÏõêÎèÑ</option>
-                      <option value="">Ï∂©Ï≤≠ÎèÑ</option>
-                      <option value="">Í≤ΩÏÉÅÎèÑ</option>
-                      <option value="">Ï†ÑÎùºÎèÑ</option>
-                      <option value="">Ï†úÏ£ºÎèÑ</option>
+                      <option value="detail.do?tag=º≠øÔ">º≠øÔ</option>
+                      <option value="">¿Œ√µ</option>
+                      <option value="">¥Î¿¸</option>
+                      <option value="">¥Î±∏</option>
+                      <option value="">±§¡÷</option> 
+                      <option value="">∫ŒªÍ</option> 
+                      <option value="">øÔªÍ</option> 
+                      <option value="">ºº¡æ∆Ø∫∞¿⁄ƒ°Ω√</option> 
+                      <option value="">∞Ê±‚µµ</option>
+                      <option value="">∞≠ø¯µµ</option>
+                      <option value="">√Ê√ªµµ</option>
+                      <option value="">∞ÊªÛµµ</option>
+                      <option value="">¿¸∂Ûµµ</option>
+                      <option value="">¡¶¡÷µµ</option>
                        
                       
                     </select>
@@ -68,18 +68,18 @@
           		    	<c:forEach var="kfood_vo" items="${list }" varStatus="s">
 					          	<div class="col-md-3 d-flex ftco-animate">
 					            <div class="blog-entry align-self-stretch">
-					              <a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="block-20" style="background-image: url(${kfood_vo.kf_poster });">
+					              <a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }" class="block-20" style="background-image: url(${kfood_vo.kf_poster });">
 					              </a>
 					              <div class="text p-4 d-block">
 					              	<span class="tag">${kfood_vo.kf_title }</span>
-					                <h3 class="heading mt-3" style="width: 205px;"><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_content }</a></h3>
+					                <h3 class="heading mt-3" style="width: 205px;"><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_content }</a></h3>
 					               <div class="meta mb-3">
-					             <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">
+					             <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">
 					                 
 					                  </a></div>
-					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_tel }</a></div>
-					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_no }" class="meta-chat"><span class="icon-chat"></span></a></div>
-					                  <div><a href="../kfood/detail.do?no=${kfood_vo.kf_zone }">${kfood_vo.kf_zone }</a></div>
+					                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_tel }</a></div>
+					                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }" class="meta-chat"><span class="icon-chat"></span></a></div>
+					                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_zone }">${kfood_vo.kf_zone }</a></div>
 					               </div>
 					              </div>
 					            </div>
