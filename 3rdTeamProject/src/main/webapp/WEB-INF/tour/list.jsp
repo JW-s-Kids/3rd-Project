@@ -73,7 +73,7 @@
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
-        	<div class="col-lg-3 sidebar ftco-animate">
+        <!-- 	<div class="col-lg-3 sidebar ftco-animate">
         		<div class="sidebar-wrap bg-light ftco-animate">
         			<h3 class="heading mb-4">여행지 검색</h3>
         			<form action="#">
@@ -135,12 +135,12 @@
 							  </div>
 							</form>
         		</div>
-          </div>
+          </div> -->
           
 <%-- /////////////// 리스트 페이지 출력 섹션 /////////////// --%>
           
-          <div class="col-lg-9">
-          	<div class="row"><%-- 게시물 6개씩 출력 --%>
+          <div class="col-lg-12">
+          	<div class="row"><%-- 게시물 9개씩 출력 --%>
           	 <c:forEach var="tour_vo" items="${list }">
           		<div class="col-md-4 ftco-animate">
 		    				<div class="destination">

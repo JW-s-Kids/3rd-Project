@@ -13,12 +13,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.dao.*;
+import com.sist.service.NaverManager;
+import com.sist.tournaver.TourNaverManager;
 
 @Controller
 public class TourController {
 	
 	@Autowired
 	private TourDAO dao;
+	
+	@Autowired
+	private TourNaverManager tnm;
+	
+	@Autowired
+	private RManager_tour rm_tour;
 	
 	 @RequestMapping("tour/list.do")
 	  public String tour_list(Model model, String page, HttpSession session, HttpServletRequest request){
@@ -30,7 +38,7 @@ public class TourController {
 					}
 						int currpage = Integer.parseInt(page);			// 현재 페이지
 						int totalpage = dao.tourTotalPage();			// 총 페이지
-						int rowSize = 6;											
+						int rowSize = 9;											
 						int start = (rowSize*currpage) - (rowSize - 1);				
 						int end = (rowSize*currpage);
 						int block = 5;									// 페이지 블록
@@ -72,6 +80,13 @@ public class TourController {
 					TourVO tour_vo = dao.tourDetail(Integer.parseInt(no)); 
 					String thema=tour_vo.getThema();
 					List<TourVO> list=dao.tourLikeTourData(thema);
+					
+					tnm.naverData(tour_vo.getTitle());
+					
+					rm_tour.graph(Integer.parseInt(no));
+					
+					
+					
 					model.addAttribute("tour_vo", tour_vo);
 					model.addAttribute("list",list);
 				}catch (Exception e) 
