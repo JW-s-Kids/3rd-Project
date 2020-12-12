@@ -22,5 +22,10 @@ public class HotDealDAO {
 	public int hotDealTotalPage() {
 		return mapper.hotDealTotalPage();
 	}
+	
+	// 핫딜 상세보기
+	public HotDealVO hotDealDetailData(int hd_no) {
+		return mapper.hotDealDetailData(hd_no);
+	}
 
 }

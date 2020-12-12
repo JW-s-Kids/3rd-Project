@@ -24,11 +24,8 @@
 	</definition>
 	
 	
+	
 	<!-- 
-	<definition name="chat" template="/WEB-INF/chat/chat.jsp">
-	</definition>
-	
-	
 	<definition name="login" template="/WEB-INF/member/login.jsp">
 	</definition>
 	

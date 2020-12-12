@@ -55,4 +55,12 @@ public class HotDealController {
 		
 	}
 	
+	// 핫딜 상세보기
+	@RequestMapping("detail.do")
+	public String hotdeal_detail(int hd_no, Model model) {
+		HotDealVO vo=dao.hotDealDetailData(hd_no);
+		model.addAttribute("vo", vo);
+		return "hotdeal/detail";
+	}
+	
 }

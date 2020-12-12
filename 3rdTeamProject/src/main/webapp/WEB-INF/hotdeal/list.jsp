@@ -15,6 +15,7 @@
     height: 75px;
     }
     .one {
+    margin: 0 auto;
     width: 220px;
     }
     .bottom-area {
@@ -41,69 +42,11 @@
     <section class="ftco-section ftco-degree-bg">
       <div class="container">
         <div class="row">
-        	<div class="col-lg-3 sidebar ftco-animate">
-        		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">여행지 검색</h3>
-        			<form action="#">
-        				<div class="fields">
-		              <div class="form-group">
-		                <input type="text" class="form-control" placeholder="Destination, City">
-		              </div>
-		             
-		             
-		              
-		              <div class="form-group">
-		                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
-		              </div>
-		            </div>
-	            </form>
-        		</div>
-        		<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">여행자 평점</h3>
-        			<form method="post" class="star-rating">
-							  <div class="form-check">
-									<input type="checkbox" class="form-check-input" id="exampleCheck1">
-									<label class="form-check-label" for="exampleCheck1">
-										<p class="rate">
-										<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/5.0-20215-5.svg" alt="평점:5.0">
-										</p>
-									</label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						    	   <p class="rate">
-						    	   <img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/4.0-20215-5.svg" alt="평점:4.0">
-						    	   </p>
-						      </label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate">
-						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/3.0-20215-5.svg" alt="평점:3.0">
-						      	</p>
-						     </label>
-							  </div>
-							  <div class="form-check">
-							    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate">
-						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/2.0-20215-5.svg" alt="평점:2.0">
-						      	</p>
-						      </label>
-							  </div>
-							  <div class="form-check">
-						      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						      <label class="form-check-label" for="exampleCheck1">
-						      	<p class="rate">
-						      	<img src="http://www.tripadvisor.co.kr/img/cdsi/img2/ratings/traveler/1.0-20215-5.svg" alt="평점:1.0">
-						      	</p>
-							    </label>
-							  </div>
-							</form>
-        		</div>
-          </div>
+         <div class="col-lg-3 sidebar">
+        	<div class="sidebar-wrap bg-light ftco-animate">
+        			<h3 class="heading mb-4">최근 본 호텔</h3>
+        	</div>
+         </div>	
           
 		  <!-- 본문 출력 -->
 		           
@@ -111,26 +54,32 @@
           	<div class="row">
           	 <c:forEach var="vo" items="${list }">
           	  <div class="col-md-4 ftco-animate">
-		    				<div class="destination">
-		    					<a href="../hotdeal/detail.do?no=${vo.hd_no}" class="img img-2 d-flex justify-content-center align-items-center">
-		    						 <img src="${vo.hd_img1}" width="100%" height="100%">
-		    					</a>
-		    					
-		    					<div class="text p-3">
-		    						<div class="d-flex">
-		    							<div class="one">
-		    								<font size="2em" color="green">
-		    								${vo.hd_addr1 }
-		    								</font>
-				    						<h3><a href="../hotdeal/detail.do?no=${vo.hd_no}">${vo.hd_name }</a></h3>
-				    					</div>
-				    					<div class="two">
-				    						<span><font color="green">${vo.hd_score }</font></span>
-			    						</div>
-			    						<hr>
-		    						</div>
-		    					</div>
-		    				</div>
+		    	<div class="destination">
+		    	  <a href="../hotdeal/detail.do?hd_no=${vo.hd_no}" class="img img-2 d-flex justify-content-center align-items-center">
+		    		<img src="${vo.hd_img1}" width="100%" height="100%">
+		    	  </a>
+		    		<div class="text p-3">
+		    		  <div class="d-flex">
+		    		    <div class="one">
+		    			  <font size="2em" color="green">
+		    				${vo.hd_addr1 }
+		    			  </font>
+				    		<h3><a href="../hotdeal/detail.do?no=${vo.hd_no}">${vo.hd_name }</a></h3>
+				    	</div>
+				    	<div class="two">
+				    	  <span><font color="green">${vo.hd_score }</font></span>
+			    		</div>
+		    		  </div>
+		    			<hr>
+		    			<br>
+		    		  <div class="text-right" >
+		    		    <img src="../images/hotelimg1.png">
+		    			  <font size="5em" color="black">
+		    			    ${vo.hd_price }
+		    			  </font>
+		    		  </div>
+		    	  </div>
+		    	</div>
 		      </div>
 		     </c:forEach>
           	</div>
@@ -156,9 +105,9 @@
             </div>
           </div>
         </div>
-          </div> <!-- .col-md-8 -->
+          </div> 
         </div>
       </div>
-    </section> <!-- .section -->
+    </section> 
   </body>
 </html>
