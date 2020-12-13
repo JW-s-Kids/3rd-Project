@@ -63,13 +63,17 @@ public class MeetingDAO {
 		return mapper.meetingFindListData(map);
 	}
 	
-	
-	
-
-	
-	//참여인원증가
-	public int meetingJoinHitIncrement(int mno){
-		return mapper.meetingJoinHitIncrement();
+	//모임 검색 총페이지
+	public int meetingFindTotalPage(Map map) {
+		return mapper.meetingFindTotalPage(map);
 	}
+	
+	
+	//참여하기
+	public void meetingJoinIncrement(int mno) {
+		mapper.meetingJoinIncrement(mno);
+		
+	}
+	
 	
 }

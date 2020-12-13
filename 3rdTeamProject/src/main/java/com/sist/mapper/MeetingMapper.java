@@ -16,7 +16,7 @@ public interface MeetingMapper {
 	@Select("SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit,num "
 			+"FROM (SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit,rownum as num "
 			+"FROM (SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit "
-			+"FROM meeting)) "
+			+"FROM meeting ORDER BY mno DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<MeetingVO> meetingListData(Map map);
 	
@@ -58,13 +58,17 @@ public interface MeetingMapper {
 	@Select("SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit,num "
 			+"FROM (SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit,rownum as num "
 			+"FROM (SELECT mno,mname,mmsg,mimg,maddr,maddr2,minwon,mjoin,hit "
-			+"FROM meeting WHERE mname LIKE '%'||'${fmname}'||'%')) "
+			+"FROM meeting WHERE mname LIKE '%'||#{fmname}||'%' ORDER BY mno DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<MeetingVO> meetingFindListData(Map map);
 	
+	//모임 검색 총페이지
+	@Select("SELECT CEIL(COUNT(*)/6.0) FROM meeting WHERE mname LIKE '%'||'${fmname}'||'%'")
+	public int meetingFindTotalPage(Map map);
 	
-	
-	
+	//참여하기
+	@Update("UPDATE meeting SET mjoin=mjoin+1 WHERE mno=#{mno}")
+	public int meetingJoinIncrement(int mno);
 	
 	
 	
