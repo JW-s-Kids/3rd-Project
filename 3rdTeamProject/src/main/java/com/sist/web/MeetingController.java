@@ -126,7 +126,7 @@ public class MeetingController {
 	}
 	//수정하기
 	@RequestMapping("update_ok.do")
-	public String meetingUpdate_ok(String mno,String mname,String maddr,String maddr2,int minwon,String mmsg) {
+	public String meetingUpdate_ok(String mno,String mname,String maddr,String maddr2,String minwon,String mmsg) {
 		Map map=new HashMap();
 		map.put("mno", mno);
 		map.put("mname", mname);
@@ -156,23 +156,42 @@ public class MeetingController {
 		int start=(curpage*rowSize)-(rowSize-1);
 		int end=curpage*rowSize;
 		
+		System.out.println("fmname:"+fmname);
 		
 		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("fmname", fmname);
+		System.out.println("put 성공");
 
-		System.out.println("fmname:"+fmname);
 
-		int totalpage=dao.meetingTotalPage();
+		int totalpage=dao.meetingFindTotalPage(map);
+		System.out.println("검색총페이지");
+		
 		List<MeetingVO> fList=dao.meetingFindListData(map);
-
-		model.addAttribute("fList", fList);
+        for(MeetingVO v:fList)
+        {
+        	System.out.println(v.getMname());
+        }
+		model.addAttribute("list", fList);
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		
+		System.out.println("검색완료");
 		
 		return "meeting/list";
+	}
+	
+	//참여하기
+	@RequestMapping("like.do")
+	public String meeting_join(HttpServletRequest request,String mno) {
+		try {
+			dao.meetingJoinIncrement(Integer.parseInt(mno));
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		
+		return "redirect:../meeting/detail.do?mno="+mno;
 	}
 	
 	

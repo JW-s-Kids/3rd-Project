@@ -13,8 +13,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	// 지도 ajax
+	$('.images').click(function(){
+		let no=$(this).attr("data-value");
+		$.ajax({
+			type:'POST',
+			url:'../dogboard/parkfind.do',
+			data:{"no":no},
+			success:function(res)
+			{
+				$('#print').html(res);
+			}
+		});
+	});
+})
+</script>
+
 </head>
 <body>
     <div class="hero-wrap js-fullheight" style="background-image: url('../images/dog_3.jpg');">
@@ -96,47 +116,19 @@
                 </form>
           </div>
           <!-- 사이드바 .col-md-8 -->
-          <div class="col-md-4 sidebar ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon fa fa-search"></span>
-                  <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
-                </div>
-              </form>
-            </div>
-            <div class="sidebar-box ftco-animate">
-              <div class="categories">
-                <h3>카테고리</h3>
-                <li><a href="#">같이가요 <span>(12)</span></a></li>
-                <li><a href="#">자랑해요 <span>(22)</span></a></li>
-                <li><a href="#">익명게시판 <span>(37)</span></a></li>
-              </div>
-            </div>
-            <div class="sidebar-box ftco-animate">
-              <h3>최근 본 산책코스</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1884" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">남산도시자연공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:12</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 3</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4"><img src="http://parks.seoul.go.kr/file/info/view.do?fIdx=1888" width="100px"; hieght="100px";></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">월드컵공원</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> 17:15</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 2</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         <div class="col-md-4 sidebar ftco-animate">
+          <h3 style="padding-left: 50px;">서울시 공원 맵 <img src="../images/dogreplyicon.png" width=50px height=50px style="padding-bottom: 12px;"> </h3>
+            <div id="a">
+		     <img id="seoul_1" src="../map/1111.png">
+		      <c:forEach var="i" begin="1" end="25">
+		       <img id="gu${i }" src="../map/gu_${i }_off.png" 
+		         onmouseover="this.src='../map/gu_${i}_on.png'"  
+		         onmouseout="this.src='../map/gu_${i}_off.png'" class="images" data-value="${i }"> 
+		     </c:forEach>
+		   </div>
+		   <div id="print" class="row" style="padding-left: 50px;"></div>
+           
+        </div>
 
         </div>
       </div>
