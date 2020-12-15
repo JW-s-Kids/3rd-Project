@@ -44,7 +44,17 @@
         <div class="row">
          <div class="col-lg-3 sidebar">
         	<div class="sidebar-wrap bg-light ftco-animate">
-        			<h3 class="heading mb-4">최근 본 호텔</h3>
+        	  <h3 class="heading mb-4">최근 본 호텔</h3>
+        		<c:forEach var="vo" items="${cList }" varStatus="s">
+        		 <c:if test="${s.index<5 }">
+        		  <div>
+        		   <a href="hotdeal_before.do?hd_no=${vo.hd_no }">
+        		    <span><img src="${vo.hd_img1 }" style="width:30px; height:30px;"></span>
+        		  	<span style="font-size:12pt">${vo.hd_name }</span>
+        		   </a>
+        		  </div>
+        		 </c:if>
+        		</c:forEach>	
         	</div>
          </div>	
           
