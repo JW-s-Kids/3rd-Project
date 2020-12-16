@@ -48,13 +48,14 @@
         		<c:forEach var="vo" items="${cList }" varStatus="s">
         		 <c:if test="${s.index<5 }">
         		  <div>
-        		   <a href="hotdeal_before.do?hd_no=${vo.hd_no }">
+        		   <a href="../hotdeal/detail.do?hd_no=${vo.hd_no }">
         		    <span><img src="${vo.hd_img1 }" style="width:30px; height:30px;"></span>
         		  	<span style="font-size:12pt">${vo.hd_name }</span>
         		   </a>
         		  </div>
         		 </c:if>
         		</c:forEach>	
+        		<hr>
         	</div>
          </div>	
           
@@ -65,7 +66,7 @@
           	 <c:forEach var="vo" items="${list }">
           	  <div class="col-md-4 ftco-animate">
 		    	<div class="destination">
-		    	  <a href="../hotdeal/detail.do?hd_no=${vo.hd_no}" class="img img-2 d-flex justify-content-center align-items-center">
+		    	  <a href="../hotdeal/hotdeal_before.do?hd_no=${vo.hd_no }" class="img img-2 d-flex justify-content-center align-items-center">
 		    		<img src="${vo.hd_img1}" width="100%" height="100%">
 		    	  </a>
 		    		<div class="text p-3">

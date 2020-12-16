@@ -57,7 +57,10 @@ public class HotDealController {
 		Cookie[] cookies=request.getCookies();
 		if(cookies!=null) {
 			for(int i=cookies.length-1; i>=0; i--) {
-				if(cookies[i].getName().startsWith("h")) {
+				
+				cookies[i].setPath("/");
+				if(cookies[i].getName().startsWith("hc")) {
+					System.out.println(cookies[i].getValue());
 					HotDealVO vo=dao.hotDealDetailData(Integer.parseInt(cookies[i].getValue()));
 					cList.add(vo);
 				}
@@ -72,9 +75,10 @@ public class HotDealController {
 	// 쿠키
 	@RequestMapping("hotdeal_before.do")
 	public String hotdeal_before(int hd_no, HttpServletResponse response) {
-		
-		Cookie cookie=new Cookie("h"+hd_no, String.valueOf(hd_no));
+		System.out.println("before");
+		Cookie cookie=new Cookie("hc"+hd_no, String.valueOf(hd_no));
 		cookie.setMaxAge(60*60*24);
+		cookie.setPath("/");
 		response.addCookie(cookie);
 		return "redirect:detail.do?hd_no="+hd_no;
 	}
@@ -82,6 +86,7 @@ public class HotDealController {
 	// 핫딜 상세보기
 	@RequestMapping("detail.do")
 	public String hotdeal_detail(int hd_no, Model model) {
+		System.out.println("detail");
 		HotDealVO vo=dao.hotDealDetailData(hd_no);
 		model.addAttribute("vo", vo);
 		return "hotdeal/detail";
