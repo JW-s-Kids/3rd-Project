@@ -2,6 +2,8 @@ package com.sist.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
 import java.util.*;
 
 import com.sist.dao.MemberVO;
@@ -26,4 +28,18 @@ public interface MemberMapper {
 	// 카톡 이메일주소가 디비에 없으면  카톡 이메일주소와 닉네임을 디비에 저장 ============================================================================
 	@Insert("INSERT INTO member(name, email) VALUES(#{name}, #{email})")
 	public void member_insertKakao(Map map);
+	
+	
+	// 회원 연동되어있는지 확인 (ISMEMBER 컬럼) ==============================================================================================
+	@Select("SELECT ismember from member where email = #{email}")
+	public String member_ismember(String email);
+	
+	// 회원 연동 안되어있을 시에 추가정보 삽입 ==================================================================================================
+	@Update("Update member SET id = #{id}, pwd = #{pwd}, sex = #{sex}, tel = #{tel} WHERE email = #{email}")
+	public void member_getAdditionalInfo(MemberVO vo);
+	
+	// 회원연동 완료 (ISMEMBER 컬럼을 y로 변경) ==============================================================================================
+	@Update("UPDATE member SET ismember = 'y' WHERE email = #{email}")
+	public void member_interlock_ok(String email);
+	
 }	

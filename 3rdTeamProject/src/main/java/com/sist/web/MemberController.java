@@ -33,7 +33,9 @@ public class MemberController {
 	
 	// 카카오톡 로그인 ==================================================================================================================
 	@RequestMapping("member/kakao_login.do")
-	public String member_kakao_login(@RequestParam("code") String code, HttpSession session){
+	public String member_kakao_login(@RequestParam("code") String code, HttpSession session, Model model){
+		
+		String result = "";
 		
 		try {
 			String access_Token = kakao.getAccessToken(code);
@@ -48,7 +50,6 @@ public class MemberController {
 				String name = (String)userInfo.get("nickname");
 				String email = (String)userInfo.get("email");
 				
-				
 				Map map = new HashMap();
 				map.put("name", name);
 				map.put("email", email);
@@ -56,14 +57,60 @@ public class MemberController {
 				dao.member_insertKakao(map);
 				System.out.println("name : " + name);
 				System.out.println("email : " + email);
+				
+				String ismember = dao.member_ismember((String)userInfo.get("email"));
+				
+				if(ismember == "y"){
+					System.out.println("카카오톡 연동됨");
+					result = "redirect:../main/main.do";
+				}
+				else {
+					System.out.println("카카오톡 연동 안 됨");
+					model.addAttribute("email", (String)userInfo.get("email"));
+					result = "member/getAdditionalInfo";
+				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		return result;
+//		return "redirect:../main/main.do";
+	}
+	
+	
+	// 회원 미연동시 추가정보 입력 ==============================================================================================================
+	// INSERT INTO member(id, pwd, birthday, sex, tel) VALUES(#{id}, #{pwd}, #{birthday}, #{sex}, #{tel})
+	@RequestMapping("member/getAdditionalInfo_ok.do")
+	public String getAdditionalInfo_ok(String id, String pwd, String sex, String tel, String email, HttpSession session){
+		
+		try {
+			System.out.println("아이디 : " + id);
+			System.out.println("비번 : " + pwd);
+			System.out.println("성별 : " + sex);
+			System.out.println("전화번호 : " + tel);
+			System.out.println("이메일 : " + email);
+			MemberVO vo = new MemberVO();
+			vo.setId(id);
+			vo.setPwd(pwd);
+			vo.setSex(sex);
+			vo.setTel(tel);
+			vo.setEmail(email);
+			dao.member_getAdditionalInfo(vo);		// 추가 정보 삽입
+			dao.member_interlock_ok(email);			// ISMEMBER 컬럼을 y로 변경
+			
+			session.setAttribute("id", id);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		
+		
 		
 		return "redirect:../main/main.do";
 	}
+	
+	
 	
 	
 	// 카카오톡 로그아웃 ===================================================================================================================

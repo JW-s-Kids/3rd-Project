@@ -72,7 +72,9 @@
         	<c:forEach var="diary_vo" items="${list }" varStatus="s">
 		          <div class="col-md-3 d-flex ftco-animate">
 		            <div class="blog-entry align-self-stretch">
-		              <a href="../diary/detail_before.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');">
+		              <%-- <a href="../diary/detail_before.do?no=${diary_vo.no }" class="block-20" style="background-image: url('../images/diary_${s.count}.jpg');"> --%>
+		              <a href="../diary/detail_before.do?no=${diary_vo.no }" class="block-20">
+		              		<img src="${diary_vo.thumbnail }" style="width: 100%; height: 100%;">
 		              </a>
 		              <div class="text p-4 d-block">
 		              	<span class="tag">${diary_vo.tag }</span>

@@ -22,7 +22,7 @@
           <li class="nav-item" style="color: black;"><a href="../main/main.do" class="nav-link">홈</a></li>
           <li class="nav-item" style="color: black;"><a href="../tour/list.do" class="nav-link">투어</a></li>
           <li class="nav-item" style="color: black;"><a href="../dog/parkmain.do" class="nav-link">반려견산책</a></li>
-          <li class="nav-item" style="color: black;"><a href="../psyTest/main.do" class="nav-link">성향테스트</a></li>
+          <!-- <li class="nav-item" style="color: black;"><a href="../psyTest/main.do" class="nav-link">성향테스트</a></li> -->
           <li class="nav-item" style="color: black;"><a href="../meeting/list.do" class="nav-link"><span>자만추</span></a></li>
           <li class="nav-item" style="color: black;"><a href="../diary/list.do" class="nav-link">여행기</a></li>
           <li class="nav-item" style="color: black;"><a href="../news/list.do" class="nav-link">여행소식</a></li>
@@ -42,9 +42,9 @@
           <c:if test="${userEmail != null }">
           	<li class="nav-item cta"><a href="../member/kakao_logout.do" class="nav-link"><span>로그아웃</span></a></li>
           </c:if>
-          <c:if test="${sessionScope.id != null }">
+          <%-- <c:if test="${sessionScope.id != null }">
           	<li class="nav-item cta"><a href="../member/logout.do" class="nav-link"><span>로그아웃</span></a></li>
-          </c:if>
+          </c:if> --%>
         </ul>
       </div>
     </div>

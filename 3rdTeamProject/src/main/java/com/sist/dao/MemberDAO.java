@@ -60,4 +60,42 @@ public class MemberDAO {
 		}
 		
 	}
+	
+	
+	
+	// 카카오톡 계정과 사이트 회원연동 여부 확인 ========================================================================================================================================================
+	public String member_ismember(String email){
+		
+		String ismember_result = "";
+		
+		try {
+			ismember_result = mapper.member_ismember(email);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return ismember_result;
+	}
+	
+	
+	
+	// 카카오톡 계정 연동 안되어있을 시에 추가 정보 입력 ==========================================================================================================================================
+	public void member_getAdditionalInfo(MemberVO vo){
+		try {
+			mapper.member_getAdditionalInfo(vo);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	// 회원연동 완료 (ISMEMBER 컬럼을 y로 변경) ==============================================================================================
+	public void member_interlock_ok(String email){
+		try {
+			mapper.member_interlock_ok(email);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 }

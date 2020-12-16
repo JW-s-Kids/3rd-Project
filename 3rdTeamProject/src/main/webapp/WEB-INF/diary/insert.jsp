@@ -62,15 +62,7 @@
 			            </div>
 		        </form>
             
-            <div class="about-author d-flex p-5 bg-light">
-              <div class="bio align-self-md-center mr-5">
-                <img src="../images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4" style="width:150px; height:150px;">
-              </div>
-              <div class="desc align-self-md-center">
-                <h3>${diary_vo.id }</h3>
-                <p>사용자 소개</p>
-              </div>
-            </div>
+            
 
 
           </div> <!-- .col-md-8 -->

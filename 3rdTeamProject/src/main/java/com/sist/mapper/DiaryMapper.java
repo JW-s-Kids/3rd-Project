@@ -17,9 +17,9 @@ import lombok.Delegate;
 public interface DiaryMapper {
 
 	// 여행기 목록 출력 ==================================================================================================================================
-	@Select("SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, num "
-			+ "FROM (SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, rownum as num "
-			+ "FROM (SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate "
+	@Select("SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, thumbnail, num "
+			+ "FROM (SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, thumbnail, rownum as num "
+			+ "FROM (SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, thumbnail "
 			+ "FROM diary ORDER BY no)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<DiaryVO> diaryList(Map map);
