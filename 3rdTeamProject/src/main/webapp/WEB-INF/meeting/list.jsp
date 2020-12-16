@@ -60,6 +60,16 @@
 #category li .cafe {background-position: -10px -144px;}
 #category li .store {background-position: -10px -180px;}
 #category li.on .category_bg {background-position-x:-46px;}
+.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
+.placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
+.placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+.placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
+.placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
+.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+.placeinfo .tel {color:#0f7833;}
+.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 /* 테스트======================================= */
 
 </style>
@@ -148,7 +158,7 @@
 		    						<h3><a href="../meeting/detail.do?mno=${vo.mno }">${vo.mname }</a></h3>
 	    						</div>
 	    						<div class="two">
-	    							<span class="price per-price">${vo.hit }<br><small>${vo.mjoin} / ${vo.minwon }</small></span>
+	    							<span class="price per-price"><img src="../images/eye.jpg">${vo.hit }<br><small>${vo.mjoin} / ${vo.minwon }</small></span>
     							</div>
     						</div>
     						
@@ -215,6 +225,8 @@
 
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a82c9e85e71906b68998f594eac76e8c"></script>
 		<script>
+		//=============================================================================
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -283,21 +295,17 @@
     </em>
 	</p>
     <ul id="category">
-        <li id="BK9" data-order="0"> 
+        <li id="CT1" data-order="0"> 
             <span class="category_bg bank"></span>
-            은행
+            문화시설
         </li>       
-        <li id="MT1" data-order="1"> 
+        <li id="AT4" data-order="1"> 
             <span class="category_bg mart"></span>
-            마트
+            관광명소
         </li>  
-        <li id="PM9" data-order="2"> 
+        <li id="FD6" data-order="2"> 
             <span class="category_bg pharmacy"></span>
-            약국
-        </li>  
-        <li id="OL7" data-order="3"> 
-            <span class="category_bg oil"></span>
-            주유소
+            음식점
         </li>  
         <li id="CE7" data-order="4"> 
             <span class="category_bg cafe"></span>
