@@ -6,20 +6,33 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	$(function(){
+/* 	$(function(){
 		$('#JoinBtn').on('click',function(){
 			var mjoin=Number(${vo.mjoin}.val());
 			var minwon=Number(${vo.minwon}.val());
 			if(mjoin<minwon){
 				Number(${vo.mjoin}+1)
-			}else{
+			}if(mjoin>=minwon){
 				$("#JoinBtn").hide();
-			})
+			});
 		});
-	});
-</script> -->
+	}); */
+	
+	 /* $(function(){
+		$('#JoinBtn').on('click',function(){
+			var mjoin=Number(${vo.mjoin}.val());
+			var minwon=Number(${vo.minwon}.val());
+			if(mjoin<minwon){
+				Number(${vo.mjoin}+1)
+			}
+		});
+		if(mjoin>=minwon){
+			$("#JoinBtn").hide()
+		
+	}); */
+</script>
 
 </head>
 <body>
@@ -72,7 +85,7 @@
 							
 							        // 인포윈도우로 장소에 대한 설명을 표시합니다
 							        var infowindow = new kakao.maps.InfoWindow({
-							            content: '<div style="width:150px;text-align:center;padding:6px 0;">모임 장소</div>'
+							            content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.maddr2}</div>'
 							        });
 							        infowindow.open(map, marker);
 							

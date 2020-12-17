@@ -178,8 +178,8 @@
     						<p class="bottom-area d-flex">
     							<span><i class="icon-map-o"></i> 
     							<c:choose>
-							        <c:when test="${fn:length(vo.maddr) gt 10}">
-								        <c:out value="${fn:substring(vo.maddr,0,9)}">...
+							        <c:when test="${fn:length(vo.maddr) gt 7}">
+								        <c:out value="${fn:substring(vo.maddr,0,6)}">...
 								        </c:out>
 							        </c:when>
 							        <c:otherwise>
