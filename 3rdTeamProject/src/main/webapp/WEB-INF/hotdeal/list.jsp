@@ -52,10 +52,10 @@
         		    <span><img src="${vo.hd_img1 }" style="width:30px; height:30px;"></span>
         		  	<span style="font-size:12pt">${vo.hd_name }</span>
         		   </a>
+        		   <hr>
         		  </div>
         		 </c:if>
         		</c:forEach>	
-        		<hr>
         	</div>
          </div>	
           
