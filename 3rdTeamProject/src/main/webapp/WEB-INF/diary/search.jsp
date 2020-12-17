@@ -55,7 +55,7 @@
       		<form action="../diary/search.do">
               <div class="form-group" style="width:30%; text-align: center; margin: 0px auto; display: inline-block;">
                 <span class="icon fa fa-search"></span>
-                <input type="text" class="form-control" placeholder="검색어를 입력하세요." name="search_keyword">
+                <input type="text" class="form-control" value="${search_keyword }" name="search_keyword">
               </div>
               <input type="submit" value="검색" class="btn btn-primary" style="height: 50px; border-radius: 3px;">
             </form>

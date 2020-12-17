@@ -59,6 +59,7 @@ public class MemberController {
 				System.out.println("email : " + email);
 				
 				String ismember = dao.member_ismember((String)userInfo.get("email"));
+				System.out.println("ismember : " + ismember);
 				
 				if(ismember == "y"){
 					System.out.println("카카오톡 연동됨");

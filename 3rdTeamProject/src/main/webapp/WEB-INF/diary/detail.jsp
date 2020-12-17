@@ -272,7 +272,7 @@ $(function(){
 							</script>
             </div>
             
-            <div class="sidebar-box ftco-animate">
+            <!-- <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>카테고리</h3>
                 <li><a href="#">축제 <span>(12)</span></a></li>
@@ -282,7 +282,7 @@ $(function(){
                 <li><a href="#">실내활동 <span>(14)</span></a></li>
                 <li><a href="#">취미 <span>(140)</span></a></li>
               </div>
-            </div>
+            </div> -->
 
             <div class="sidebar-box ftco-animate">
               <h3>최근 본 여행기</h3>

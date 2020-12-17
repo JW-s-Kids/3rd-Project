@@ -22,6 +22,7 @@ public class MainController {
 		main_tour(model);
 		main_diary(model);
 		main_park(model);
+		main_Kfood(model);
 		
 		return "main";
 	}
@@ -59,6 +60,12 @@ public class MainController {
 		List<DiaryVO> diary_list = dao.getDiaryList();
 		
 		model.addAttribute("diary_list", diary_list);
+	}
+	// 메인페이지 (맛집순례) ================================================================================================
+	public void main_Kfood(Model model){
+		List<KFoodVO> kfood_list = dao.getKFoodList();
+		
+		model.addAttribute("kfood_list", kfood_list);
 	}
 	
 	

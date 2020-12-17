@@ -32,5 +32,10 @@ public class MainDAO {
 		return mapper.getDiaryList();
 	}
 	
+	// 메인페이지 (맛집순례) ===========================================================================================
+	public List<KFoodVO> getKFoodList(){
+		return mapper.getKFoodList();
+	}
+	
 	
 }

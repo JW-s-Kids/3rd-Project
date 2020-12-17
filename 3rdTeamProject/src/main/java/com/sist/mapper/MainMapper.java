@@ -22,6 +22,9 @@ public interface MainMapper {
 	public List<DiaryVO> getDiaryList();
 	
 	
+	// 메인페이지 (맛집순례) ====================================================================================================
+	@Select("SELECT * FROM kfood WHERE kf_no <= 4")
+	public List<KFoodVO> getKFoodList();
 	
 	
 }

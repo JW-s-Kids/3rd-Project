@@ -163,4 +163,10 @@ public class DiaryDAO {
 	public void scrapDelete(int no){
 		mapper.scrapDelete(no);
 	} 
+	
+	
+	// 여행기 검색 ================================================================================================================
+	public List<DiaryVO> diaryList_search(Map map){
+		return mapper.diaryList_search(map);
+	}
 }

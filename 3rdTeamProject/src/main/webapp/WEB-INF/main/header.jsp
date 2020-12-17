@@ -25,7 +25,7 @@
           <!-- <li class="nav-item" style="color: black;"><a href="../psyTest/main.do" class="nav-link">성향테스트</a></li> -->
           <li class="nav-item" style="color: black;"><a href="../meeting/list.do" class="nav-link"><span>자만추</span></a></li>
           <li class="nav-item" style="color: black;"><a href="../diary/list.do" class="nav-link">여행기</a></li>
-          <li class="nav-item" style="color: black;"><a href="../news/list.do" class="nav-link">여행소식</a></li>
+          <!-- <li class="nav-item" style="color: black;"><a href="../news/list.do" class="nav-link">여행소식</a></li> -->
           <li class="nav-item" style="color: black;"><a href="../kfood/list.do" class="nav-link">맛집순례</a></li>
           
           <c:if test="${sessionScope.userName != null }">

@@ -182,6 +182,16 @@ public interface DiaryMapper {
 	
 	
 	
+	// 여행기 검색 =========================================================================================================================================
+	@Select("SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, thumbnail, num "
+			+ "FROM (SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, thumbnail, rownum as num "
+			+ "FROM (SELECT no, id, subject, content, photo, regdate, hit, reply, tag, good, addr,visitdate, thumbnail "
+			+ "FROM diary WHERE subject LIKE '%'||'${search_keyword}'||'%' OR content LIKE '%'||'${search_keyword}'||'%' ORDER BY no)) "
+			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<DiaryVO> diaryList_search(Map map);
+	
+	
+	
 	
 	
 	

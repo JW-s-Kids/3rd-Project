@@ -479,7 +479,7 @@ $(function(){
         </div>
     		<div class="row justify-content-center">
     			<div class="col-md-10">
-		    		<div class="row">
+		    		<div class="row" style="margin: 0px auto;">
 		          <!-- <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
 		            <div class="block-18 text-center">
 		              <div class="text">
@@ -512,6 +512,20 @@ $(function(){
 		              </div>
 		            </div>
 		          </div> -->
+		          <div class="sidebar-wrap bg-light ftco-animate">
+        			<h3 class="heading mb-4">모임 찾기</h3>
+        			<form action="../meeting/find.do">
+        				<div class="fields">
+			              <div class="form-group">
+			                <input type="text" class="form-control" placeholder="모임 이름 검색" name="fmname">
+			              </div>
+			              <div class="form-group">
+			                <input type="submit" value="검색" class="btn btn-primary py-3 px-5">
+			              </div>
+		            	</div>
+	            	</form>
+        		</div>
+		          
 		        </div>
 	        </div>
         </div>
@@ -556,6 +570,56 @@ $(function(){
 		            </div>
 		          </div>
           	</c:forEach>
+          
+          
+        </div>
+      </div>
+    </section>
+    
+    
+    
+
+
+
+<!-- 맛집순례 -------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-start mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate">
+            <span class="subheading">맛집</span>
+            <h2><strong>맛있는거 </strong>땡기지 않아?</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+        
+        	<c:forEach var="kfood_vo" items="${kfood_list }" varStatus="s">
+			          	<div class="col-md-3 d-flex ftco-animate">
+			            <div class="blog-entry align-self-stretch">
+			              <a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }" class="block-20" style="background-image: url(${kfood_vo.kf_poster });">
+			              </a>
+			              <div class="text p-4 d-block">
+			              	<span class="tag">${kfood_vo.kf_title }</span>
+			                <h3 class="heading mt-3" style="width: 205px;"><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">
+								<c:if test="${fn:length(kfood_vo.kf_content)>20 }">											<!-- 제목 -->
+		              				<span>${fn:substring(kfood_vo.kf_content, 0, 20) }...</span>
+		              			</c:if>
+		              			<c:if test="${fn:length(kfood_vo.kf_content)<=20 }">
+		              				<span>${kfood_vo.kf_content}</span>
+		              			</c:if>
+							</a></h3>
+			               <div class="meta mb-3">
+			             <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">
+			                 
+			                  </a></div>
+			                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }">${kfood_vo.kf_tel }</a></div>
+			                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_no }" class="meta-chat"><span class="icon-chat"></span></a></div>
+			                  <div><a href="../kfood/detail_before.do?no=${kfood_vo.kf_zone }">${kfood_vo.kf_zone }</a></div>
+			               </div>
+			              </div>
+			            </div>
+			          </div>
+			        
+			    </c:forEach>
           
           
         </div>
