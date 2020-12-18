@@ -183,7 +183,7 @@ public class MeetingController {
 	}
 	
 	//참여하기
-	@RequestMapping("like.do")
+	@RequestMapping("join.do")
 	public String meeting_join(HttpServletRequest request,String mno) {
 		try {
 			dao.meetingJoinIncrement(Integer.parseInt(mno));

@@ -5,11 +5,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ 
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
- function chat() {
-	 window.open("../chat/chat.jsp", "chat", "width=275,height=300");
- }
+/* 	$(function(){
+		$('#JoinBtn').on('click',function(){
+			var mjoin=Number(${vo.mjoin}.val());
+			var minwon=Number(${vo.minwon}.val());
+			if(mjoin<minwon){
+				Number(${vo.mjoin}+1)
+			}if(mjoin>=minwon){
+				$("#JoinBtn").hide();
+			});
+		});
+	}); */
+	
+	 /* $(function(){
+		$('#JoinBtn').on('click',function(){
+			var mjoin=Number(${vo.mjoin}.val());
+			var minwon=Number(${vo.minwon}.val());
+			if(mjoin<minwon){
+				Number(${vo.mjoin}+1)
+			}
+		});
+		if(mjoin>=minwon){
+			$("#JoinBtn").hide()
+		
+	}); */
 </script>
+
 </head>
 <body>
 	<div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_2.jpg');">
@@ -93,7 +117,7 @@
 							
 							        // 인포윈도우로 장소에 대한 설명을 표시합니다
 							        var infowindow = new kakao.maps.InfoWindow({
-							            content: '<div style="width:150px;text-align:center;padding:6px 0;">모임 장소</div>'
+							            content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.maddr2}</div>'
 							        });
 							        infowindow.open(map, marker);
 							
@@ -114,13 +138,13 @@
 						<!-- 첫번째 탭===================================================== -->
 		              <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel" aria-labelledby="v-pills-whatwedo-tab">
 		              	<div>
-			                <h2 class="mb-4">${vo.mname }</h2><a href="../meeting/like.do?mno=${vo.mno }" class="btn btn-xs btn-success" value="참여" id="JoinBtn">참여</a>
+			                <h2 class="mb-4">${vo.mname }</h2>
 			                &nbsp;&nbsp;&nbsp;
 			                <p>모임 주소 : ${vo.maddr } ${vo.maddr2 }</p>
 			                <p>참여 인원 : ${vo.mjoin}/${vo.minwon }</p>
 			                <p>모임 소개 : ${vo.mmsg }</p><br>
 			                <a href="../meeting/update.do?mno=${vo.mno }" class="btn btn-xs btn-success" value="수정하기" id="UpdateBtn">수정하기</a>&nbsp;&nbsp;&nbsp;
-			                <a href="#" class="btn btn-xs btn-info" value="채팅하기" id="ChatBtn">채팅하기</a>&nbsp;&nbsp;&nbsp;
+			                <a href="../meeting/join.do?mno=${vo.mno }" class="btn btn-xs btn-info" value="참여" id="JoinBtn">참여하기</a>&nbsp;&nbsp;&nbsp;
 			                <a href="../meeting/delete.do?mno=${vo.mno }" class="btn btn-xs btn-danger" value="삭제하기" id="DeleteBtn">삭제하기</a>&nbsp;&nbsp;&nbsp;
 			                <a href="../meeting/list.do" class="btn btn-xs btn-warning" value="목록보기" id="ListBtn">목록보기</a>&nbsp;&nbsp;&nbsp;     
 				        </div>

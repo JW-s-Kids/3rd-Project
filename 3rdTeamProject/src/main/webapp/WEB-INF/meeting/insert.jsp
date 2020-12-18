@@ -73,10 +73,10 @@ function postfind()
 	<section class="ftco-section contact-section ftco-degree-bg">
       <div class="container">
         <div class="row d-flex mb-5 contact-info">
-          <div class="col-md-5 mb-4">
+          <div class="col-md-6 mb-4">
             <h2 class="h4">모임 만들기</h2>
           </div>
-          <div class="col-md-5 mb-4">
+          <div class="col-md-4 mb-4">
             <h2 class="h4">지도로 장소 찾기</h2>
           </div>
           <div class="w-100"></div>
