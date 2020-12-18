@@ -42,8 +42,8 @@ public interface DiaryMapper {
 	// 여행기 작성 ===============================================================================================================================================
 	@SelectKey(keyProperty="no", resultType=int.class, before=true,
 			statement="SELECT NVL(MAX(no)+1, 1) as no FROM diary")
-	@Insert("INSERT INTO diary(no, id, subject, content, photo, tag, addr, visitdate, thumbnail) "
-			+ "VALUES(#{no}, #{id}, #{subject}, #{content}, #{photo}, '축제', '용산구', '2020-11-21', #{thumbnail})")
+	@Insert("INSERT INTO diary(no, id, subject, content, photo, visitdate, thumbnail) "
+			+ "VALUES(#{no}, #{id}, #{subject}, #{content}, #{photo}, '2020-11-21', #{thumbnail})")
 	public void diaryInsert(DiaryVO vo);
 	
 	

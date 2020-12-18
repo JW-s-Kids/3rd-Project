@@ -113,6 +113,29 @@
 		    			
 		    			
 		    		<!--   --------------------------- -->	
+		    		 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+          	  <div class="sidebar-box ftco-animate">
+          	  <div class="col-md-12 hotel-single ftco-animate mb-5 mt-5">
+              <h4>ÃÖ±Ù º» ¸ÀÁý</h4>
+              <div class="row">
+              <c:forEach var="cookie_vo" items="${cookie_list}" varStatus="s">
+              		<c:if test="${s.index < 6 }">
+			              <div class="block-21 mb-4 d-flex">
+			                <a class="blog-img mr-4" style="background-image: url(${cookie_vo.kf_poster}); "></a>
+			                <div class="text">
+			                  <h3 class="heading"><a href="../kfood/detail.do?no=${cookie_vo.kf_no }">${cookie_vo.kf_title }</a></h3>
+			                  <h3 class="heading"><a href="../kfood/detail.do?no=${cookie_vo.kf_no }">${cookie_vo.kf_zone }</a></h3>
+			                  <div class="meta">
+			                   
+			                   
+			                  </div>
+			                </div>
+			              </div>
+	              	</c:if>
+              </c:forEach>
+              </div>
+              </div>
+            </div>
 		    			
     </div>
           	<div class="row mt-5">

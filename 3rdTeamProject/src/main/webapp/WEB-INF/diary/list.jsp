@@ -62,7 +62,7 @@
       	</div>
       	
       	<div style="height: 60px; margin: 0px auto; text-align: right;">
-      		<c:if test="${sessionScope.id != null }">
+      		<c:if test="${sessionScope.id != null || sessionScope.userEmail != null }">
       			<input type="button" class="btn btn-primary" value="여행기 작성" onclick="location.href='../diary/insert.do'">
       		</c:if>
       	</div>

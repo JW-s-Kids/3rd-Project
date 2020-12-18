@@ -45,6 +45,7 @@ public class MemberController {
 			if(userInfo.get("email") != null){
 				session.setAttribute("userEmail", userInfo.get("email"));
 				session.setAttribute("userName", userInfo.get("nickname"));
+				session.setAttribute("id", userInfo.get("nickname"));
 				session.setAttribute("access_Token", access_Token);
 				
 				String name = (String)userInfo.get("nickname");

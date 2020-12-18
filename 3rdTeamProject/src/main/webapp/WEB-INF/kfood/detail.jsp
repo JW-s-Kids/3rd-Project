@@ -115,7 +115,7 @@ $(function(){
           		</div>
           		<div class="col-md-6 hotel-single mt-4 mb-5 ftco-animate">
           			<span>${kfood_vo.kf_zone }</span>
-          			<h2>${kfood_vo.kf_title }&emsp;&emsp;&emsp;&emsp;${kfood_vo.kf_score }</li></h2>
+          			<h2>${kfood_vo.kf_title }&emsp;&emsp;&emsp;${kfood_vo.kf_score }&emsp;&emsp;<input type="submit" value="¿¹¾àÇÏ±â" class="btn btn-primary"></li></h2>
           			<p class="rate mb-5">
           				<span class="loc">
           				  <i class="icon-map">${(kfood_vo.kf_addr1)}</i>
@@ -193,14 +193,7 @@ $(function(){
 		               </td>
 		              </tr>
 		            </table>
-		            <h3>¸ÀÁý ´ñ±ÛÆò</h3>
-            <table class="table">
-              <tr>
-               <td class="text-center">
-                <img src="" width=450 height=450>
-               </td>
-              </tr>
-            </table>
+		           
           		</div>
           	
           	<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->          	

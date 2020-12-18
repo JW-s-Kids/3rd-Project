@@ -53,7 +53,7 @@ $(function(){
                   
               </form> -->
               
-              <input type="button" class="btn btn-primary" value="통합 검색" style="width:400px; height:60px; border-radius: none; font-size: 12pt;" onclick="location.href='../main/totalsearch.do'">
+              <!-- <input type="button" class="btn btn-primary" value="통합 검색" style="width:400px; height:60px; border-radius: none; font-size: 12pt;" onclick="location.href='../main/totalsearch.do'"> -->
             </div>
             <!-- <p>Or browse the highlights</p>
             <p class="browse d-md-flex">
