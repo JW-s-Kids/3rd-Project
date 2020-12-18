@@ -71,9 +71,9 @@ $(function(){
 	          				</a>
           			</c:if>
           			</div>
-          			<div style="margin-top:60px; border-top: 1px solid #E5E5E5; text-align: right; padding-top: 5px;">
+          			<!-- <div style="margin-top:60px; border-top: 1px solid #E5E5E5; text-align: right; padding-top: 5px;">
           				<p>아직 계정이 없으신가요?&nbsp;&nbsp;<a class="all_a_tag" href="../member/join.do">회원가입</a></p>
-          			</div>
+          			</div> -->
           			
           			<%-- <c:if test="${userId != null }">
           				<h5>로그인 완료</h5>
